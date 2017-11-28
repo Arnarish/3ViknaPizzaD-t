@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1511880191 source:c:\users\arnar elvarsson\dropbox\hr h-17\3vikna\3viknapizzad-t\project1-2\verk1-2\main.cpp
+	<iostream>
+	<fstream>
+
