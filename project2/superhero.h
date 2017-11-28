@@ -5,30 +5,16 @@ using namespace std;
 
 class Superhero {
     public:
+        Superhero();
+        Superhero(string _name, char _power, int _age);
+
+    private:
         string name;
         char power;
         int age;
 
-        Superhero() {
-            name = "";
-            power = 'n';
-            age = 0;
-        }
-        Superhero(string _name, char _power, int _age) {
-            name = _name;
-            power = _power;
-            age = _age;
-        }
-
-        get() {
-            
-        }
-
-        set() {
-
-        }
-    private:
-
+        friend ostream& operator << (ostream& out, const Superhero& sh);
+        friend istream& operator >> (istream& in, Superhero& sh);
 };
 
 #endif
