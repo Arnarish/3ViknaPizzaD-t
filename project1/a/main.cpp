@@ -41,6 +41,5 @@ int main()
         cout << "Unable to read from file!" << endl;
     }
 
-
     return 0;
 }

@@ -33,3 +33,6 @@
 
 # Compiler garbage
 *.log
+*.cbp
+*.cbp.save-failed
+*.depend
