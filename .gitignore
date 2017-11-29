@@ -36,3 +36,6 @@
 *.cbp
 *.cbp.save-failed
 *.depend
+
+# Various things
+.swp
