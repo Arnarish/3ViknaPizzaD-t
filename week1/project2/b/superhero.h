@@ -12,7 +12,7 @@ class Superhero {
         int get_age();
 
     private:
-        string name;
+        char name[64];
         char power;
         int age;
 
