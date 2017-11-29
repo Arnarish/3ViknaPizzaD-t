@@ -15,6 +15,18 @@ Superhero::Superhero(string _name, char _power, int _age) {
     age = _age;
 }
 
+char Superhero::get_power() {
+    return power;
+}
+
+string Superhero::get_name() {
+    return name;
+}
+
+int Superhero::get_age() {
+    return age;
+}
+
 ostream& operator << (ostream& out, const Superhero& sh) {
     out << sh.name << " " << "(" << sh.age << "):" << " ";
     switch (sh.power) {

@@ -7,6 +7,9 @@ class Superhero {
     public:
         Superhero();
         Superhero(string _name, char _power, int _age);
+        string get_name();
+        char get_power();
+        int get_age();
 
     private:
         string name;

@@ -31,9 +31,11 @@ void read_from_file() {
     ifstream fin;
     fin.open("heroes.txt");
     if (fin.is_open()) {
-        while (!fin.eof()) {
+        while (true) {
             fin >> name >> age >> power;
             Superhero sh(name, power, age);
+            if (fin.eof())
+                break;
             cout << sh << endl;
         }
         fin.close();
@@ -42,6 +44,20 @@ void read_from_file() {
         cout << "Unable to read from file!" << endl;
     }
     
+}
+
+void insert_hero(Superhero& super) {
+    ofstream fout;
+    fout.open("heroes.txt", ios::app);
+    if (fout.is_open()) {
+        fout << super.get_name() << " "
+             << super.get_age() << " "
+             << super.get_power() << endl;
+        fout.close();
+    }
+    else {
+        cout << "Unable to write to file!" << endl;
+    }
 }
 
 int main(void)
@@ -55,9 +71,15 @@ int main(void)
              << "Please make a selection: ";
         cin >> selection;
         if (selection == '1') {
+            char c;
             Superhero super;
             cin >> super;
             cout << super << endl;
+            cout << "Do you want to insert this hero into the archives? (y/n): ";
+            cin >> c;
+            if (c == 'y' || c == 'Y') {
+                insert_hero(super);
+            }
         }
 
         else if (selection == '2') {
