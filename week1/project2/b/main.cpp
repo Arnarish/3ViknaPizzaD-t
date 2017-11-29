@@ -35,7 +35,6 @@ void write_to_file(Superhero* supers, int n) {
         cout << "Unable to write to file!" << endl;
     }
     fout.close();
-    cout << "Hello, write to file" << endl;
 }
 
 int main(void)
