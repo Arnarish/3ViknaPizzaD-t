@@ -12,9 +12,15 @@ class Topping {
         void set_name(string name);
         void set_price(int price);
 
+        void write(ofstream& fout) const;
+        void read(ifstream& fin);
+
     private:
         string name;
         int price;
+
+        friend istream& operator >> (istream& in, Topping& t);
+        friend ostream& operator << (ostream& out, const Topping& t);
 };
 
 #endif

@@ -26,8 +26,33 @@ string read_menu() {
     return menu;
 }
 
+void list_all_toppings() {
+    ifstream fin;
+    fin.open("topping.dat", ios::binary);
+
+    fin.seekg(0, fin.end);
+    int r = fin.tellg() / sizeof(Topping);
+    fin.seekg(0, fin.beg);
+
+    Topping* toppings = new Topping[r];
+    for (int i = 0; i < 2; i++) {
+        Topping t;
+        t.read(fin);
+        cout << t << endl;
+    }
+    fin.close();
+}
+
 void create_new_topping() {
     cout << "hey new topping time yass" << endl;
+    ofstream fout;
+    fout.open("topping.dat", ios::binary | ios::app);
+    Topping topping;
+    cin >> topping;
+    topping.write(fout);
+    fout.close();
+
+    list_all_toppings();
 }
 
 int main(void)
