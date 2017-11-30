@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "topping.h"
 
 using namespace std;
 
@@ -25,32 +26,44 @@ string read_menu() {
     return menu;
 }
 
-void do_stuff() {
-    cout << "Hey you're in a submenu now wowie oooo" << endl;
+void create_new_topping() {
+    cout << "hey new topping time yass" << endl;
 }
 
 int main(void)
 {
     string menu = read_menu();
     int selection;
+    int subselection;
     while (true) {
-        cout << menu << "Make your selection: ";
+        cout << menu << ">> Make your selection: ";
         cin >> selection;
         if (!cin.fail()) {
             switch (selection) {
                 case 1:
-                    do_stuff();
+                    // Go to the administration submenu
+                    //TODO: clean this up
+                    cout << " * 1) Create new topping\n"
+                         << " * 2) Create new base pizza\n"
+                         << ">> ";
+                    cin >> subselection;
+                    if (subselection == 1) {
+                        create_new_topping();
+                    }
                     break;
                 case 2:
-                    do_stuff();
+                    // Go to the order menu
                     break;
                 case 3:
-                    do_stuff();
+                    //TODO: clean this up
+                    cout << "* 1) Manage placed orders\n"
+                         << "* 2) Manage prep orders\n"
+                         << "* 3) Manage deliveries\n"
+                         << "* 4) Manage order\n"
+                         << ">> ";
+                    cin >> subselection;
                     break;
                 case 4:
-                    do_stuff();
-                    break;
-                case 5:
                     cout << "Bye!" << endl;
                     return 0;
                 default:

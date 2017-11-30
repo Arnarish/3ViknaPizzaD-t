@@ -4,8 +4,8 @@
               // '.  \ o|  /  o '.\
              //'._o'. \ |o/ o_.-'o\\
              || o '-.'.\|/.-' o   ||
-             ||--o--o-->|< :===
- 
+             ||--o--o-->|< :===-o-||
+             \\ . ` o  /|\` ' o `//
  8b,dPPYba,  88 888888888 888888888 ,adPPYYba,  
  88P'    "8a 88      a8P"      a8P" ""     `Y8  
  88       d8 88   ,d8P'     ,d8P'   ,adPPPPP88  
@@ -15,7 +15,6 @@
  88
  
  1. Management
- 2. Sale
- 3. Preparation
- 4. Delivery
- 5. Quit
+ 2. Create new sale
+ 3. Orders
+ 4. Quit
