@@ -34,9 +34,6 @@ int main(void)
     string menu = read_menu();
     int selection;
     while (true) {
-        //Clear the screen
-        printf("\033[2J\033[1;1H");
-
         cout << menu << "Make your selection: ";
         cin >> selection;
         if (!cin.fail()) {
