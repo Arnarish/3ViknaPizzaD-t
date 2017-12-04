@@ -1,0 +1,11 @@
+#include "newempui.h"
+
+newempui::newempui()
+{
+    //ctor
+}
+
+newempui::~newempui()
+{
+    //dtor
+}
