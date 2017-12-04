@@ -1,5 +1,5 @@
-#ifndef _H
-#define _H
+#ifndef PIZZA_H
+#define PIZZA_H
 
 using namespace std;
 

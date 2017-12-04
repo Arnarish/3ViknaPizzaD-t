@@ -1,5 +1,5 @@
-#ifndef _H
-#define _H
+#ifndef TOPPING_H
+#define TOPPING_H
 
 using namespace std;
 
