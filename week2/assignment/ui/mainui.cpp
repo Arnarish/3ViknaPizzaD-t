@@ -27,12 +27,15 @@ void MainUI::main_menu() {
                 break;
             case 2:
                 cout << "2" << endl; //list by ssn
+                list_by_ssn();
                 break;
             case 3:
                 cout << "3" << endl;//total yearly by ssn
+                list_total_wages();
                 break;
             case 4:
                 cout << "4" << endl;//print highest paid employee
+                top_employee();
                 break;
             case 5:
                 cout << "So long, and thanks for all the fish.";
@@ -59,4 +62,28 @@ void MainUI::get_new_entry()
     cout << "Year of payment: ";
     cin >> year;
     //SalaryService.add_entry(name, ssn, salary, month, year);
+}
+
+void MainUI::list_by_ssn()
+{
+    char ssn[11];
+    cout << "Please enter the ssn: ";
+    cin.getline(ssn, 11);
+    //SalaryService.get_entry(ssn);
+}
+
+void MainUI::list_total_wages()
+{
+    char ssn[11];
+    cout << "Please enter the ssn: ";
+    cin.getline(ssn,11);
+    //SalaryService.total_wages(ssn);
+}
+
+void MainUI::top_employee()
+{
+    int year;
+    cout << "Please enter the year: ";
+    cin >> year;
+    //SalaryService.get_top_employee(year);
 }
