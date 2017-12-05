@@ -23,7 +23,7 @@ void RecordWriter::append_to_file(Salary& salary) {
 }
 
 void RecordWriter::write_entire_file(Salary* salaries, int n) {
-    fout.open(file, ios::binary | ios::trunc);
+    fout.open(file.c_str(), ios::binary | ios::trunc);
     if (fout.is_open()) {
         fout.write((char*)salaries, sizeof(Salary) * n);
     }
