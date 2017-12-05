@@ -24,9 +24,22 @@ void SalaryService::add_entry(string name, string ssn, double salary, int month,
         Salary sal(name, ssn, salary, month, year);
         if (!check_if_exists(ssn, month)) {
             // Append to the file
+            writer.append_to_file(sal);
         }
         else {
             // Replace the entry with the current one
+            Salary* records = reader.read_file();
+            int size = reader.entries();
+            for (int i = 0; i < size; i++) {
+                if (records[i].get_ssn() == ssn 
+                    && records[i].get_month() == month 
+                    && records[i].get_year() == year) {
+                    //Overwrite the entry
+                    records[i] = sal;
+                    writer.write_entire_file(records, size);
+                    break;
+                }
+            }
         }
     }
 }

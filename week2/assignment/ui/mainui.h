@@ -2,6 +2,7 @@
 #define MAINUI_H
 
 #include "../models/salary.h"
+#include "../services/salaryservice.h"
 #include <stdlib.h>
 #include <iostream>
 #include <string>
@@ -17,8 +18,8 @@ class MainUI {
         void list_total_wages();
         void top_employee();
 
-
     private:
+        SalaryService service;
         string ui_text;
         string name;
         string ssn;

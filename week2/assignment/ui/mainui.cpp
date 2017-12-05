@@ -1,4 +1,5 @@
 #include "mainui.h"
+#include "../services/salaryservice.h"
 
 
 MainUI::MainUI() {
@@ -18,23 +19,23 @@ void MainUI::main_menu() {
         cout << ui_text << endl;
         cout << "Selection: ";
         cin >> c;
-        system("cls");
+        //system("cls");
         m = c - 48;
         switch (m) {
             case 1:
-                cout << "1" << endl; //add new salary record
+                //add new salary record
                 get_new_entry();
                 break;
             case 2:
-                cout << "2" << endl; //list by ssn
+                //list by ssn
                 list_by_ssn();
                 break;
             case 3:
-                cout << "3" << endl;//total yearly by ssn
+                //total yearly by ssn
                 list_total_wages();
                 break;
             case 4:
-                cout << "4" << endl;//print highest paid employee
+                //print highest paid employee
                 top_employee();
                 break;
             case 5:
@@ -61,23 +62,29 @@ void MainUI::get_new_entry()
     cin >> month;
     cout << "Year of payment: ";
     cin >> year;
-    //SalaryService.add_entry(name, ssn, salary, month, year);
+    service.add_entry(name, ssn, salary, month, year);
 }
 
 void MainUI::list_by_ssn()
 {
-    char ssn[11];
+    string ssn;
     cout << "Please enter the ssn: ";
-    cin.getline(ssn, 11);
-    //SalaryService.get_entry(ssn);
+    cin >> ssn;
+    vector<Salary> sals = service.get_entry(ssn);
+    for (unsigned int i = 0; i < sals.size(); i++) {
+        cout << sals[i] << endl;
+    }
 }
 
 void MainUI::list_total_wages()
 {
-    char ssn[11];
+    string ssn;
+    int year;
     cout << "Please enter the ssn: ";
-    cin.getline(ssn,11);
-    //SalaryService.total_wages(ssn);
+    cin >> ssn;
+    cout << "Please enter the year: ";
+    cin >> year;
+    cout << "Total wages: " << service.total_wages(ssn, year) << endl;
 }
 
 void MainUI::top_employee()
@@ -85,5 +92,5 @@ void MainUI::top_employee()
     int year;
     cout << "Please enter the year: ";
     cin >> year;
-    //SalaryService.get_top_employee(year);
+    cout << "Top dog: " << service.get_top_employee(year) << endl;
 }
