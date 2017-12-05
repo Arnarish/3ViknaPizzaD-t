@@ -3,6 +3,7 @@ main:
 		main.cpp \
 		models/salary.cpp \
 		ui/mainui.cpp \
+		services/salaryservice.cpp \
 		repositories/recordwriter.cpp \
 		repositories/recordreader.cpp \
 		exceptions/EmployeeNameException.cpp \
