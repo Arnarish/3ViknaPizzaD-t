@@ -1,9 +1,5 @@
-#include <iostream>
-#include <cstring>
-#include <string>
 #include "salary.h"
 
-using namespace std;
 
 Salary::Salary() {
     name[0] = '\0';

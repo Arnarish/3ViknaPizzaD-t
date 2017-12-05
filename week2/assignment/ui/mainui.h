@@ -3,6 +3,8 @@
 
 #include "../models/salary.h"
 #include <stdlib.h>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -11,6 +13,7 @@ class MainUI {
         MainUI();
         void main_menu();
         void get_new_entry();
+
 
     private:
         string ui_text;
