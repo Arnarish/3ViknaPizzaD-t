@@ -14,7 +14,7 @@ RecordReader::~RecordReader() {
 }
 
 Salary* RecordReader::read_file() {
-    fin.open(file, ios::binary);
+    fin.open(file.c_str(), ios::binary);
     if (fin.is_open()) {
         fin.seekg(0, fin.end);
         int r = fin.tellg() / sizeof(Salary);

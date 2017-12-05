@@ -2,4 +2,3 @@
 
 using namespace std;
 
-SalaryService::foo

@@ -11,7 +11,7 @@ RecordWriter::RecordWriter() {
 }
 
 void RecordWriter::append_to_file(Salary& salary) {
-    fout.open(file, ios::binary | ios::app);
+    fout.open(file.c_str(), ios::binary | ios::app);
     if (fout.is_open()) {
         fout.write((char*)(&salary), sizeof(Salary));
     }
