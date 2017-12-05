@@ -105,6 +105,7 @@ string SalaryService::get_top_employee(int year) {
             wages[records[i].get_name()] += records[i].get_salary();
         }
     }
+    delete[] records;
     double maxwage = 0;
     string name = "";
     // Iterate through the map
