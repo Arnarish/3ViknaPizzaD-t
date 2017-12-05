@@ -24,8 +24,8 @@ void SalaryService::add_entry(string name, string ssn, double salary, int month,
             Salary* records = reader.read_file();
             int size = reader.entries();
             for (int i = 0; i < size; i++) {
-                if (records[i].get_ssn() == ssn 
-                    && records[i].get_month() == month 
+                if (records[i].get_ssn() == ssn
+                    && records[i].get_month() == month
                     && records[i].get_year() == year) {
                     //Overwrite the entry
                     records[i] = sal;
@@ -40,7 +40,7 @@ void SalaryService::add_entry(string name, string ssn, double salary, int month,
 bool SalaryService::is_valid_entry(string name, string ssn, double salary, int month, int year) {
     // Check if the name is valid
     for (unsigned int i = 0; i < name.size(); i++) {
-        if (!isalpha(name[i]) && name[i] != ' ') { 
+        if (!isalpha(name[i]) && name[i] != ' ') {
             // Invalid character, so we throw an exception
             throw EmployeeNameException();
         }
@@ -53,7 +53,7 @@ bool SalaryService::is_valid_entry(string name, string ssn, double salary, int m
     if (salary < 0) {
         throw EmployeeSalaryException();
     }
-    if (month < 1 || month > 12) { 
+    if (month < 1 || month > 12) {
         throw EmployeeMonthException();
     }
     if (year != 2017) {
@@ -76,7 +76,6 @@ bool SalaryService::check_if_exists(string ssn, int month) {
 }
 
 vector<Salary> SalaryService::get_entry(string ssn) {
-    //TODO: throw ssn exception
     vector<Salary> employee_records;
     Salary* records = reader.read_file();
     int size = reader.entries();
@@ -85,14 +84,25 @@ vector<Salary> SalaryService::get_entry(string ssn) {
             employee_records.push_back(records[i]);
         }
     }
+    for (unsigned int i = 0; i < ssn.size(); i++) {
+        if (!isdigit(ssn[i])) {
+            throw EmployeeSSNException();
+        }
+    }
     delete[] records;
     return employee_records;
 }
 
 double SalaryService::total_wages(string ssn, int year) {
-    //TODO: throw year exception
-    //TODO: throw ssn exception
     double d = 0;
+    if (year != 2017) {
+        throw EmployeeYearException();
+    }
+    for (unsigned int i = 0; i < ssn.size(); i++) {
+        if (!isdigit(ssn[i])) {
+            throw EmployeeSSNException();
+        }
+    }
     Salary* records = reader.read_file();
     int size = reader.entries();
     for (int i = 0; i < size; i++) {
@@ -105,7 +115,9 @@ double SalaryService::total_wages(string ssn, int year) {
 }
 
 string SalaryService::get_top_employee(int year) {
-    //TODO: throw year exception
+    if (year != 2017) {
+        throw EmployeeYearException();
+    }
     map<string, double> wages;
     Salary* records = reader.read_file();
     int size = reader.entries();

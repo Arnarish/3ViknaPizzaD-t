@@ -3,7 +3,16 @@
 
 #include <vector>
 #include <string>
-
+#include <map>
+#include "salaryservice.h"
+#include "../models/salary.h"
+#include "../repositories/recordreader.h"
+#include "../repositories/recordwriter.h"
+#include "../exceptions/EmployeeNameException.h"
+#include "../exceptions/EmployeeSSNException.h"
+#include "../exceptions/EmployeeSalaryException.h"
+#include "../exceptions/EmployeeMonthException.h"
+#include "../exceptions/EmployeeYearException.h"
 #include "../models/salary.h"
 #include "../repositories/recordreader.h"
 #include "../repositories/recordwriter.h"

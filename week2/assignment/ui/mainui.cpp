@@ -1,5 +1,5 @@
 #include "mainui.h"
-#include "../services/salaryservice.h"
+
 
 
 MainUI::MainUI() {
@@ -19,9 +19,9 @@ void MainUI::main_menu() {
         cout << ui_text << endl;
         cout << "Selection: ";
         cin >> c;
-        //system("cls");
         m = c - 48;
         switch (m) {
+            system("cls");
             case 1:
                 //add new salary record
                 get_new_entry();
@@ -39,7 +39,7 @@ void MainUI::main_menu() {
                 top_employee();
                 break;
             case 5:
-                cout << "So long, and thanks for all the fish.";
+                cout << endl << "So long, and thanks for all the fish.";
                 exit(0);
             default:
                 cout << "Invalid input!" << endl;
@@ -51,6 +51,8 @@ void MainUI::main_menu() {
 
 void MainUI::get_new_entry()
 {
+    system("cls");
+
     cout << "Entering a new salary record" << endl;
     cout << "Employee name: ";
     cin >> name;
@@ -62,35 +64,88 @@ void MainUI::get_new_entry()
     cin >> month;
     cout << "Year of payment: ";
     cin >> year;
-    service.add_entry(name, ssn, salary, month, year);
+    try
+    {
+        service.add_entry(name, ssn, salary, month, year);
+    }
+    catch (EmployeeMonthException)
+    {
+        cout << "Invalid month." << endl;
+    }
+    catch (EmployeeNameException)
+    {
+        cout << "Invalid name." << endl;
+    }
+    catch (EmployeeSalaryException)
+    {
+        cout << "Invalid salary." << endl;
+    }
+    catch (EmployeeSSNException)
+    {
+        cout << "Invalid social security number." << endl;
+    }
+    catch (EmployeeYearException)
+    {
+        cout << "Invalid year." << endl;
+    }
 }
 
 void MainUI::list_by_ssn()
 {
-    string ssn;
-    cout << "Please enter the ssn: ";
-    cin >> ssn;
-    vector<Salary> sals = service.get_entry(ssn);
-    for (unsigned int i = 0; i < sals.size(); i++) {
-        cout << sals[i] << endl;
+    system("cls");
+
+    try
+    {
+        string ssn;
+        cout << "Please enter the ssn: ";
+        cin >> ssn;
+        vector<Salary> sals = service.get_entry(ssn);
+        for (unsigned int i = 0; i < sals.size(); i++) {
+            cout << sals[i] << endl;
+        }
     }
+    catch (EmployeeSSNException)
+    {
+        cout << "Invalid social security number." << endl;
+    }
+
 }
 
 void MainUI::list_total_wages()
 {
-    string ssn;
-    int year;
-    cout << "Please enter the ssn: ";
-    cin >> ssn;
-    cout << "Please enter the year: ";
-    cin >> year;
-    cout << "Total wages: " << service.total_wages(ssn, year) << endl;
+    system("cls");
+
+    try{
+        string ssn;
+        int year;
+        cout << "Please enter the ssn: ";
+        cin >> ssn;
+        cout << "Please enter the year: ";
+        cin >> year;
+        cout << "Total wages: " << service.total_wages(ssn, year) << endl;
+    }
+    catch (EmployeeSSNException)
+    {
+        cout << "Invalid month." << endl;
+    }
+    catch (EmployeeSSNException)
+    {
+        cout << "Invalid social security number." << endl;
+    }
 }
 
 void MainUI::top_employee()
 {
+    system("cls");
+
+    try{
     int year;
     cout << "Please enter the year: ";
     cin >> year;
     cout << "Top dog: " << service.get_top_employee(year) << endl;
+    }
+    catch (EmployeeYearException)
+    {
+        cout << "Invalid year." << endl;
+    }
 }
