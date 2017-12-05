@@ -5,4 +5,12 @@ main:
 		ui/mainui.cpp \
 		repositories/recordwriter.cpp \
 		repositories/recordreader.cpp \
+		exceptions/EmployeeNameException.cpp \
+		exceptions/EmployeeMonthException.cpp \
+		exceptions/EmployeeSalaryException.cpp \
+		exceptions/EmployeeSSNException.cpp \
+		exceptions/EmployeeYearException.cpp \
+		exceptions/FileOpenException.cpp \
+		exceptions/FileReadException.cpp \
+		exceptions/FileWriteException.cpp \
 	-o out.exe
