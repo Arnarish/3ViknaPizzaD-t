@@ -11,13 +11,6 @@
 
 using namespace std;
 
-/*
-SalaryService::SalaryService() {
-    RecordReader reader;
-    RecordWriter writer;
-}
-*/
-
 void SalaryService::add_entry(string name, string ssn, double salary, int month, int year) {
     if (is_valid_entry(name, ssn, salary, month, year)) {
         // If it's valid, create a new Salary object
@@ -83,6 +76,7 @@ bool SalaryService::check_if_exists(string ssn, int month) {
 }
 
 vector<Salary> SalaryService::get_entry(string ssn) {
+    //TODO: throw ssn exception
     vector<Salary> employee_records;
     Salary* records = reader.read_file();
     int size = reader.entries();
@@ -96,8 +90,9 @@ vector<Salary> SalaryService::get_entry(string ssn) {
 }
 
 double SalaryService::total_wages(string ssn, int year) {
+    //TODO: throw year exception
+    //TODO: throw ssn exception
     double d = 0;
-
     Salary* records = reader.read_file();
     int size = reader.entries();
     for (int i = 0; i < size; i++) {
@@ -110,6 +105,7 @@ double SalaryService::total_wages(string ssn, int year) {
 }
 
 string SalaryService::get_top_employee(int year) {
+    //TODO: throw year exception
     map<string, double> wages;
     Salary* records = reader.read_file();
     int size = reader.entries();
