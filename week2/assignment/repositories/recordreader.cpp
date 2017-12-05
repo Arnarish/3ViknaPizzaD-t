@@ -1,9 +1,5 @@
-#include <string>
-#include <fstream>
-#include "../models/salary.h"
 #include "recordreader.h"
 
-using namespace std;
 
 RecordReader::RecordReader() {
     file = "records.dat";
