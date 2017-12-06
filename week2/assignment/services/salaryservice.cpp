@@ -66,7 +66,7 @@ bool SalaryService::is_valid_entry(string name, string ssn, double salary, int m
     if (month < 1 || month > 12) {
         throw EmployeeMonthException();
     }
-    if (year != 2017) {
+    if (year > 2017 || year < 1900) {
         throw EmployeeYearException();
     }
     return true;
@@ -103,7 +103,7 @@ vector<Salary> SalaryService::get_entry(string ssn) {
 
 double SalaryService::total_wages(string ssn, int year) {
     double d = 0;
-    if (year != 2017) {
+    if (year > 2017 || year < 1900) {
         throw EmployeeYearException();
     }
     if (!is_valid_ssn(ssn)) {
@@ -121,7 +121,7 @@ double SalaryService::total_wages(string ssn, int year) {
 }
 
 string SalaryService::get_top_employee(int year) {
-    if (year != 2017) {
+    if (year > 2017 || year < 1900) {
         throw EmployeeYearException();
     }
     map<string, double> wages;
