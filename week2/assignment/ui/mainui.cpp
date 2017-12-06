@@ -8,7 +8,7 @@ MainUI::MainUI() {
               " 4. Print the highest paid employee\n"
               " 5. Exit.";
 }
-
+//Main menu, 5 operations as per project description
 void MainUI::main_menu() {
     char c;
     int m;
@@ -45,7 +45,7 @@ void MainUI::main_menu() {
     }
 }
 
-
+//Enter a new entry, adds it to the .dat file via servies. catch errors if thrown.
 void MainUI::get_new_entry()
 {
     cout << "Entering a new salary record" << endl;
@@ -78,7 +78,7 @@ void MainUI::get_new_entry()
         cout << "Invalid year." << endl;
     }
 }
-
+//Lists by ssn, lists each entry via for loop. catches error if illegal/invalid SSN.
 void MainUI::list_by_ssn()
 {
     string ssn;
@@ -95,7 +95,7 @@ void MainUI::list_by_ssn()
     }
 
 }
-
+//Lists total wages over a year, for a given year. catch error if thrown.
 void MainUI::list_total_wages()
 {
     string ssn;
@@ -114,7 +114,7 @@ void MainUI::list_total_wages()
         cout << "Invalid social security number." << endl;
     }
 }
-
+//Prints the highest total salary employee over a given year. catches error if thrown
 void MainUI::top_employee()
 {
     int year;
