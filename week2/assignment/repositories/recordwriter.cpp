@@ -2,7 +2,7 @@
 
 
 RecordWriter::RecordWriter() {
-    file = "./data/records.dat"; 
+    file = "./data/records.dat";
     ofstream fout;
 }
 
@@ -12,8 +12,10 @@ void RecordWriter::append_to_file(Salary& salary) {
         fout.write((char*)(&salary), sizeof(Salary));
     }
     else {
-        //TODO: throw exception
-        cout << "oops" << endl;
+        if(!fout.is_open())
+        {
+            throw FileWriteException();
+        }
     }
     fout.close();
 }
@@ -24,8 +26,10 @@ void RecordWriter::write_entire_file(Salary* salaries, int n) {
         fout.write((char*)salaries, sizeof(Salary) * n);
     }
     else {
-        //TODO: throw exception
-        cout << "oops" << endl;
+        if(!fout.is_open())
+        {
+            throw FileWriteException();
+        }
     }
     fout.close();
 }

@@ -1,7 +1,7 @@
 #include "recordreader.h"
 
 RecordReader::RecordReader() {
-    file = "./data/records.dat"; 
+    file = "./data/records.dat";
     ifstream fin;
 }
 
@@ -19,9 +19,11 @@ Salary* RecordReader::read_file() {
         return salaries;
     }
     else {
-        // TODO: throw exception
+        if(!fin.is_open())
+        {
+            throw FileReadException();
+        }
     }
-    return (Salary*)0xDEADBEEF; // temporary!!
 }
 
 int RecordReader::entries() {
@@ -35,7 +37,10 @@ int RecordReader::entries() {
         return n;
     }
     else {
-        // TODO: throw exception
+        if(!fin.is_open())
+        {
+            throw FileReadException();
+        }
     }
     return -1; // temporary
 }

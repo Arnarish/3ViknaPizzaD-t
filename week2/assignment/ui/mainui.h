@@ -6,6 +6,10 @@
 #include "../models/salary.h"
 #include "../services/salaryservice.h"
 
+#if _WIN32
+#include <stdlib.h>
+#endif // _WIN32
+
 using namespace std;
 
 class MainUI {

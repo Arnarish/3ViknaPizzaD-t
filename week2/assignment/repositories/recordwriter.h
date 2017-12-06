@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include "../models/salary.h"
+#include "../exceptions/FileWriteException.h"
 
 using namespace std;
 
