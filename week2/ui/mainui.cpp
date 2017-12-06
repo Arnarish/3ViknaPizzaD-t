@@ -50,7 +50,8 @@ void MainUI::main_menu() {
 void MainUI::get_new_entry() {
     cout << "Entering a new salary record" << endl;
     cout << "Employee name: ";
-    cin >> name;
+    cin.ignore();
+    getline(cin, name);
     cout << "Employee social security number: ";
     cin >> ssn;
     cout << "Employee's salary: ";
