@@ -1,11 +1,10 @@
 #ifndef MAINUI_H
 #define MAINUI_H
 
-#include "../models/salary.h"
-#include "../services/salaryservice.h"
-#include <stdlib.h>
 #include <iostream>
 #include <string>
+#include "../models/salary.h"
+#include "../services/salaryservice.h"
 
 using namespace std;
 

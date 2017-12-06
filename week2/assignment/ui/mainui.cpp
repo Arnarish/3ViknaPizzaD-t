@@ -1,7 +1,5 @@
 #include "mainui.h"
 
-
-
 MainUI::MainUI() {
     // TODO: add salary service object
     ui_text = " --- Very Important Business Inc. ---\n"
@@ -21,7 +19,6 @@ void MainUI::main_menu() {
         cin >> c;
         m = c - 48;
         switch (m) {
-            system("cls");
             case 1:
                 //add new salary record
                 get_new_entry();
@@ -51,8 +48,6 @@ void MainUI::main_menu() {
 
 void MainUI::get_new_entry()
 {
-    system("cls");
-
     cout << "Entering a new salary record" << endl;
     cout << "Employee name: ";
     cin >> name;
@@ -92,8 +87,6 @@ void MainUI::get_new_entry()
 
 void MainUI::list_by_ssn()
 {
-    system("cls");
-
     try
     {
         string ssn;
@@ -113,8 +106,6 @@ void MainUI::list_by_ssn()
 
 void MainUI::list_total_wages()
 {
-    system("cls");
-
     try{
         string ssn;
         int year;
@@ -136,8 +127,6 @@ void MainUI::list_total_wages()
 
 void MainUI::top_employee()
 {
-    system("cls");
-
     try{
     int year;
     cout << "Please enter the year: ";
