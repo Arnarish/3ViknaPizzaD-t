@@ -47,8 +47,7 @@ void MainUI::main_menu() {
 }
 
 //Enter a new entry, adds it to the .dat file via servies. catch errors if thrown.
-void MainUI::get_new_entry()
-{
+void MainUI::get_new_entry() {
     cout << "Entering a new salary record" << endl;
     cout << "Employee name: ";
     cin >> name;
@@ -81,8 +80,7 @@ void MainUI::get_new_entry()
     }
 }
 //Lists by ssn, lists each entry via for loop. catches error if illegal/invalid SSN.
-void MainUI::list_by_ssn()
-{
+void MainUI::list_by_ssn() {
     string ssn;
     cout << "Please enter the ssn: ";
     cin >> ssn;
@@ -98,8 +96,7 @@ void MainUI::list_by_ssn()
 
 }
 //Lists total wages over a year, for a given year. catch error if thrown.
-void MainUI::list_total_wages()
-{
+void MainUI::list_total_wages() {
     string ssn;
     int year;
     cout << "Please enter the ssn: ";
@@ -117,8 +114,7 @@ void MainUI::list_total_wages()
     }
 }
 //Prints the highest total salary employee over a given year. catches error if thrown
-void MainUI::top_employee()
-{
+void MainUI::top_employee() {
     int year;
     cout << "Please enter the year: ";
     cin >> year;
