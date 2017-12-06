@@ -35,13 +35,14 @@ void MainUI::main_menu() {
                 top_employee();
                 break;
             case 5:
-                cout << endl << "So long, and thanks for all the fish.";
+                cout << "\nSo long, and thanks for all the fish.\n" << endl;
                 // Quit the program with a nice status
                 exit(0);
             default:
                 cout << "Invalid input!" << endl;
                 break;
         }
+        cout << endl;
     }
 }
 
@@ -61,6 +62,7 @@ void MainUI::get_new_entry()
     cin >> year;
     try {
         service.add_entry(name, ssn, salary, month, year);
+        cout << "Salary record added successfully!" << endl;
     }
     catch (EmployeeMonthException) {
         cout << "Invalid month." << endl;
