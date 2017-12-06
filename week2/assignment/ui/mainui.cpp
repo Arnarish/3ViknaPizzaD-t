@@ -78,6 +78,9 @@ void MainUI::get_new_entry() {
     catch (EmployeeYearException) {
         cout << "Invalid year." << endl;
     }
+    catch (FileWriteException) {
+        cout << "File write error." << endl;
+    }
 }
 //Lists by ssn, lists each entry via for loop. catches error if illegal/invalid SSN.
 void MainUI::list_by_ssn() {
@@ -92,6 +95,9 @@ void MainUI::list_by_ssn() {
     }
     catch (EmployeeSSNException) {
         cout << "Invalid social security number." << endl;
+    }
+    catch (FileReadException) {
+        cout << "File read error." << endl;
     }
 
 }
@@ -112,6 +118,9 @@ void MainUI::list_total_wages() {
     catch (EmployeeSSNException) {
         cout << "Invalid social security number." << endl;
     }
+    catch (FileReadException) {
+        cout << "File read error." << endl;
+    }
 }
 //Prints the highest total salary employee over a given year. catches error if thrown
 void MainUI::top_employee() {
@@ -123,5 +132,8 @@ void MainUI::top_employee() {
     }
     catch (EmployeeYearException) {
         cout << "Invalid year." << endl;
+    }
+    catch (FileReadException){
+        cout << "File read error." << endl;
     }
 }
