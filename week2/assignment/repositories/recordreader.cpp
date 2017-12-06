@@ -1,11 +1,7 @@
 #include "recordreader.h"
 
 RecordReader::RecordReader() {
-    #if _WIN32
-    file = ".\\data\\records.dat";
-    #else
     file = "./data/records.dat";
-    #endif // _WIN32
     ifstream fin;
 }
 
@@ -22,12 +18,7 @@ Salary* RecordReader::read_file() {
 
         return salaries;
     }
-    else {
-        if(!fin.is_open())
-        {
-            throw FileReadException();
-        }
-    }
+    throw FileReadException();
 }
 
 int RecordReader::entries() {
@@ -40,11 +31,5 @@ int RecordReader::entries() {
         fin.close();
         return n;
     }
-    else {
-        if(!fin.is_open())
-        {
-            throw FileReadException();
-        }
-    }
-    return -1; // temporary
+    throw FileReadException();
 }
