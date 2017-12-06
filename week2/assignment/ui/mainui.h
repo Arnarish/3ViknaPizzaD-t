@@ -25,7 +25,6 @@ class MainUI {
         double salary;
         int month;
         int year;
-        // TODO: add the next layer
 };
 
 #endif
