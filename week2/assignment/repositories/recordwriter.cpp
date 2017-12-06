@@ -2,7 +2,11 @@
 
 
 RecordWriter::RecordWriter() {
+    #if _WIN32
+    file = ".\\data\\records.dat";
+    #else
     file = "./data/records.dat";
+    #endif // _WIN32
     ofstream fout;
 }
 

@@ -1,7 +1,11 @@
 #include "recordreader.h"
 
 RecordReader::RecordReader() {
+    #if _WIN32
+    file = ".\\data\\records.dat";
+    #else
     file = "./data/records.dat";
+    #endif // _WIN32
     ifstream fin;
 }
 
