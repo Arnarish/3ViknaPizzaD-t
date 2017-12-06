@@ -1,14 +1,8 @@
-#include <iostream>
-#include "RecordsUI.h"
+#include "ui/mainui.h"
 
-using namespace std;
-
-int main(void)
-
-{
-    RecordsUI ui;
-    ui.menu();
+int main(void) {
+    MainUI ui;
+    ui.main_menu();
 
     return 0;
 }
-
