@@ -10,7 +10,6 @@ using namespace std;
 class RecordReader {
     public:
         RecordReader();
-        ~RecordReader();
         Salary* read_file();
         int entries();
 

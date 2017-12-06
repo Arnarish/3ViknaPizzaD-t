@@ -1,12 +1,8 @@
 #include "recordreader.h"
 
-
 RecordReader::RecordReader() {
-    file = ".\\data\\records.dat"; //býr ekki til folderinn ef /data er hent, finn enga lausn á því
+    file = "./data/records.dat"; 
     ifstream fin;
-}
-RecordReader::~RecordReader() {
-
 }
 
 Salary* RecordReader::read_file() {
@@ -16,7 +12,7 @@ Salary* RecordReader::read_file() {
         int r = fin.tellg() / sizeof(Salary);
         fin.seekg(0, fin.beg);
 
-        Salary* salaries = new Salary[r]; //TODO: delete this somehow?
+        Salary* salaries = new Salary[r];
         fin.read((char*)salaries, sizeof(Salary) * r);
         fin.close();
 

@@ -2,7 +2,7 @@
 
 
 RecordWriter::RecordWriter() {
-    file = ".\\data\\records.dat"; //býr ekki til folderinn ef /data er hent, finn enga lausn á því
+    file = "./data/records.dat"; 
     ofstream fout;
 }
 
