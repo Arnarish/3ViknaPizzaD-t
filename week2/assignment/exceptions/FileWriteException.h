@@ -1,6 +1,6 @@
 #ifndef FILEWRITEEXCEPTION_H
 #define FILEWRITEEXCEPTION_H
 
-class EmployeeSalaryException {};
+class FileWriteException {};
 
 #endif
