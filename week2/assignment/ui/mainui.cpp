@@ -1,13 +1,12 @@
 #include "mainui.h"
 
 MainUI::MainUI() {
-    // TODO: add salary service object
     ui_text = " --- Very Important Business Inc. ---\n"
-                     " 1. Add a salary record\n"
-                     " 2. List salary records by SSN\n"
-                     " 3. Total yearly salary by SSN\n"
-                     " 4. Print the highest paid employee\n"
-                     " 5. Exit.";
+              " 1. Add a salary record\n"
+              " 2. List salary records by SSN\n"
+              " 3. Total yearly salary by SSN\n"
+              " 4. Print the highest paid employee\n"
+              " 5. Exit.";
 }
 
 void MainUI::main_menu() {
@@ -20,23 +19,24 @@ void MainUI::main_menu() {
         m = c - 48;
         switch (m) {
             case 1:
-                //add new salary record
+                // Add new salary record
                 get_new_entry();
                 break;
             case 2:
-                //list by ssn
+                // List by ssn
                 list_by_ssn();
                 break;
             case 3:
-                //total yearly by ssn
+                // Total yearly by ssn
                 list_total_wages();
                 break;
             case 4:
-                //print highest paid employee
+                // Print highest paid employee
                 top_employee();
                 break;
             case 5:
                 cout << endl << "So long, and thanks for all the fish.";
+                // Quit the program with a nice status
                 exit(0);
             default:
                 cout << "Invalid input!" << endl;
@@ -59,46 +59,38 @@ void MainUI::get_new_entry()
     cin >> month;
     cout << "Year of payment: ";
     cin >> year;
-    try
-    {
+    try {
         service.add_entry(name, ssn, salary, month, year);
     }
-    catch (EmployeeMonthException)
-    {
+    catch (EmployeeMonthException) {
         cout << "Invalid month." << endl;
     }
-    catch (EmployeeNameException)
-    {
+    catch (EmployeeNameException) {
         cout << "Invalid name." << endl;
     }
-    catch (EmployeeSalaryException)
-    {
+    catch (EmployeeSalaryException) {
         cout << "Invalid salary." << endl;
     }
-    catch (EmployeeSSNException)
-    {
+    catch (EmployeeSSNException) {
         cout << "Invalid social security number." << endl;
     }
-    catch (EmployeeYearException)
-    {
+    catch (EmployeeYearException) {
         cout << "Invalid year." << endl;
     }
 }
 
 void MainUI::list_by_ssn()
 {
-    try
-    {
-        string ssn;
-        cout << "Please enter the ssn: ";
-        cin >> ssn;
+    string ssn;
+    cout << "Please enter the ssn: ";
+    cin >> ssn;
+    try {
         vector<Salary> sals = service.get_entry(ssn);
         for (unsigned int i = 0; i < sals.size(); i++) {
             cout << sals[i] << endl;
         }
     }
-    catch (EmployeeSSNException)
-    {
+    catch (EmployeeSSNException) {
         cout << "Invalid social security number." << endl;
     }
 
@@ -106,35 +98,32 @@ void MainUI::list_by_ssn()
 
 void MainUI::list_total_wages()
 {
-    try{
-        string ssn;
-        int year;
-        cout << "Please enter the ssn: ";
-        cin >> ssn;
-        cout << "Please enter the year: ";
-        cin >> year;
+    string ssn;
+    int year;
+    cout << "Please enter the ssn: ";
+    cin >> ssn;
+    cout << "Please enter the year: ";
+    cin >> year;
+    try {
         cout << "Total wages: " << service.total_wages(ssn, year) << endl;
     }
-    catch (EmployeeMonthException)
-    {
+    catch (EmployeeMonthException) {
         cout << "Invalid month." << endl;
     }
-    catch (EmployeeSSNException)
-    {
+    catch (EmployeeSSNException) {
         cout << "Invalid social security number." << endl;
     }
 }
 
 void MainUI::top_employee()
 {
-    try{
     int year;
     cout << "Please enter the year: ";
     cin >> year;
-    cout << "Top dog: " << service.get_top_employee(year) << endl;
+    try {
+        cout << "Top dog: " << service.get_top_employee(year) << endl;
     }
-    catch (EmployeeYearException)
-    {
+    catch (EmployeeYearException) {
         cout << "Invalid year." << endl;
     }
 }
