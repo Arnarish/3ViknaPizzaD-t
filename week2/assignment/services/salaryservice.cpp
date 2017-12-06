@@ -1,13 +1,5 @@
 #include <map>
 #include "salaryservice.h"
-#include "../models/salary.h"
-#include "../repositories/recordreader.h"
-#include "../repositories/recordwriter.h"
-#include "../exceptions/EmployeeNameException.h"
-#include "../exceptions/EmployeeSSNException.h"
-#include "../exceptions/EmployeeSalaryException.h"
-#include "../exceptions/EmployeeMonthException.h"
-#include "../exceptions/EmployeeYearException.h"
 
 using namespace std;
 
@@ -37,18 +29,36 @@ void SalaryService::add_entry(string name, string ssn, double salary, int month,
     }
 }
 
-bool SalaryService::is_valid_entry(string name, string ssn, double salary, int month, int year) {
+bool SalaryService::is_valid_name(string name) {
     // Check if the name is valid
     for (unsigned int i = 0; i < name.size(); i++) {
         if (!isalpha(name[i]) && name[i] != ' ') {
-            // Invalid character, so we throw an exception
-            throw EmployeeNameException();
+            // Invalid character, so we return false
+            return false;
         }
     }
+    return true;
+}
+
+bool SalaryService::is_valid_ssn(string ssn) {
+    // Check if the ssn is valid
     for (unsigned int i = 0; i < ssn.size(); i++) {
         if (!isdigit(ssn[i])) {
-            throw EmployeeSSNException();
+            return false;
         }
+    }
+    if (ssn.size() != 10) {
+        return false;
+    }
+    return true;
+}
+
+bool SalaryService::is_valid_entry(string name, string ssn, double salary, int month, int year) {
+    if (!is_valid_name(name)) {
+        throw EmployeeNameException();
+    } 
+    if (!is_valid_ssn(ssn)) {
+        throw EmployeeSSNException();
     }
     if (salary < 0) {
         throw EmployeeSalaryException();
@@ -84,12 +94,10 @@ vector<Salary> SalaryService::get_entry(string ssn) {
             employee_records.push_back(records[i]);
         }
     }
-    for (unsigned int i = 0; i < ssn.size(); i++) {
-        if (!isdigit(ssn[i])) {
-            throw EmployeeSSNException();
-        }
-    }
     delete[] records;
+    if (!is_valid_ssn(ssn)) {
+        throw EmployeeSSNException();
+    }
     return employee_records;
 }
 
@@ -98,10 +106,8 @@ double SalaryService::total_wages(string ssn, int year) {
     if (year != 2017) {
         throw EmployeeYearException();
     }
-    for (unsigned int i = 0; i < ssn.size(); i++) {
-        if (!isdigit(ssn[i])) {
-            throw EmployeeSSNException();
-        }
+    if (!is_valid_ssn(ssn)) {
+        throw EmployeeSSNException();
     }
     Salary* records = reader.read_file();
     int size = reader.entries();

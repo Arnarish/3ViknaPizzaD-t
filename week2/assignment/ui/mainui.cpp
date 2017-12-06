@@ -124,7 +124,7 @@ void MainUI::list_total_wages()
         cin >> year;
         cout << "Total wages: " << service.total_wages(ssn, year) << endl;
     }
-    catch (EmployeeSSNException)
+    catch (EmployeeMonthException)
     {
         cout << "Invalid month." << endl;
     }
