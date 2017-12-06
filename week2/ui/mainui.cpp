@@ -131,7 +131,13 @@ void MainUI::top_employee() {
     cout << "Please enter the year: ";
     cin >> year;
     try {
-        cout << "Top dog: " << service.get_top_employee(year) << endl;
+        string name = service.get_top_employee(year);
+        if (name == "") {
+            cout << "No entries found for this year" << endl;
+        }
+        else {
+            cout << "Top dog: " << name << endl;
+        }
     }
     catch (EmployeeYearException) {
         cout << "Invalid year." << endl;

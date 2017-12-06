@@ -126,27 +126,32 @@ double SalaryService::total_wages(string ssn, int year) {
 }
 
 string SalaryService::get_top_employee(int year) {
+    string name = "";
+    double maxwage = 0;
     if (year > 2017 || year < 1900) {
         throw EmployeeYearException();
     }
     map<string, double> wages;
-    Salary* records = reader.read_file();
-    int size = reader.entries();
-    for (int i = 0; i < size; i++) {
-        if (records[i].get_year() == year) {
-            wages[records[i].get_name()] += records[i].get_salary();
+    try {
+        Salary* records = reader.read_file();
+        int size = reader.entries();
+        for (int i = 0; i < size; i++) {
+            if (records[i].get_year() == year) {
+                wages[records[i].get_name()] += records[i].get_salary();
+            }
         }
-    }
-    delete[] records;
-    double maxwage = 0;
-    string name = "";
-    // Iterate through the map
-    for (map<string, double>::iterator it = wages.begin(); it != wages.end(); it++) {
-        if (it->second > maxwage) {
-            maxwage = it->second;
-            name = it->first;
+        delete[] records;
+        // Iterate through the map
+        for (map<string, double>::iterator it = wages.begin(); it != wages.end(); it++) {
+            if (it->second > maxwage) {
+                maxwage = it->second;
+                name = it->first;
+            }
         }
+        return name;
     }
-    return name;
+    catch (FileExistsException) {
+        return name;
+    }
 }
 
