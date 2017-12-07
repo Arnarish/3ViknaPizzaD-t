@@ -18,27 +18,28 @@ void MainUI::main_menu() {
         cin >> c;
         m = c - 48;
         switch (m) {
-            case 1: // enter ManagementUI
+            case 1: // enter AdminUI
                 cout << "Entering Management menu." << endl;
-                // call AdminUI
+                adminui.admin_menu();
                 break;
             case 2: // enter SalesUI
                 cout << "Entering Sales menu." << endl;
-                // call SalesUI
+                salesui.sales_menu();
                 break;
             case 3: // enter ProdLineUI
                 cout << "Entering product line menu." << endl;
-                // call ProdLineUI
+                produi.prod_menu();
                 break;
             case 4: // enter StorefrontUI
                 cout << "Entering Storefront menu." << endl;
-                // Call StoreUI
+                storeui.store_menu();
                 break;
-            case 5: // Goodbye!
+            case 5:
                 cout << "Goodbye!" << endl;
+                exit(0);
                 break;
             default:
-                exit(0);
+                cout << "Invalid input." << endl;
                 break;
         }
         cout << endl;

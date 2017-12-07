@@ -1,13 +1,15 @@
 #ifndef MAINUI_H
 #define MAINUI_H
 
-#include <iostream>
+#include "salesui.h"
+#include "prodlineui.h"
+#include "storeui.h"
+#include "adminui.h"
 
 #if _WIN32
 #include <stdlib.h>
 #endif // _WIN32
 
-using namespace std;
 
 class MainUI {
     public:
@@ -15,6 +17,10 @@ class MainUI {
         void main_menu();
     private:
         string ui_text;
+        AdminUI adminui;
+        SalesUI salesui;
+        ProdLineUI produi;
+        StoreUI storeui;
 };
 
 #endif

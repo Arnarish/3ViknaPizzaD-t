@@ -1,7 +1,8 @@
 #include "AdminUI.h"
 
 AdminUI::AdminUI() {
-    ui_text = " --- Admin and admin accessories ---\n"
+    ui_text = " --- Very Important Pizza Inc. ---\n"
+              " ---Admin and admin accessories---\n"
               " 1. Manage toppings\n"
               " 2. Manage menu\n"
               " 3. Quit\n";
