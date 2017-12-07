@@ -3,8 +3,8 @@
 SalesUI::SalesUI(){
     ui_text = " --- Very Important Pizza Inc. ---\n"
               " ---           Sales           ---\n"
-              " 1. Create new order\n"
-              " 2. \n";
+              " 1. Create new order\n" // enter new pizza order
+              " 2. \n"; // sign out? are there more required functions?
 }
 
 void SalesUI::sales_menu()

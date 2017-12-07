@@ -15,6 +15,7 @@ class MainUI {
     public:
         MainUI();
         void main_menu();
+
     private:
         string ui_text;
         AdminUI adminui;

@@ -3,9 +3,9 @@
 StoreUI::StoreUI(){
     ui_text = " --- Very Important Pizza Inc. ---\n"
               " ---         Storefront        ---\n"
-              " 1. \n"
-              " 2. \n"
-              " 3. \n"
+              " 1. \n" // new order?
+              " 2. \n" // mark pizza as recieved? payment? etc
+              " 3. \n" // exit?
               " 4. \n"
               " 5. \n";
 }
