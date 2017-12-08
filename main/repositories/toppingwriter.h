@@ -4,11 +4,11 @@
 #include <fstream>
 #include "topping.h"
 
-class toppingwriter
+class Toppingwriter
 {
     public:
         RecordWriter();
-        void append_to_file(Topping& topping);
+        void append_to_file(const Topping& topping);
         void write_entire_file(Topping* topping, int n);
 
     private:

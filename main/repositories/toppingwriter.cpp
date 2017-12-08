@@ -1,11 +1,12 @@
-#include "toppingwriter.h"
+#include "Toppingwriter.h"
 
-toppingwriter::RecordWriter() {
-    file = "./data/toppings.dat";
+Toppingwriter::RecordWriter() {
+    file = "toppings.dat";
     ofstream fout;
+    return 0;
 }
 
-void toppingwriter::append_to_file(Topping& topping) {
+void Toppingwriter::append_to_file(const Topping& topping) {
     fout.open(file.c_str(), ios::binary | ios::app);
     if (fout.is_open()) {
         fout.write((char*)(&topping), sizeof(Topping));
@@ -19,7 +20,7 @@ void toppingwriter::append_to_file(Topping& topping) {
     //throw FileWriteException();
 }
 
-void toppingwriter::write_entire_file(Topping* topping, int n) {
+void Toppingwriter::write_entire_file(Topping* topping, int n) {
     fout.open(file.c_str(), ios::binary | ios::trunc);
     if (fout.is_open()) {
         fout.write((char*)topping, sizeof(Topping) * n);

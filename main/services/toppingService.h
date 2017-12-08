@@ -1,7 +1,7 @@
 #ifndef TOPPINGSERVICE_H
 #define TOPPINGSERVICE_H
 #include "topping.h"
-#include "toppingwriter.h"
+#include "Toppingwriter.h"
 
 class ToppingService
 {
@@ -10,7 +10,7 @@ class ToppingService
 
 
     private:
-        Topping t;
+        Toppingwriter tw;
 
 };
 

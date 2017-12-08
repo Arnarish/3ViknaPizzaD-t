@@ -1,8 +1,7 @@
 #include "AdminUI.h"
 
 AdminUI::AdminUI() {
-    ui_text = " --- Very Important Pizza Inc. ---\n"
-              " ---Admin and admin accessories---\n"
+    ui_text = " --- Admin and admin accessories ---\n"
               " 1. Manage toppings\n"
               " 2. Manage menu\n"
               " 3. Quit\n";
@@ -39,9 +38,9 @@ void AdminUI::admin_menu() {
                 manage_menu_menu();
                 break;
             case 3:
-                exit(0);
+                return;
             default:
-                cout << "Invalid input." << endl;
+                cout << "Invalid input!" << endl;
                 break;
         }
         cout << endl;
@@ -58,7 +57,7 @@ void AdminUI::manage_toppings_menu() {
         m = c - 48;
         switch (m) {
             case 1:
-                cout << "add topping hey" << endl;
+                newtoppingservice.add_topping(create_topping());
                 break;
             case 2:
                 cout << "remove topping hey" << endl;
@@ -103,4 +102,16 @@ void AdminUI::manage_menu_menu() {
         }
         cout << endl;
     }
+}
+
+Topping AdminUI::create_topping() {
+    string name;
+    int price;
+
+    cout << "Name: ";
+    cin >> name;
+    cout << "Price: ";
+    cin >> price;
+    Topping topping(name, price);
+    return topping;
 }
