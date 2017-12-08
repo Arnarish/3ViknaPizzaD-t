@@ -9,11 +9,11 @@ class pizza
 {
     public:
         pizza();
-        pizza(string pbase, string psize, Topping& topping, char notes[128]);// þetta er eitthvað skakkt
+        pizza(string pbase, string psize, vector<Topping> topping, char notes[128]);// þetta er eitthvað skakkt
         string get_base();
         string get_size();
-        void set_base();
-        void set_size();
+        void set_base(string pbase);
+        void set_size(string psize);
 
     private:
         string pizza_base;
