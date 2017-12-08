@@ -1,12 +1,15 @@
 #ifndef ADMINUI_H
 #define ADMINUI_H
 #include <iostream>
-#include "topping.h"
-#include "toppingService.h"
+#include "../models/topping.h"
+#include "../services/toppingService.h"
 #include <string>
 
 using namespace std;
 
+#if _WIN32
+#include <stdlib.h>
+#endif // _WIN32
 
 class AdminUI
 {

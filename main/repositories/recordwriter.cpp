@@ -2,7 +2,7 @@
 
 
 RecordWriter::RecordWriter() {
-    file = "./data/records.dat";
+    file = "./data/orders.dat";
     ofstream fout;
 }
 

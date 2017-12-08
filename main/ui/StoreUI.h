@@ -14,7 +14,8 @@ class StoreUI
     public:
         StoreUI();
         void store_menu();
-        void new_pizza(); // is it better to include this function from salesui?
+        void new_pizza();
+        void cust_pickup();
     private:
         string ui_text;
 };

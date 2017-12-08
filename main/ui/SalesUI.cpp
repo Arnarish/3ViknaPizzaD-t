@@ -5,7 +5,7 @@ SalesUI::SalesUI(){
               " ---           Sales           ---\n"
               " 1. Create new order\n" // enter new pizza order
               " 2. Create order from menu\n" // could be unified under new order as a submenu
-              " 3. " // edit order?
+              " 3. Specials" // edit order? specials?
               " 4. Exit. "; // end program
 }
 

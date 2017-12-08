@@ -1,7 +1,7 @@
 #include "recordreader.h"
 
 RecordReader::RecordReader() {
-    file = "./data/records.dat";
+    file = "./data/orders.dat";
     ifstream fin;
 }
 

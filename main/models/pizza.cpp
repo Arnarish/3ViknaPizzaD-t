@@ -1,14 +1,16 @@
 #include "pizza.h"
-enum base {
-    normal = 1, thin, spelt; // use enum for limited toppings/options? e.g. cheese no cheese, sauce, no sauce, e.t.c
+
+pizza::pizza() {
+    pizza_base = "";
+    pizza_size = "";
+    pizza_topping[0] = "";
+    comments = '\0';
 }
 
-pizza::pizza()
-{
-    //ctor
-}
-
-pizza::~pizza()
-{
-    //dtor
+pizza::pizza(string pbase, string psize, vector topping, char notes[128]) {
+    this->pizza_base = pbase;
+    this->pizza_size = psize;
+    for(int i=0; i < topping.size(); i++)    {
+        pizza_topping.push_back (topping[i]);
+    }
 }

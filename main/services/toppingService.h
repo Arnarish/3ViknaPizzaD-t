@@ -1,7 +1,7 @@
 #ifndef TOPPINGSERVICE_H
 #define TOPPINGSERVICE_H
-#include "topping.h"
-#include "Toppingwriter.h"
+#include "../models/topping.h"
+#include "../repositories/toppingwriter.h"
 
 class ToppingService
 {
