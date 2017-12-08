@@ -39,9 +39,9 @@ void AdminUI::admin_menu() {
                 manage_menu_menu();
                 break;
             case 3:
-                return;
+                exit(0);
             default:
-                cout << "Invalid input!" << endl;
+                cout << "Invalid input." << endl;
                 break;
         }
         cout << endl;

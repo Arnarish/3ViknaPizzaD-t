@@ -35,7 +35,6 @@ void MainUI::main_menu() {
                 storeui.store_menu();
                 break;
             case 5:
-                cout << "Goodbye!" << endl;
                 exit(0);
                 break;
             default:

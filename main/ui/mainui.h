@@ -18,6 +18,7 @@ class MainUI {
 
     private:
         string ui_text;
+        string location;
         AdminUI adminui;
         SalesUI salesui;
         ProdLineUI produi;

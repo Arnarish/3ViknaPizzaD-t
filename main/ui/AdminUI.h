@@ -1,6 +1,11 @@
 #ifndef ADMINUI_H
 #define ADMINUI_H
+
 #include <iostream>
+
+#if _WIN32
+#include <stdlib.h>
+#endif // _WIN32
 
 using namespace std;
 
