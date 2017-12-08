@@ -3,7 +3,7 @@
 
 #include <string>
 #include <fstream>
-#include "../models/salary.h"
+//#include "../models/salary.h"
 #include "../exceptions/FileReadException.h"
 #include "../exceptions/FileExistsException.h"
 
