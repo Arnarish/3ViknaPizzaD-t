@@ -21,7 +21,7 @@ AdminUI::AdminUI() {
 }
 
 
-
+//main menu
 void AdminUI::admin_menu() {
     char c;
     int m;
@@ -32,6 +32,7 @@ void AdminUI::admin_menu() {
         m = c - 48;
         switch (m) {
             case 1:
+                //fer í sub menu
                 manage_toppings_menu();
                 break;
             case 2:
@@ -46,7 +47,7 @@ void AdminUI::admin_menu() {
         cout << endl;
     }
 }
-
+//sub menu fyrir toppings
 void AdminUI::manage_toppings_menu() {
     char c;
     int m;
@@ -57,6 +58,7 @@ void AdminUI::manage_toppings_menu() {
         m = c - 48;
         switch (m) {
             case 1:
+            //býr til nýtt topping og sendir það í toppingservice
                 newtoppingservice.add_topping(create_topping());
                 break;
             case 2:
@@ -71,7 +73,7 @@ void AdminUI::manage_toppings_menu() {
         cout << endl;
     }
 }
-
+//sub menu, gerir ekkert
 void AdminUI::manage_menu_menu() {
     char c;
     int m;
@@ -103,7 +105,7 @@ void AdminUI::manage_menu_menu() {
         cout << endl;
     }
 }
-
+//promptar um að búa til nýtt topping
 Topping AdminUI::create_topping() {
     string name;
     int price;
