@@ -6,7 +6,7 @@ Toppingwriter::Toppingwriter() {
 }
 
 void Toppingwriter::append_to_file(const Topping& topping) {
-    fout.open(file, ios::binary | ios::app);
+    fout.open(file, ios::binary | ios::app); // fileExistsexception?
     if (fout.is_open()) {
         fout.write((char*)(&topping), sizeof(Topping));
         fout.close();
@@ -20,7 +20,7 @@ void Toppingwriter::append_to_file(const Topping& topping) {
 }
 
 void Toppingwriter::write_entire_file(Topping* topping, int n) {
-    fout.open(file, ios::binary | ios::trunc);
+    fout.open(file, ios::binary | ios::trunc); // fileExistsexception?
     if (fout.is_open()) {
         fout.write((char*)topping, sizeof(Topping) * n);
         fout.close();
