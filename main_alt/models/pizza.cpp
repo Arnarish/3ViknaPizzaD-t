@@ -42,7 +42,7 @@ Base Pizza::get_base() {
 }
 
 ostream& operator << (ostream& out, Pizza& p) {
-    out << p.base << "Toppings: ";
+    out << p.name << ": " << p.base << "Toppings: ";
     for (unsigned int i = 0; i < p.toppings.size(); i++) {
         out << p.toppings[i] << ", ";
     }

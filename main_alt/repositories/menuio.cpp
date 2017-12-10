@@ -58,10 +58,7 @@ vector<Pizza> MenuIO::read_file() {
         int end_position = fin.tellg();
         fin.seekg(0); // Go to the beginning of the file
         int current_position = fin.tellg();
-        cout << "current pos: " << current_position << endl;
-        cout << "end pos " << end_position << endl;
         while (current_position != end_position) {
-            cout << "current pos: " << current_position << endl;
             char name[128];
             int topping_count;
             vector<Topping> toppings;

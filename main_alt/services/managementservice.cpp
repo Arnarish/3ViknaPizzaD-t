@@ -66,7 +66,7 @@ void ManagementService::create_new_menu_item() {
     p.add_topping(t3);
     menuio.append_to_file(p);
     vector<Pizza> zas = menuio.read_file();
-    cout << "'zas: " << zas.size() << endl;
+    cout << "Number of pizzas on the menu: " << zas.size() << endl;
     for (unsigned int i = 0; i < zas.size(); i++) {
         cout << zas[i] << endl;
     }
