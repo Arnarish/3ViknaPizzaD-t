@@ -56,15 +56,52 @@ void ManagementService::create_new_topping(string name, int price) {
 }
 
 void ManagementService::create_new_menu_item() {
-    Base b("Thin", 16, 1000);
-    Pizza p("Good pizza", b);
-    Topping t1("Pepperoni", 250);
-    Topping t2("Ham", 200);
-    Topping t3("Pepper cheese", 150);
-    p.add_topping(t1);
-    p.add_topping(t2);
-    p.add_topping(t3);
+    int s;
+    Base* bases = baseio.read_file();
+    int b = baseio.number_of_entries();
+    while (true) {
+        cout << "Available pizza bases: " << endl;
+        for (int i = 0; i < b; i++) {
+            cout << i + 1 << ": " << bases[i];
+        }
+        cout << "Selection: ";
+        cin >> s;
+        if (s < 1 || s > (b + 1)) {
+            cout << "Invalid selection!" << endl;
+        }
+        else {
+            break;
+        }
+    }
+    Pizza p(bases[s - 1]);
+    delete[] bases;
+
+    Topping* toppings = toppingio.read_file();
+    int t = toppingio.number_of_entries();
+    while (true) {
+        for (int i = 0; i < t; i++) {
+            cout << (i + 1) << ": " << toppings[i] << endl;
+        }
+        cout << "Add toppings or enter 0 to stop: ";
+        cin >> s;
+        if (s == 0) {
+            break;
+        }
+        else if (s < 0 || s > (t + 1)) {
+            cout << "Invalid selection" << endl;
+        }
+        else {
+            p.add_topping(toppings[s - 1]);
+        }
+    }
+    string name;
+
+    cout << "Pizza price: " << p.get_price() << " kr" << endl;
+    cout << "Name of pizza: ";
+    cin >> name;
+    p.set_name(name);
     menuio.append_to_file(p);
+
     vector<Pizza> zas = menuio.read_file();
     cout << "Number of pizzas on the menu: " << zas.size() << endl;
     for (unsigned int i = 0; i < zas.size(); i++) {

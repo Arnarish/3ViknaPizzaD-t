@@ -16,6 +16,7 @@ class Pizza {
         Pizza(Base& base);
         Pizza(string name, Base& base);
         void add_topping(Topping& t);
+        void set_name(string name);
         int get_price();
         vector<Topping> get_toppings();
         int number_of_toppings();

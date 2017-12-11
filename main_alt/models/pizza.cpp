@@ -16,6 +16,10 @@ void Pizza::add_topping(Topping& t) {
     toppings.push_back(t);
 }
 
+void Pizza::set_name(string name) {
+    strcpy(this->name, name.c_str());
+}
+
 int Pizza::get_price() {
     int n = base.get_price();
     for (unsigned int i = 0; i < toppings.size(); i++) {

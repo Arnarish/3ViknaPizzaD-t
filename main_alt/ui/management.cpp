@@ -52,8 +52,7 @@ void ManagementUI::main_menu() {
                 } break;
             case 3: {
                 // The menu is a dynamic array or a vector of pizza classes
-                management_service.create_new_menu_item();
-
+                    management_service.create_new_menu_item();
                 } break;
             case 4: {
                 // Product is a class

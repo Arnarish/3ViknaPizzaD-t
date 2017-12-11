@@ -72,6 +72,7 @@ vector<Pizza> MenuIO::read_file() {
             Pizza p(s, base);
 
             fin.read((char*)&topping_count, sizeof(int)); // Read how many toppings to expect
+            // TODO: do this in one IO operation
             for (int i = 0; i < topping_count; i++) {
                 fin.read((char*)(&t), sizeof(Topping));
                 p.add_topping(t);
