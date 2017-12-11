@@ -21,14 +21,16 @@ void MainUI::main_menu() {
         cout << endl;
         m = c - 48;
         switch (m) {
-            case 1: 
+            case 1:
                 management.main_menu();
                 break;
-            case 2: 
+            case 2:
                 break;
-            case 3: 
+            case 3:
+                preperation.ask_place();
+                preperation.main_menu();
                 break;
-            case 4: 
+            case 4:
                 break;
             case 5:
                 cout << "Bye!" << endl;

@@ -32,8 +32,8 @@ void PreperationUI::main_menu() {
 }
 
 void PreperationUI::ask_place() {
-    cout << "where u at?" << endl;
-    cout << "(input etc.)" << endl;
+    cout << "where u at?: " << endl;
+    cout << "(user inputs here etc.)" << endl;
     //bæta við að að lesa alla staði upp úr skrá og
     //fá input frá '1 - x' (1 = 0 í array)
     //fá string til að fara með lengra í forrit

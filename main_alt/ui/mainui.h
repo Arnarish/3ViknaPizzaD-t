@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "management.h"
+#include "preperation.h"
 
 #if _WIN32
 #include <stdlib.h>
@@ -18,8 +19,9 @@ class MainUI {
 
     private:
         string ui_text;
-        // Other UI classes 
+        // Other UI classes
         ManagementUI management;
+        PreperationUI preperation;
 };
 
 #endif
