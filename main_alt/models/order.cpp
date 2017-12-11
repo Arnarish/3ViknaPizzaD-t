@@ -10,7 +10,14 @@ Order::Order(string customer_address, string customer_name, string phone_no, str
 }
 
 int Order::get_price() {
-    return 1;
+    int n = 0;
+    for (unsigned int i = 0; i < pizzas.size(); i++) {
+        n += pizzas[i].get_price();
+    }
+    for (unsigned int i = 0; i < products.size(); i++) {
+        n += products[i].get_price();
+    }
+    return n;
 }
 
 string Order::get_location() {
@@ -42,5 +49,7 @@ void Order::set_delivered() {
 }
 
 ostream& operator << (ostream& out, Order& o) {
+    out << "Pizzas in order: " << o.pizzas.size() << endl
+        << "Total: " << o.get_price() << " kr" << endl;
     return out;
 }

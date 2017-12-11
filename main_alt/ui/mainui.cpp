@@ -24,7 +24,8 @@ void MainUI::main_menu() {
             case 1:
                 management.main_menu();
                 break;
-            case 2:
+            case 2: 
+                ordering.main_menu();
                 break;
             case 3:
                 preperation.ask_place();
