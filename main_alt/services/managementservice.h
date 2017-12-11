@@ -7,6 +7,7 @@
 #include "../repositories/baseio.h"
 #include "../repositories/toppingio.h"
 #include "../repositories/menuio.h"
+#include "../repositories/locationio.h"
 
 using namespace std;
 
@@ -26,8 +27,8 @@ class ManagementService {
         void create_new_base(string name, int size, int price);
         void create_new_menu_item();
         void create_new_product(string name, int price);
-        void add_new_store_location(string name); //TODO: consider this
-        
+        void add_new_store_location(); //TODO: consider this
+
     private:
         BaseIO baseio;
         ToppingIO toppingio;

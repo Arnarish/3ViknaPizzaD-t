@@ -109,6 +109,15 @@ void ManagementService::create_new_menu_item() {
     }
 }
 
+void ManagementService::add_new_store_location() {
+    string new_location;
+    locationio locio;
+
+    cout << "Please enter the adress of the new location: ";
+    cin >> new_location;
+    locio.append_to_file(new_location);
+}
+
 /*
 
 void ManagementService::create_new_product(string name, int price) {
