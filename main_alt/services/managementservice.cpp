@@ -118,9 +118,34 @@ void ManagementService::add_new_store_location() {
     locio.append_to_file(new_location);
 }
 
-/*
 
-void ManagementService::create_new_product(string name, int price) {
-
+void ManagementService::create_new_product() {
+    string name;
+    int price;
+    char category;
+    cout << "Please enter the name of the new product: ";
+    cin >> name;
+    cout << "Please enter the price of the new product: ";
+    cin >> price;
+    cout << "please enter the category for the new product: ";
+    cin >> category;
+    if (name == "" || name.size() > 127) {
+        // Invalid name, throw an exception
+        // throw InvalidNameException
+        return;
+    }
+    if (price < 0) {
+        // We're running a business here, so I won't put an upper bound on the price
+        // throw InvalidPriceException
+        return;
+    }
+    if(category != 'm' && category != 's' && category != 'g')
+    {
+        // Invalid category, must be M for meðlæti, s for Sósur og g for Gos.
+        //throw InvalidCategoryException
+        return;
+    }
+    Product p(name, category, price);
+    prodio.append_to_file(p);
 }
-*/
+
