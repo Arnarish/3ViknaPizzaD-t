@@ -25,6 +25,7 @@ void MainUI::main_menu() {
                 management.main_menu();
                 break;
             case 2: 
+                ordering.main_menu();
                 break;
             case 3: 
                 break;

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "management.h"
+#include "ordering.h"
 
 #if _WIN32
 #include <stdlib.h>
@@ -20,6 +21,7 @@ class MainUI {
         string ui_text;
         // Other UI classes 
         ManagementUI management;
+        OrderUI ordering;
 };
 
 #endif

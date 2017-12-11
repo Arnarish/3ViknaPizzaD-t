@@ -15,6 +15,7 @@ void OrderService::create_order(string name, string phone, string address, strin
             cout << "1. Add a pizza\n"
                  << "2. Add other products\n" //Soda, breadsticks, etc.
                  << "3. Finish order" << endl;
+            cout << "Selection: ";
             cin >> c;
             m = c - 48;
             switch (m) {
@@ -22,22 +23,22 @@ void OrderService::create_order(string name, string phone, string address, strin
                     // From menu or create your own
                     char sel;
                     vector<Pizza> pizza_menu = menuio.read_file();
-
-                    while (sel != '1' && sel != '2') {
+                    int menu_size = pizza_menu.size();
+                    while (true) {
                         cout << "1. Menu\n"
-                             << "2. Create" << endl;
+                             << "2. Create\n"
+                             << "3. Go back" << endl;
                         cout << "Selection: ";
                         cin >> sel;
                         if (sel == '1') {
                             int n;
-                            for (unsigned int i = 0; i < pizza_menu.size(); i++) {
-                                cout << (i+1) << endl;
-                                cout << pizza_menu[i];
+                            for (int i = 0; i < menu_size; i++) {
+                                cout << "Pizza #" << (i + 1) << ": ";
+                                cout << pizza_menu[i] << endl;
                             }
                             cout << "Selection: ";
                             cin >> n;
-                            n++;
-                            if (n < 1 || n > (int)pizza_menu.size()) {
+                            if (n < 0 || n > menu_size) {
                                 cout << "Invalid selection" << endl;
                             }
                             else {
@@ -48,10 +49,10 @@ void OrderService::create_order(string name, string phone, string address, strin
                             cout << "ok" << endl;
                         }
                         else { 
-                            cout << "bla";
+                            break;
                         }
+                        cout << order << endl;
                     }
-
                 } break;
                 case 2: {
                     // Add soda and other cool things
