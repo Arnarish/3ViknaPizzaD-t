@@ -58,9 +58,9 @@ void ManagementUI::main_menu() {
                 // Product is a class
                 } break;
             case 5: {
-                // Locations are enums? TODO: think about this
+                management_service.add_new_store_location();
                 } break;
-            case 6: 
+            case 6:
                 return;
             default:
                 cout << "Invalid input." << endl;
