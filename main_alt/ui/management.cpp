@@ -51,14 +51,14 @@ void ManagementUI::main_menu() {
                     management_service.create_new_topping(name, price);
                 } break;
             case 3: {
-                // The menu is a dynamic array or a vector of pizza classes
+                    // The menu is a vector of pizza classes
                     management_service.create_new_menu_item();
                 } break;
             case 4: {
                 // Product is a class
                 } break;
             case 5: {
-                // Locations are enums? TODO: think about this
+
                 } break;
             case 6: 
                 return;
