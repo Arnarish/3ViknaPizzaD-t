@@ -115,6 +115,10 @@ void ManagementService::add_new_store_location() {
 
     cout << "Please enter the adress of the new location: ";
     cin >> new_location;
+    if(new_location == "" || new_location.size() > 127) {
+        // invalid location
+        //throw InvalidLocationException
+    }
     locio.append_to_file(new_location);
 }
 
