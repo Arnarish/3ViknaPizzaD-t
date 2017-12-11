@@ -22,6 +22,30 @@ void locationio::append_to_file(string location) {
     // TODO: throw FileWriteException();
 }
 
+char* locationio::read_file() {
+    if (!file_exists()) {
+        // If the file doesn't exist, throw an exception
+        // throw FileExistsException();
+        cout << "file exist error";
+        return (char*)0xDEADBEEF;
+    }
+    fin.open(file.c_str(), ios::binary);
+    if (fin.is_open()) {
+        fin.seekg(0, fin.end);
+        int r = fin.tellg() / sizeof(char[128]);
+        fin.seekg(0, fin.beg);
+
+        char* locations = new char[r];
+        fin.read((char*)(&locations), sizeof(char[128]) * r);
+        fin.close();
+
+        return locations;
+    }
+    cout << "dunno what happened here";
+    return (char*)0xDEADBEEF;
+    //throw FileReadException();
+}
+
 int locationio::number_of_entries() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception

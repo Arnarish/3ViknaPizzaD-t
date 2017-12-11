@@ -14,7 +14,7 @@ class locationio
         locationio();
         int number_of_entries();
         void append_to_file(const string location);
-        char read_file();
+        char* read_file();
 
     private:
         string file;
