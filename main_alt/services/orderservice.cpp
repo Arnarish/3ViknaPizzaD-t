@@ -46,7 +46,8 @@ void OrderService::create_order(string name, string phone, string address, strin
                             }
                         }
                         else if (sel == '2') {
-                            cout << "ok" << endl;
+                            Pizza created = create_pizza();
+                            order.add_pizza(created);
                         }
                         else { 
                             break;
