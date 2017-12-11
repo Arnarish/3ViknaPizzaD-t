@@ -13,6 +13,7 @@ main:
 		repositories/toppingio.cpp \
 		repositories/menuio.cpp \
 		repositories/locationio.cpp \
+		repositories/productio.cpp \
 		services/managementservice.cpp \
 		services/orderservice.cpp \
 		exceptions/FileExistsException.cpp \
