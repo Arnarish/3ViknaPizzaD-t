@@ -4,10 +4,12 @@
 #include "../models/base.h"
 #include "../models/topping.h"
 #include "../models/pizza.h"
+#include "../models/product.h"
 #include "../repositories/baseio.h"
 #include "../repositories/toppingio.h"
 #include "../repositories/menuio.h"
 #include "../repositories/locationio.h"
+#include "../repositories/productio.h"
 
 using namespace std;
 
@@ -26,13 +28,14 @@ class ManagementService {
         void create_new_topping(string name, int price);
         void create_new_base(string name, int size, int price);
         void create_new_menu_item();
-        void create_new_product(string name, int price);
-        void add_new_store_location(); //TODO: consider this
+        void create_new_product();
+        void add_new_store_location();
 
     private:
         BaseIO baseio;
         ToppingIO toppingio;
         MenuIO menuio;
+        productio prodio;
 };
 
 #endif

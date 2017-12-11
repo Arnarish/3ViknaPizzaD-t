@@ -55,7 +55,7 @@ void ManagementUI::main_menu() {
                     management_service.create_new_menu_item();
                 } break;
             case 4: {
-                // Product is a class
+                management_service.create_new_product();
                 } break;
             case 5: {
                 management_service.add_new_store_location();

@@ -26,7 +26,19 @@ int Product::get_price() {
 }
 
 ostream& operator << (ostream& out, const Product& product) {
-    out << product.name << " " << product.category << " " << product.price << endl;
+    out << product.name << " ";
+    if(product.category == 's') {
+        out << "sauce";
+    }
+    else if(product.category == 'g') {
+        out << "soda";
+    }
+    else if(product.category == 'm') {
+        out << "side";
+    }
+
+
+    out << " " << product.price << endl;
     return out;
 }
 
