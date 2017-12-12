@@ -18,7 +18,6 @@ OrderIO::OrderIO() {
     ofstream fout;
 }
 
-
 vector<Order> OrderIO::read_file() {
     vector<Order> orders;
     file = ORDERED_FILE;
