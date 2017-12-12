@@ -2,11 +2,8 @@
 
 using namespace std;
 
-Order::Order(string customer_address, string customer_name, string phone_no, string location) {
-    strcpy(this->customer_address, customer_address.c_str());
-    strcpy(this->customer_name, customer_name.c_str());
-    strcpy(this->phone_no, phone_no.c_str());
-    strcpy(this->location, location.c_str());
+Order::Order(OrderDetails& details) {
+    this->details = details;
 }
 
 int Order::get_price() {
@@ -21,11 +18,15 @@ int Order::get_price() {
 }
 
 string Order::get_location() {
-    return "ye";
+    return details.get_location();
 }
 
-int Order::get_priority() {
+bool Order::get_priority() {
     return priority;
+}
+
+bool Order::get_paid() {
+    return paid;
 }
 
 void Order::add_pizza(Pizza& p) {
@@ -36,20 +37,29 @@ void Order::add_product(Product& p) {
     products.push_back(p);
 }
 
-void Order::set_in_progress() {
-    status = 'P';
+void Order::add_comments(string comments) {
+    details.add_comments(comments);
 }
 
-void Order::set_ready() {
-    status = 'R';
+vector<Pizza> Order::get_pizzas() {
+    return pizzas;
 }
 
-void Order::set_delivered() {
-    status = 'D';
+vector<Product> Order::get_products() {
+    return products;
+}
+
+OrderDetails Order::get_details() {
+    return details;
+}
+
+void Order::set_paid() {
+    paid = true;
 }
 
 ostream& operator << (ostream& out, Order& o) {
-    out << "Pizzas in order: " << o.pizzas.size() << endl
-        << "Total: " << o.get_price() << " kr" << endl;
+    out << o.details << "\n"
+        << "Pizzas in order: " << o.pizzas.size() << "\n"
+        << "Total: " << o.get_price() << " kr";
     return out;
 }

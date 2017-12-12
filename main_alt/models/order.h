@@ -10,42 +10,38 @@
 #include "base.h"
 #include "pizza.h"
 #include "product.h"
+#include "orderdetails.h"
 
 using namespace std;
 
 class Order {
     public:
-        Order(string customer_address, string customer_name, string phone_no, string location);
+        Order(OrderDetails&);
         int get_price();
+        bool get_priority();
+        bool get_paid();
         string get_location();
-        int get_priority();
+
+        vector<Pizza> get_pizzas();
+        vector<Product> get_products();
+        OrderDetails get_details();
+
         void add_pizza(Pizza& p);
         void add_product(Product& p);
         void add_comments(string comments);
+        void set_paid();
 
-        // These functions set the status flag
-        void set_in_progress();
-        void set_ready();
-        void set_delivered();
     private:
         vector<Product> products;
         vector<Pizza> pizzas;
+        OrderDetails details;
 
-        char customer_address[128];
-        char customer_name[128];
-        char location[128];
-        char phone_no[7];
-        char comments[512]; // Picky customers can write many comments
-        // Status handles where the order is in the system
-        // D = delivered 
-        // P = in progress
-        // R = ready
-
-        char status; 
-        int priority; 
         // If the priority flag is set, it'll insert the order 
         // at the top of the order file rather than appending
-        // Is this a good idea?
+        bool priority; 
+        
+        // If the paid flag is set, the pizza is paid for (duh)
+        bool paid;
 
         friend ostream& operator << (ostream& out, Order& o);
 };
