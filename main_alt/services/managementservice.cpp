@@ -15,19 +15,19 @@ void ManagementService::create_new_base(string name, int size, int price) {
     }
     if (price < 0) {
         // We're running a business here, so I won't put an upper bound on the price
-        // throw InvalidPriceException
+        //   throw InvalidPriceException
         return;
     }
 
     Base b(name, price, size);
     baseio.append_to_file(b);
 
-    Base* bases = baseio.read_file();
+    /*Base* bases = baseio.read_file();
     int n = baseio.number_of_entries();
     cout << n << endl;
     for (int i = 0; i < n; i++) {
         cout << bases[i] << endl;
-    }
+    }*/
     return;
 }
 
@@ -114,7 +114,8 @@ void ManagementService::add_new_store_location() {
     int postcode;
 
     cout << "Please enter the adress of the new location: ";
-    cin >> new_location;
+    cin.ignore();
+    getline(cin, new_location);
     cout << "Please enter the postcode of the new location: ";
     cin >> postcode;
     LocServ.create_new_location(new_location,postcode);

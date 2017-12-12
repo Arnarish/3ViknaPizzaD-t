@@ -12,7 +12,7 @@
 #include "../repositories/locationio.h"
 #include "../repositories/productio.h"
 #include "../services/Locationservice.h"
-
+#include <iostream>
 using namespace std;
 
 /* TODO: add all this shit
