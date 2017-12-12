@@ -5,9 +5,7 @@
 class InvalidSizeException
 {
     public:
-        InvalidSizeException();
-        virtual ~InvalidSizeException();
-    protected:
+
     private:
 };
 

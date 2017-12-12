@@ -5,9 +5,7 @@
 class InvalidCategoryException
 {
     public:
-        InvalidCategoryException();
-        virtual ~InvalidCategoryException();
-    protected:
+
     private:
 };
 

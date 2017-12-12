@@ -5,9 +5,7 @@
 class InvalidLocationException
 {
     public:
-        InvalidLocationException();
-        virtual ~InvalidLocationException();
-    protected:
+
     private:
 };
 

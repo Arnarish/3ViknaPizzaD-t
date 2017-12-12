@@ -5,9 +5,7 @@
 class InvalidPostcodeException
 {
     public:
-        InvalidPostcodeException();
-        virtual ~InvalidPostcodeException();
-    protected:
+
     private:
 };
 

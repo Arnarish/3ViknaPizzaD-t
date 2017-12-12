@@ -5,9 +5,7 @@
 class InvalidNameException
 {
     public:
-        InvalidNameException();
-        virtual ~InvalidNameException();
-    protected:
+
     private:
 };
 

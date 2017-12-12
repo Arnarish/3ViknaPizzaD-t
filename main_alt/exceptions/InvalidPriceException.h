@@ -5,9 +5,7 @@
 class InvalidPriceException
 {
     public:
-        InvalidPriceException();
-        virtual ~InvalidPriceException();
-    protected:
+
     private:
 };
 
