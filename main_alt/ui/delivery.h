@@ -18,6 +18,9 @@ class DeliveryUI
 
     private:
         string ui_text;
+        //Order* all_orders;
+        //tímabundið order
+      //  Orderio order;
 };
 
 #endif // DELIVERY_H
