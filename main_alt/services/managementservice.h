@@ -5,11 +5,13 @@
 #include "../models/topping.h"
 #include "../models/pizza.h"
 #include "../models/product.h"
+#include "../models/location.h"
 #include "../repositories/baseio.h"
 #include "../repositories/toppingio.h"
 #include "../repositories/menuio.h"
 #include "../repositories/locationio.h"
 #include "../repositories/productio.h"
+#include "../services/Locationservice.h"
 
 using namespace std;
 
@@ -36,6 +38,7 @@ class ManagementService {
         ToppingIO toppingio;
         MenuIO menuio;
         productio prodio;
+        Locationservice LocServ;
 };
 
 #endif

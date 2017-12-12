@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #endif // _WIN32
 #include "../repositories/locationio.h"
+#include "../models/location.h"
+#include "../services/Locationservice.h"
 #include <vector>
 #include <iostream>
 #include <string>
@@ -19,8 +21,9 @@ class PreperationUI
 
 
     private:
-        string ui_text, location;
+        string ui_text, store_location;
         locationio locio;
+        Locationservice LocServ;
 };
 
 #endif // PREPERATION_H
