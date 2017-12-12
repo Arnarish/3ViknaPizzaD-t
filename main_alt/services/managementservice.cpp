@@ -4,19 +4,15 @@ using namespace std;
 
 void ManagementService::create_new_base(string name, int size, int price) {
     if (name == "" || name.size() > 127) {
-        // Invalid name, throw an exception
-        // throw InvalidNameException
-        return;
+        throw InvalidNameException();
     }
     if (size < 0 || size > 1572) {
         // https://www.eater.com/2012/5/9/6588321/the-worlds-largest-pizza-ever-weighed-26883-lbs
-        // throw InvalidSizeException
-        return;
+        throw InvalidSizeException();
     }
     if (price < 0) {
         // We're running a business here, so I won't put an upper bound on the price
-        // throw InvalidPriceException
-        return;
+        throw InvalidPriceException();
     }
 
     Base b(name, price, size);
@@ -34,14 +30,11 @@ void ManagementService::create_new_base(string name, int size, int price) {
 
 void ManagementService::create_new_topping(string name, int price) {
     if (name == "" || name.size() > 127) {
-        // Invalid name, throw an exception
-        // throw InvalidNameException
-        return;
+        throw InvalidNameException();
     }
     if (price < 0) {
         // We're running a business here, so I won't put an upper bound on the price
-        // throw InvalidPriceException
-        return;
+        throw InvalidPriceException();
     }
     Topping t(name, price);
     toppingio.append_to_file(t);
@@ -117,7 +110,12 @@ void ManagementService::add_new_store_location() {
     cin >> new_location;
     cout << "Please enter the postcode of the new location: ";
     cin >> postcode;
-    LocServ.create_new_location(new_location,postcode);
+    if (postcode >= 100 && postcode <= 999) {
+        LocServ.create_new_location(new_location,postcode);
+    }
+    else {
+        cout << "Invalid postcode!" << endl;
+    }
 }
 
 
@@ -133,19 +131,16 @@ void ManagementService::create_new_product() {
     cin >> category;
     if (name == "" || name.size() > 127) {
         // Invalid name, throw an exception
-        // throw InvalidNameException
-        return;
+        throw InvalidNameException();
     }
     if (price < 0) {
         // We're running a business here, so I won't put an upper bound on the price
-        // throw InvalidPriceException
-        return;
+        throw InvalidPriceException();
     }
     if(category != 'm' && category != 's' && category != 'g')
     {
         // Invalid category, must be M for meðlæti, s for Sósur og g for Gos.
-        //throw InvalidCategoryException
-        return;
+        throw InvalidCategoryException();
     }
     Product p(name, category, price);
     prodio.append_to_file(p);

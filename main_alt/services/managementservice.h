@@ -13,6 +13,11 @@
 #include "../repositories/productio.h"
 #include "../services/Locationservice.h"
 
+#include "../exceptions/InvalidNameException.h"
+#include "../exceptions/InvalidPriceException.h"
+#include "../exceptions/InvalidSizeException.h"
+#include "../exceptions/InvalidCategoryException.h"
+
 using namespace std;
 
 /* TODO: add all this shit
