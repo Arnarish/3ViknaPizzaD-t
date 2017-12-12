@@ -36,10 +36,6 @@ location* locationio::read_file() {
         fin.read((char*)(locations), sizeof(location) * r);
         fin.close();
 
-        /*for(int i=0; i< r; i++) {
-            cout << locations[i].get_location() << endl;
-        }*/
-        cout << "test 5" << endl;
         return locations;
     }
     cout << "dunno what happened here";

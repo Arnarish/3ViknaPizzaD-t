@@ -7,6 +7,7 @@
 #include "../repositories/locationio.h"
 #include "../models/location.h"
 #include "../services/Locationservice.h"
+#include <limits>
 #include <vector>
 #include <iostream>
 #include <string>
