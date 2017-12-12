@@ -28,6 +28,7 @@ void ManagementUI::main_menu() {
                     int price;
                     int size;
                     // Pizza base is a class (char[128], int, int)
+
                     cout << "Base name: ";
                     cin.ignore(); // Ignore a newline character in the stream
                     getline(cin, name);
@@ -36,7 +37,18 @@ void ManagementUI::main_menu() {
                     cout << "Size: ";
                     cin >> size;
                     // TODO: Wrap this into a try-catch block and relay info back to the user
-                    management_service.create_new_base(name, price, size);
+                    try {
+                        management_service.create_new_base(name, price, size);
+                    }
+                    catch (InvalidNameException) {
+                        cout << "Invalid name!" << endl;
+                    }
+                    catch (InvalidPriceException) {
+                        cout << "Invalid price!" << endl;
+                    }
+                    catch (InvalidSizeException) {
+                        cout << "Invalid size!" << endl;
+                    }
                 } break;
             case 2: {
                     // Topping is a class
@@ -48,14 +60,32 @@ void ManagementUI::main_menu() {
                     cout << "Price: ";
                     cin >> price;
                     // TODO: Wrap this into a try-catch block and relay info back to the user
-                    management_service.create_new_topping(name, price);
+                    try {
+                        management_service.create_new_topping(name, price);
+                    }
+                    catch (InvalidNameException) {
+                        cout << "Invalid name!" << endl;
+                    }
                 } break;
             case 3: {
                     // The menu is a vector of pizza classes
                     management_service.create_new_menu_item();
+
                 } break;
             case 4: {
-                management_service.create_new_product();
+                try {
+                   management_service.create_new_product();
+                }
+                catch (InvalidNameException) {
+                    cout << "Invalid name!" << endl;
+                }
+                catch (InvalidPriceException) {
+                    cout << "Invalid price!" << endl;
+                }
+                catch (InvalidCategoryException) {
+                    cout << "Invalid category!" << endl;
+                }
+
                 } break;
             case 5: {
                 management_service.add_new_store_location();
