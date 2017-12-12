@@ -111,15 +111,13 @@ void ManagementService::create_new_menu_item() {
 
 void ManagementService::add_new_store_location() {
     string new_location;
-    locationio locio;
+    int postcode;
 
     cout << "Please enter the adress of the new location: ";
     cin >> new_location;
-    if(new_location == "" || new_location.size() > 127) {
-        // invalid location
-        //throw InvalidLocationException
-    }
-    locio.append_to_file(new_location);
+    cout << "Please enter the postcode of the new location: ";
+    cin >> postcode;
+    LocServ.create_new_location(new_location,postcode);
 }
 
 

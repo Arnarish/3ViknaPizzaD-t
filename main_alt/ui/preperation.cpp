@@ -32,32 +32,22 @@ void PreperationUI::main_menu() {
 
 void PreperationUI::ask_place() {
     int n = locio.number_of_entries();
-    char user_selection;
-    cout << "Select location: " << endl;
-    cout << "1" << endl;
-    char* locations = locio.read_file();
-    cout << "2" << endl;
-    vector<char> vLocation;
+    int select_input = 0;
+    location* locat = LocServ.get_location_list();
+    string* locations = new string[n];
     for(int i=0; i<n; i++) {
-        vLocation.push_back(locations[i]);
+        locations[i] = locat[i].get_location();
     }
-    cout << "3" << endl;
-    for(int i=0; i <= n; i++) {
-        cout << i+1 << ". " << vLocation[i] << endl;
+    cout << "please select current workplace from list: " << endl;
+    for(int i=0; i<n; i++) {
+        cout << i+1 << ". " << locations[i] << endl;
     }
-    while(cin >> user_selection) {
-        if(!cin.fail()) {
-            break;
-        }
-        else
-        {
-            cout << "Invalid selection." << endl;
-        }
+    while(!(cin >> select_input)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "please input a valid number from the list above." << endl;
     }
-    location = locations[user_selection-1];
-    cout << location << endl;
-    //bæta við að að lesa alla staði upp úr skrá og
-    //fá input frá '1 - x' (1 = 0 í array)
-    //fá string til að fara með lengra í forrit
-    delete [] locations;
+    //throw excception if input > possible choices?
+    store_location = locations[select_input-1];
+    cout << store_location << " selected." << endl << endl;
 }
