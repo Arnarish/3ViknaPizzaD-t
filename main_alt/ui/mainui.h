@@ -6,6 +6,7 @@
 #include "management.h"
 #include "preperation.h"
 #include "ordering.h"
+#include "delivery.h"
 
 #if _WIN32
 #include <stdlib.h>
@@ -24,6 +25,7 @@ class MainUI {
         ManagementUI management;
         PreperationUI preperation;
         OrderUI ordering;
+        DeliveryUI delivery;
 };
 
 #endif

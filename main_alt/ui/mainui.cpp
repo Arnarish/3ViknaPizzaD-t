@@ -24,7 +24,7 @@ void MainUI::main_menu() {
             case 1:
                 management.main_menu();
                 break;
-            case 2: 
+            case 2:
                 ordering.main_menu();
                 break;
             case 3:
@@ -32,6 +32,8 @@ void MainUI::main_menu() {
                 preperation.main_menu();
                 break;
             case 4:
+                delivery.ask_place();
+                delivery.main_menu();
                 break;
             case 5:
                 cout << "Bye!" << endl;
