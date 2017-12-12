@@ -42,12 +42,19 @@ void PreperationUI::ask_place() {
     for(int i=0; i<n; i++) {
         cout << i+1 << ". " << locations[i] << endl;
     }
-    while(!(cin >> select_input)) {
+    while(!(cin >> select_input)) { // only accept integers as input.
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "please input a valid number from the list above." << endl;
     }
-    //throw excception if input > possible choices?
+    if(select_input > n)
+    {
+        // if input is valid, but exceeds the given no. of stores.
+        //throw UserInputException;
+    }
     store_location = locations[select_input-1];
     cout << store_location << " selected." << endl << endl;
+
+    delete [] locat;
+    delete [] locations;
 }

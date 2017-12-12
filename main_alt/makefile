@@ -7,6 +7,7 @@ main:
 		models/pizza.cpp \
 		models/orderdetails.cpp \
 		models/order.cpp \
+		models/location.cpp \
 		ui/mainui.cpp \
 		ui/management.cpp \
 		ui/delivery.cpp \
@@ -20,6 +21,7 @@ main:
 		repositories/orderio.cpp \
 		services/managementservice.cpp \
 		services/orderservice.cpp \
+		services/Locationservice.cpp \
 		exceptions/FileExistsException.cpp \
 		exceptions/FileReadException.cpp \
 		exceptions/FileWriteException.cpp \

@@ -28,30 +28,90 @@ void OrderUI::main_menu() {
                 int zipcode;
 
                 cout << "Customer name: ";
-                cin >> name;
+                cin.ignore();
+                getline(cin, name);
                 cout << "Customer phone number: ";
-                cin >> phone;
+                getline(cin, phone);
                 cout << "Order for pick-up? (y/n): ";
-                cin >> pick_up;
+                getline(cin,pick_up);
                 if (pick_up == "y") {
-                    // List all locations
+                    int n = locio.number_of_entries();
+                    int select_input = 0;
+                    locat = LocServ.get_location_list();
+                    string* locations = new string[n];
+                    for(int i=0; i<n; i++) {
+                        locations[i] = locat[i].get_location();
+                    }
+                    cout << "Please select Pick-up location: " << endl;
+                    for(int i=0; i<n; i++) {
+                    cout << i+1 << ". " << locations[i] << endl;
+                    }
+                    while(!(cin >> select_input)) { // only accept integers as input.
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cout << "please input a valid number from the list above." << endl;
+                    }
+                    if(select_input > n)
+                    {
+                        // if input is valid, but exceeds the given no. of stores.
+                        //throw UserInputException;
+                    }
+                    location = locations[select_input-1];
                     address = "Pick-up";
-                    location = "temp";
                     zipcode = 0;
+
+                    delete [] locations;
+                    delete [] locat;
                 }
                 else {
                     // Prompt for customer address
                     cout << "Customer address: ";
-                    cin >> address;
+                    getline(cin, address);
                     cout << "Customer zip code: ";
-                    cin >> zipcode;
+                    while(!(cin >> zipcode)) {
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cin.clear();
+                        cout << "Invalid input, please try again: ";
+                    }
                     // TODO: Find the nearest store location
                     location = "temp";
+                }
+
+                if (name == "" || name.size() > 127) {
+                // Invalid name, throw an exception
+                // throw InvalidNameException;
+                return;
+                }
+
+                if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { // check if string is empty, or number has invalid length
+                   //throw CustomerPhoneException;
+                }
+                bool isNumber = true;
+                for(unsigned int i=0; i < phone.length(); i++) { // check if phone has non numerals
+                    if(!isalnum(phone[i])) {
+                        isNumber = false;
+                        break;
+                    }
+                }
+                if(isNumber == false) {
+                    //thow CustomerPhoneException;
+                }
+
+                if(pick_up != "y" && pick_up != "n") {
+                    //throw InvalidPickUpException;
+                }
+
+                if(address == "" || address.size() > 127) {
+                    //throw CustomerAddressException;
+                }
+
+                if(zipcode > 999 || zipcode < 99) {
+                    //throw CustomerZipcodeException
                 }
                 // Try catch for validation
                 order_service.create_order(name, phone, address, location, zipcode);
             } break;
-            case 2: 
+            case 2:
                 return;
             default:
                 cout << "Invalid input." << endl;
