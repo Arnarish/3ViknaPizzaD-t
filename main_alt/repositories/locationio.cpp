@@ -34,7 +34,6 @@ char* locationio::read_file() {
         fin.seekg(0, fin.end);
         int r = fin.tellg() / sizeof(char[128]);
         fin.seekg(0, fin.beg);
-
         char* locations = new char[r];
         fin.read((char*)(&locations), sizeof(char[128]) * r);
         fin.close();
