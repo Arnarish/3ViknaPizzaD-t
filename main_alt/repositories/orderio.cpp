@@ -18,58 +18,63 @@ OrderIO::OrderIO() {
     ofstream fout;
 }
 
-/*
-void read_file() {
+
+vector<Order> OrderIO::read_file() {
+    vector<Order> orders;
     file = ORDERED_FILE;
-    fout.open(file, ios::binary);
-    if (fout.is_open()) {
-        vector<Pizza> pizzas;
-        int n;
-        fin.clear();
-        fin.seekg(0, fin.end);
-        fin.read((char*)(&n), sizeof(int));
-        for (int i = 0; i < n; i++) {
-            
-        }
+    if (!file_exists()) {
+        // If the file doesn't exist, throw an exception
+        // throw FileExistsException();
+        cout << "file exist error";
+        return orders;
     }
+    fin.open(file, ios::binary);
+    cout << "tried to open" << endl;
     if (fin.is_open()) {
-        fin.clear(); // Clear any flags that fin may have set last run
-        fin.seekg(0, fin.end);
-        int end_position = fin.tellg();
-        fin.seekg(0); // Go to the beginning of the file
-        int current_position = fin.tellg();
-        while (current_position != end_position) {
-            char name[128];
-            int topping_count;
-            vector<Topping> toppings;
-            Topping t;
-            Base base;
-
-            fin.read((char*)(&name), sizeof(name)); // Read the name of the pizza
-            fin.read((char*)(&base), sizeof(Base)); // Read what base the pizza has
-
-            string s = name;
-            Pizza p(s, base);
-
-            fin.read((char*)&topping_count, sizeof(int)); // Read how many toppings to expect
-            // TODO: do this in one IO operation
-            for (int i = 0; i < topping_count; i++) {
-                fin.read((char*)(&t), sizeof(Topping));
-                p.add_topping(t);
-            }
-            v.push_back(p);
-            current_position = fin.tellg();
+        cout << "we in" << endl;
+        // Clear bad flags and go to the start of the file
+        fin.clear();
+        fin.seekg(0);
+        // Start with the order details, so we can construct the object
+        OrderDetails deets;
+        fin.read((char*)(&deets), sizeof(OrderDetails));
+        Order order(deets);
+        // Next we read the pizzas
+        vector<Pizza> pizzas = read_pizzas();
+        for (unsigned int i = 0; i < pizzas.size(); i++) {
+            order.add_pizza(pizzas[i]);
         }
-        fout.close();
-        return v;
+        int product_count;
+        fin.read((char*)(&product_count), sizeof(int));
+        Product p;
+        for (int i = 0; i < product_count; i++) {
+            fin.read((char*)(&p), sizeof(Product));
+            order.add_product(p);
+        }
+        bool priority;
+        bool paid;
+
+        fin.read((char*)(&priority), sizeof(bool));
+        fin.read((char*)(&paid), sizeof(bool));
+        
+        order.set_paid(paid);
+        order.set_priority(priority);
+
+        fin.close();
+        cout << order << endl;
     }
-    cout << "file read error?";
-    return v;
+    else {
+        cout << "file open error" << endl;
+    }
+    return orders;
+
 }
-*/
+
 
 void OrderIO::write_to_file(Order& order) {
     append(order);
+    cout << "hey append done" << endl;
+    read_file();
 }
 
 /*
@@ -103,18 +108,17 @@ void OrderIO::append(Order& order) {
         fout.write((char*)(&m), sizeof(int));
         fout.write((char*)(&products[0]), sizeof(Product) * m);
         // Status written
-        fout.write((char*)(&priority), sizeof(int));
-        fout.write((char*)(&paid), sizeof(int));
+        fout.write((char*)(&priority), sizeof(bool));
+        fout.write((char*)(&paid), sizeof(bool));
 
         fout.close();
+
+        cout << order << endl;
     }
     else {
         //throw exception
         cout << "not open??" << endl;
     }
-}
-
-void OrderIO::read_a_pizza() {
 }
 
 void OrderIO::write_pizza(Pizza& pizza) {
@@ -137,47 +141,30 @@ void OrderIO::write_pizza(Pizza& pizza) {
 
 vector<Pizza> OrderIO::read_pizzas() {
     vector<Pizza> v;
-    if (!file_exists()) {
-        // If the file doesn't exist, throw an exception
-        // throw FileExistsException();
-        cout << "file exist error";
-        return v;
-    }
-    fin.open(file.c_str(), ios::binary);
-    if (fin.is_open()) {
-        fin.clear(); // Clear any flags that fin may have set last run
-        fin.seekg(0, fin.end);
-        int end_position = fin.tellg();
-        fin.seekg(0); // Go to the beginning of the file
-        int current_position = fin.tellg();
-        while (current_position != end_position) {
-            char name[128];
-            int topping_count;
-            vector<Topping> toppings;
-            Topping t;
-            Base base;
+    int number_of_pizzas;
+    fin.read((char*)(&number_of_pizzas), sizeof(int));
+    for (int i = 0; i < number_of_pizzas; i++) {
+        char name[128];
+        int topping_count;
+        vector<Topping> toppings;
+        Topping t;
+        Base base;
 
-            fin.read((char*)(&name), sizeof(name)); // Read the name of the pizza
-            fin.read((char*)(&base), sizeof(Base)); // Read what base the pizza has
+        fin.read((char*)(&name), sizeof(name)); // Read the name of the pizza
+        fin.read((char*)(&base), sizeof(Base)); // Read what base the pizza has
 
-            string s = name;
-            Pizza p(s, base);
+        string s = name;
+        Pizza p(s, base);
 
-            fin.read((char*)&topping_count, sizeof(int)); // Read how many toppings to expect
-            // TODO: do this in one IO operation
-            for (int i = 0; i < topping_count; i++) {
-                fin.read((char*)(&t), sizeof(Topping));
-                p.add_topping(t);
-            }
-            v.push_back(p);
-            current_position = fin.tellg();
+        fin.read((char*)&topping_count, sizeof(int)); // Read how many toppings to expect
+        // TODO: do this in one IO operation
+        for (int i = 0; i < topping_count; i++) {
+            fin.read((char*)(&t), sizeof(Topping));
+            p.add_topping(t);
         }
-        fout.close();
-        return v;
+        v.push_back(p);
     }
-    cout << "file read error?";
     return v;
-    //throw FileReadException();
 }
 
 

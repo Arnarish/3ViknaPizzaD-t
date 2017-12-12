@@ -29,7 +29,8 @@ class Order {
         void add_pizza(Pizza& p);
         void add_product(Product& p);
         void add_comments(string comments);
-        void set_paid();
+        void set_paid(bool p);
+        void set_priority(bool p);
 
     private:
         vector<Product> products;

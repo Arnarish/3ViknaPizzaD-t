@@ -53,8 +53,12 @@ OrderDetails Order::get_details() {
     return details;
 }
 
-void Order::set_paid() {
-    paid = true;
+void Order::set_paid(bool p) {
+    paid = p;
+}
+
+void Order::set_priority(bool p) {
+    priority = p;
 }
 
 ostream& operator << (ostream& out, Order& o) {
