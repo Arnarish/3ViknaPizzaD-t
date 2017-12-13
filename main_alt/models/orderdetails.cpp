@@ -37,11 +37,11 @@ int OrderDetails::get_zipcode() {
 }
 
 ostream& operator << (ostream& out, OrderDetails& d) {
-    out << d.name << " - " 
-        << d.phone << " - " 
-        << d.address << " - " 
-        << d.location << " - " 
-        << d.zipcode << "\n"
-        << d.comments;
+    out << "Customer name:\t" << d.name << "\n"
+        << "Phone number:\t" << d.phone << "\n"
+        << "Address:\t" << d.address << "\n"
+        << "Pickup location:\t" << d.location << "\n"
+        << "Zip code:\t" << d.zipcode << "\n"
+        << "Additional comments:\t" << d.comments;
     return out;
 }

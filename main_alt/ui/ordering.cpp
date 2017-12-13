@@ -22,53 +22,45 @@ void OrderUI::main_menu() {
             case 1: {
                 string name;
                 string phone;
-                string pick_up = "";
+                string pick_up;
                 string address;
                 string location;
                 int zipcode;
 
+                cin.ignore(); //Get rid of a lingering newline character
+
                 cout << "Customer name: ";
-                cin.ignore();
                 getline(cin, name);
-                cout << "Name: " << name << endl;
                 cout << "Customer phone number: ";
-                cin.ignore();
                 getline(cin, phone);
-                cout << "Phone: " << phone << endl;
                 cout << "Order for pick-up? (y/n): ";
-                cin.ignore();
                 getline(cin, pick_up);
-                cout << pick_up << "is the way" << endl;
                 if (pick_up == "y") {
-                    int n = locio.number_of_entries();
+                    int n = locationio.number_of_entries();
                     int select_input = 0;
-                    locat = LocServ.get_location_list();
-                    string* locations = new string[n];
-                    for(int i=0; i<n; i++) {
-                        locations[i] = locat[i].get_location();
+                    Location* locations = location_service.get_location_list();
+                    cout << "Please select a pick-up location: " << endl;
+                    for (int i = 0; i < n; i++) {
+                        cout << i + 1 << ". " << locations[i].get_location() << endl;
                     }
-                    cout << "Please select Pick-up location: " << endl;
-                    for(int i=0; i<n; i++) {
-                    cout << i+1 << ". " << locations[i] << endl;
+                    while (!(cin >> select_input)) { 
+                        // Only accept integers as input.
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "Please input a valid number from the list above." << endl;
                     }
-                    while(!(cin >> select_input)) { // only accept integers as input.
-                            cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                            cout << "please input a valid number from the list above." << endl;
-                    }
-                    if(select_input > n)
+                    if (select_input > n)
                     {
-                        // if input is valid, but exceeds the given no. of stores.
+                        // If input is valid, but exceeds the given no. of stores.
                         //throw UserInputException;
                     }
-                    location = locations[select_input-1];
+                    location = locations[select_input - 1].get_location();
                     address = "Pick-up";
                     zipcode = 0;
 
-                    delete [] locations;
-                    delete [] locat;
+                    delete[] locations;
                 }
-                else if(pick_up == "n") {
+                else if (pick_up == "n") {
                     // Prompt for customer address
                     cout << "Customer address: ";
                     cin.ignore();
@@ -83,7 +75,8 @@ void OrderUI::main_menu() {
                     location = "temp";
                 }
                 else {
-                    throw InvalidPickUpException();
+                    //throw InvalidPickUpException();
+                    cout << "bla" << endl;
                 }
                 order_service.create_order(name, phone, address, location, zipcode);
             } break;

@@ -4,12 +4,13 @@
 #if _WIN32
 #include <stdlib.h>
 #endif // _WIN32
+
 #include <limits>
 #include <iostream>
 #include <string>
+#include "../models/location.h"
 #include "../services/orderservice.h"
 #include "../repositories/locationio.h"
-#include "../models/location.h"
 #include "../services/Locationservice.h"
 
 using namespace std;
@@ -24,9 +25,8 @@ class OrderUI {
         OrderService order_service;
 
         void create_order(string name, string phone, string address, string location);
-        LocationIO locio;
-        LocationService LocServ;
-        Location* locat;
+        LocationIO locationio;
+        LocationService location_service;
 };
 
 #endif
