@@ -4,6 +4,8 @@
 #include "../models/location.h"
 #include "../repositories/locationio.h"
 #include <vector>
+#include "../exceptions/InvalidLocationException.h"
+#include "../exceptions/InvalidPostcodeException.h"
 
 class LocationService
 {

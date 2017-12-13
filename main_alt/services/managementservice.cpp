@@ -40,12 +40,12 @@ void ManagementService::create_new_topping(string name, int price) {
     Topping t(name, price);
     toppingio.append_to_file(t);
 
-    Topping* toppings = toppingio.read_file();
-    int n = toppingio.number_of_entries();
-    cout << n << endl;
-    for (int i = 0; i < n; i++) {
-        cout << toppings[i] << endl;
-    }
+    //Topping* toppings = toppingio.read_file();
+    //int n = toppingio.number_of_entries();
+    //cout << n << endl;
+    //for (int i = 0; i < n; i++) {
+    //    cout << toppings[i] << endl;
+    //}
 
 }
 
@@ -112,20 +112,16 @@ void ManagementService::add_new_store_location() {
     getline(cin, new_location);
     cout << "Please enter the postcode of the new location: ";
     cin >> postcode;
-    if (postcode >= 100 && postcode <= 999) {
-        LocServ.create_new_location(new_location,postcode);
-    }
-    else {
-        cout << "Invalid postcode!" << endl;
-    }
-}
 
+        LocServ.create_new_location(new_location,postcode);
+}
 
 void ManagementService::create_new_product() {
     string name;
     int price;
     char category;
     cout << "Please enter the name of the new product: ";
+    cin.ignore();
     getline(cin, name);
     cout << "Please enter the price of the new product: ";
     cin >> price;
