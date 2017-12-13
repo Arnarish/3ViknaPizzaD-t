@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #endif // _WIN32
 #include "../repositories/locationio.h"
+#include "../repositories/orderio.h"
 #include "../models/location.h"
 #include "../services/Locationservice.h"
 #include "../exceptions/UserInputException.h"
@@ -28,6 +29,7 @@ class PreperationUI
         string ui_text, store_location;
         LocationIO locio;
         LocationService LocServ;
+        OrderIO orders;
 };
 
 #endif // PREPERATION_H
