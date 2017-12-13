@@ -1,32 +1,62 @@
 #include "pizza.h"
 
-pizza::pizza() {
-    pizza_base = "";
-    pizza_size = "";
-    pizza_topping[0] = "";
-    comments = '\0';
+using namespace std;
+
+Pizza::Pizza(Base& base) {
+    strcpy(this->name, "Generic");
+    this->base = base;
 }
 
-pizza::pizza(string pbase, string psize, vector<Topping> topping, char notes[128]) { //
-    this->pizza_base = pbase;
-    this->pizza_size = psize;
-    for(int i=0; i < topping.size(); i++)    {
-        pizza_topping.push_back (topping[i]);
+Pizza::Pizza(string name, Base& base) {
+    strcpy(this->name, name.c_str());
+    this->base = base;
+}
+
+void Pizza::add_topping(Topping& t) {
+    toppings.push_back(t);
+}
+
+void Pizza::set_name(string name) {
+    strcpy(this->name, name.c_str());
+}
+
+int Pizza::get_price() {
+    int n = base.get_price();
+    for (unsigned int i = 0; i < toppings.size(); i++) {
+        n += toppings[i].get_price();
     }
+    return n;
 }
 
-string pizza::get_base() {
-    return pizza_base;
+vector<Topping> Pizza::get_toppings() {
+    return toppings;
 }
 
-string pizza::get_size() {
-    return pizza_size;
+int Pizza::number_of_toppings() {
+    return (int)toppings.size();
 }
 
-void pizza::set_base(string pbase) {
-    this->pizza_base = pbase;
+string Pizza::get_name() {
+    string s = name;
+    return s;
 }
 
-void pizza::set_size(string psize) {
-    this->pizza_size = psize;
+Base Pizza::get_base() {
+    return base;
+}
+
+ostream& operator << (ostream& out, Pizza& p) {
+    if (!strcmp(p.name, "Generic")) {
+        out << " ------ [ Create your own ] ------ \n";
+    }
+    else {
+        out << " ------ [ " << p.name << " ] ------ \n";
+    }
+    out << " Base: " << p.base << "\n"
+        << " Toppings: \n";
+    for (unsigned int i = 0; i < p.toppings.size(); i++) {
+        out << "   + " << p.toppings[i] << "\n";
+    }
+    out << " Price: " << p.get_price() << " kr.";
+    return out;
 }

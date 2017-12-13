@@ -1,27 +1,36 @@
 #ifndef PIZZA_H
 #define PIZZA_H
+
+#include <iostream>
+#include <cstring>
+#include <string>
 #include <vector>
 
 #include "topping.h"
+#include "base.h"
 
+using namespace std;
 
-class pizza
-{
+class Pizza {
     public:
-        pizza();
-        pizza(string pbase, string psize, vector<Topping> topping, char notes[128]);// þetta er eitthvað skakkt
-        string get_base();
-        string get_size();
-        void set_base(string pbase);
-        void set_size(string psize);
-
+        Pizza(Base& base);
+        Pizza(string name, Base& base);
+        void add_topping(Topping& t);
+        void set_name(string name);
+        int get_price();
+        vector<Topping> get_toppings();
+        int number_of_toppings();
+        string get_name();
+        Base get_base();
     private:
-        string pizza_base;
-        string pizza_size;
-        vector <Topping> pizza_topping(string topping);
-        char comments[128]; // aditional comment possible, don't cut etc..
-        //option to split pizzas? needs to be implemented higher up
+        char name[128];
+        Base base;
+        vector<Topping> toppings;
+        // The price of a pizza is the price of the base
+        // + the price of all the toppings
+        int price; 
 
+        friend ostream& operator << (ostream& out, Pizza& p);
 };
 
-#endif // PIZZA_H
+#endif

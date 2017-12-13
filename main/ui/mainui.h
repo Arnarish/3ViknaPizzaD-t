@@ -1,15 +1,23 @@
 #ifndef MAINUI_H
 #define MAINUI_H
 
-#include "salesui.h"
-#include "prodlineui.h"
-#include "storeui.h"
-#include "adminui.h"
+#include <iostream>
+#include <string>
+#include "management.h"
+#include "preperation.h"
+#include "ordering.h"
+#include "delivery.h"
+
+#include "../exceptions/UserInputException.h"
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileReadException.h"
+#include "../exceptions/FileWriteException.h"
 
 #if _WIN32
 #include <stdlib.h>
 #endif // _WIN32
 
+using namespace std;
 
 class MainUI {
     public:
@@ -18,11 +26,11 @@ class MainUI {
 
     private:
         string ui_text;
-        string location;
-        AdminUI adminui;
-        SalesUI salesui;
-        ProdLineUI produi;
-        StoreUI storeui;
+        // Other UI classes
+        ManagementUI management;
+        PreperationUI preperation;
+        OrderUI ordering;
+        DeliveryUI delivery;
 };
 
 #endif
