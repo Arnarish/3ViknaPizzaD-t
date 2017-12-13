@@ -1,16 +1,16 @@
 #include "locationio.h"
 
-locationio::locationio() {
+LocationIO::LocationIO() {
     file = "./data/locations.dat";
     ifstream fin;
     ofstream fout;
 }
 
-void locationio::append_to_file(const location& loc) {
+void LocationIO::append_to_file(const Location& loc) {
     // Append a single Base class to the bases.dat file
     fout.open(file, ios::binary | ios::app);
     if (fout.is_open()) {
-        fout.write((char*)(&loc), sizeof(location));
+        fout.write((char*)(&loc), sizeof(Location));
         fout.close();
         return;
     }
@@ -20,30 +20,30 @@ void locationio::append_to_file(const location& loc) {
     // TODO: throw FileWriteException();
 }
 
-location* locationio::read_file() {
+Location* LocationIO::read_file() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
         // throw FileExistsException();
         cout << "file exist error";
-        return (location*)0xDEADBEEF;
+        return (Location*)0xDEADBEEF;
     }
     fin.open(file.c_str(), ios::binary);
     if (fin.is_open()) {
         fin.seekg(0, fin.end);
-        int r = fin.tellg() / sizeof(location);
+        int r = fin.tellg() / sizeof(Location);
         fin.seekg(0, fin.beg);
-        location* locations = new location[r];
-        fin.read((char*)(locations), sizeof(location) * r);
+        Location* locations = new Location[r];
+        fin.read((char*)(locations), sizeof(Location) * r);
         fin.close();
 
         return locations;
     }
     cout << "dunno what happened here";
-    return (location*)0xDEADBEEF;
+    return (Location*)0xDEADBEEF;
     //throw FileReadException();
 }
 
-int locationio::number_of_entries() {
+int LocationIO::number_of_entries() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
         return -1;
@@ -61,7 +61,7 @@ int locationio::number_of_entries() {
     return -1;
 }
 
-bool locationio::file_exists() {
+bool LocationIO::file_exists() {
     //Check if the file exists
     ifstream infile(file);
     return infile.good();

@@ -12,16 +12,13 @@
 #include "../repositories/locationio.h"
 #include "../repositories/productio.h"
 #include "../services/Locationservice.h"
-<<<<<<< HEAD
 
 #include "../exceptions/InvalidNameException.h"
 #include "../exceptions/InvalidPriceException.h"
 #include "../exceptions/InvalidSizeException.h"
 #include "../exceptions/InvalidCategoryException.h"
 
-=======
 #include <iostream>
->>>>>>> 52f3bfa25d0d2e100fc59c469d1d6008be8977e1
 using namespace std;
 
 /* TODO: add all this shit
@@ -46,8 +43,8 @@ class ManagementService {
         BaseIO baseio;
         ToppingIO toppingio;
         MenuIO menuio;
-        productio prodio;
-        Locationservice LocServ;
+        ProductIO prodio;
+        LocationService LocServ;
 };
 
 #endif

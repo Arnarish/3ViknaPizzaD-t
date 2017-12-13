@@ -24,9 +24,9 @@ class OrderUI {
         OrderService order_service;
 
         void create_order(string name, string phone, string address, string location);
-        locationio locio;
-        Locationservice LocServ;
-        location* locat;
+        LocationIO locio;
+        LocationService LocServ;
+        Location* locat;
 };
 
 #endif

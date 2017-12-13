@@ -7,16 +7,16 @@
 
 using namespace std;
 
-class location
+class Location
 {
     public:
-        location();
-        location(string location, int postcode);
+        Location();
+        Location(string location, int postcode);
         string get_location();
         int get_postcode();
 
     private:
-        char Location[128];
+        char location[128];
         int Postcode;
 };
 

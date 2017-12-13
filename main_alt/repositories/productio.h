@@ -6,10 +6,10 @@
 #include "../models/product.h"
 
 
-class productio
+class ProductIO
 {
     public:
-        productio();
+        ProductIO();
         void append_to_file(const Product& product);
         Product* read_file();
         int number_of_entries();

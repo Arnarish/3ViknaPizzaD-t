@@ -33,7 +33,7 @@ void PreperationUI::main_menu() {
 void PreperationUI::ask_place() {
     int n = locio.number_of_entries();
     int select_input = 0;
-    location* locat = LocServ.get_location_list();
+    Location* locat = LocServ.get_location_list();
     string* locations = new string[n];
     for(int i=0; i<n; i++) {
         locations[i] = locat[i].get_location();

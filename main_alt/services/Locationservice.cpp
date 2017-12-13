@@ -1,16 +1,16 @@
 #include "Locationservice.h"
 
-Locationservice::Locationservice()
+LocationService::LocationService()
 {
     //ctor
 }
 
-location* Locationservice::get_location_list() {
-    location* locations = LocIO.read_file();
+Location* LocationService::get_location_list() {
+    Location* locations = LocIO.read_file();
     return locations;
 }
 
-void Locationservice::create_new_location(string new_location, int postcode) {
+void LocationService::create_new_location(string new_location, int postcode) {
     if(new_location == "" || new_location.size() > 127) {
         // invalid location
         //throw InvalidLocationException
@@ -20,7 +20,7 @@ void Locationservice::create_new_location(string new_location, int postcode) {
         // invalid postcode
         //throw InvalidPostcodeException
     }
-        locationio locio;
-    location l(new_location, postcode);
+        LocationIO locio;
+    Location l(new_location, postcode);
     locio.append_to_file(l);
 }

@@ -1,12 +1,12 @@
 #include "productio.h"
 
-productio::productio() {
+ProductIO::ProductIO() {
     file = "./data/product.dat";
     ifstream fin;
     ofstream fout;
 }
 
-void productio::append_to_file(const Product& product) {
+void ProductIO::append_to_file(const Product& product) {
     // Append a single Base class to the bases.dat file
     fout.open(file, ios::binary | ios::app);
     if (fout.is_open()) {
@@ -20,7 +20,7 @@ void productio::append_to_file(const Product& product) {
     // TODO: throw FileWriteException();
 }
 
-int productio::number_of_entries() {
+int ProductIO::number_of_entries() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
         return -1;
@@ -39,7 +39,7 @@ int productio::number_of_entries() {
     //throw FileReadException();
 }
 
-Product* productio::read_file() {
+Product* ProductIO::read_file() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
         // throw FileExistsException();
@@ -63,7 +63,7 @@ Product* productio::read_file() {
     //throw FileReadException();
 }
 
-bool productio::file_exists() {
+bool ProductIO::file_exists() {
     //Check if the file exists
     ifstream infile(file);
     return infile.good();
