@@ -12,8 +12,6 @@
 #include "../repositories/locationio.h"
 #include "../repositories/productio.h"
 #include "../services/Locationservice.h"
-
-
 #include "../exceptions/InvalidNameException.h"
 #include "../exceptions/InvalidPriceException.h"
 #include "../exceptions/InvalidSizeException.h"

@@ -13,9 +13,6 @@ void ManagementService::create_new_base(string name, int size, int price) {
     if (price < 0) {
         // We're running a business here, so I won't put an upper bound on the price
         throw InvalidPriceException();
-
-
-        throw InvalidPriceException();
     }
 
     Base b(name, price, size);
