@@ -31,8 +31,10 @@ void OrderUI::main_menu() {
                 cin.ignore();
                 getline(cin, name);
                 cout << "Customer phone number: ";
+                cin.ignore();
                 getline(cin, phone);
                 cout << "Order for pick-up? (y/n): ";
+                cin.ignore();
                 getline(cin,pick_up);
                 if (pick_up == "y") {
                     int n = locio.number_of_entries();
