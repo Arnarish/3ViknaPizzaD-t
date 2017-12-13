@@ -77,7 +77,7 @@ void ManagementUI::main_menu() {
                     catch (InvalidPriceException) {
                         cout << "Invalid price!" << endl;
                     }
-                    catch ´(FileReadException) {
+                    catch (FileReadException) {
                         cout << "Couldn't read file!" << endl;
                     }
                 } break;
