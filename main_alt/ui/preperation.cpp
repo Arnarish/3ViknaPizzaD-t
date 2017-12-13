@@ -47,8 +47,7 @@ void PreperationUI::ask_place() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "please input a valid number from the list above." << endl;
     }
-    if(select_input > n)
-    {
+    if(select_input > n) {
         // if input is valid, but exceeds the given no. of stores.
         //throw UserInputException;
     }
