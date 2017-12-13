@@ -49,6 +49,15 @@ void ManagementUI::main_menu() {
                     catch (InvalidSizeException) {
                         cout << "Invalid size!" << endl;
                     }
+                    catch (FileExistsException) {
+                        cout << "File doesn't exist!" << endl;
+                    }
+                    catch (FileWriteException) {
+                        cout << "Couldn't open file!" << endl;
+                    }
+                    catch (FileReadException) {
+                        cout << "Couldn't read file!" << endl;
+                    }
                 } break;
             case 2: {
                     // Topping is a class

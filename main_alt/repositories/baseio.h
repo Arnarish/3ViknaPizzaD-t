@@ -5,6 +5,10 @@
 #include <fstream>
 #include "../models/base.h"
 
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileWriteException.h"
+#include "../exceptions/FileReadException.h"
+
 // A class for reading and writing pizza base classes
 
 using namespace std;

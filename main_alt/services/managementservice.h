@@ -17,6 +17,10 @@
 #include "../exceptions/InvalidPriceException.h"
 #include "../exceptions/InvalidSizeException.h"
 #include "../exceptions/InvalidCategoryException.h"
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileWriteException.h"
+#include "../exceptions/FileReadException.h"
+
 
 #include <iostream>
 using namespace std;
