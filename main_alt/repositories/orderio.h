@@ -9,7 +9,9 @@
 #include "../models/base.h"
 #include "../models/topping.h"
 #include "../models/order.h"
-
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileWriteException.h"
+#include "../exceptions/FileReadException.h"
 // A class for reading and writing orders
 
 using namespace std;

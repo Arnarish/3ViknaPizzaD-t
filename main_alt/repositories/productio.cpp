@@ -15,16 +15,15 @@ void ProductIO::append_to_file(const Product& product) {
         return;
     }
     else {
-        cout << "could not open" << endl;
+        throw FileWriteException();
     }
-    // TODO: throw FileWriteException();
+
 }
 
 int ProductIO::number_of_entries() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
-        return -1;
-        //throw FileExistsException();
+        throw FileExistsException();
     }
     fin.open(file.c_str(), ios::binary);
     if (fin.is_open()) {
@@ -35,16 +34,13 @@ int ProductIO::number_of_entries() {
         fin.close();
         return n;
     }
-    return -1;
-    //throw FileReadException();
+    throw FileReadException();
 }
 
 Product* ProductIO::read_file() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
-        // throw FileExistsException();
-        cout << "file exist error";
-        return (Product*)0xDEADBEEF;
+        throw FileExistsException();
     }
     fin.open(file.c_str(), ios::binary);
     if (fin.is_open()) {
@@ -58,9 +54,7 @@ Product* ProductIO::read_file() {
 
         return products;
     }
-    cout << "dunno what happened here";
-    return (Product*)0xDEADBEEF;
-    //throw FileReadException();
+    throw FileReadException();
 }
 
 bool ProductIO::file_exists() {

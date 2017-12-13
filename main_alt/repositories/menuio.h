@@ -8,6 +8,9 @@
 #include "../models/pizza.h"
 #include "../models/base.h"
 #include "../models/topping.h"
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileWriteException.h"
+#include "../exceptions/FileReadException.h"
 
 // A class for reading and writing pizzas into a menu
 

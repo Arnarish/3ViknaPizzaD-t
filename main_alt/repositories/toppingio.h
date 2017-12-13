@@ -3,6 +3,9 @@
 #include <string>
 #include <fstream>
 #include "../models/topping.h"
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileWriteException.h"
+#include "../exceptions/FileReadException.h"
 
 using namespace std;
 

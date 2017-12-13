@@ -22,7 +22,7 @@ void OrderUI::main_menu() {
             case 1: {
                 string name;
                 string phone;
-                string pick_up;
+                string pick_up = "";
                 string address;
                 string location;
                 int zipcode;
@@ -30,12 +30,15 @@ void OrderUI::main_menu() {
                 cout << "Customer name: ";
                 cin.ignore();
                 getline(cin, name);
+                cout << "Name: " << name << endl;
                 cout << "Customer phone number: ";
                 cin.ignore();
                 getline(cin, phone);
+                cout << "Phone: " << phone << endl;
                 cout << "Order for pick-up? (y/n): ";
                 cin.ignore();
-                getline(cin,pick_up);
+                getline(cin, pick_up);
+                cout << pick_up << "is the way" << endl;
                 if (pick_up == "y") {
                     int n = locio.number_of_entries();
                     int select_input = 0;
@@ -65,12 +68,10 @@ void OrderUI::main_menu() {
                     delete [] locations;
                     delete [] locat;
                 }
-                if(pick_up != "y" && pick_up != "n") {
-                    //throw InvalidPickUpException;
-                }
-                else {
+                else if(pick_up == "n") {
                     // Prompt for customer address
                     cout << "Customer address: ";
+                    cin.ignore();
                     getline(cin, address);
                     cout << "Customer zip code: ";
                     while(!(cin >> zipcode)) {
@@ -80,6 +81,9 @@ void OrderUI::main_menu() {
                     }
                     // TODO: Find the nearest store location
                     location = "temp";
+                }
+                else {
+                    throw InvalidPickUpException();
                 }
                 order_service.create_order(name, phone, address, location, zipcode);
             } break;
