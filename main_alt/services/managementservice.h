@@ -48,8 +48,8 @@ class ManagementService {
         BaseIO baseio;
         ToppingIO toppingio;
         MenuIO menuio;
-        productio prodio;
-        Locationservice LocServ;
+        ProductIO prodio;
+        LocationService LocServ;
 };
 
 #endif
