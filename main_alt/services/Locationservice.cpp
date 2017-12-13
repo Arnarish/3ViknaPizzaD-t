@@ -12,13 +12,11 @@ Location* LocationService::get_location_list() {
 
 void LocationService::create_new_location(string new_location, int postcode) {
     if(new_location == "" || new_location.size() > 127) {
-        // invalid location
-        //throw InvalidLocationException
+        throw InvalidLocationException();
     }
     if(postcode > 0 || postcode > 999)
     {
-        // invalid postcode
-        //throw InvalidPostcodeException
+        throw InvalidPostcodeException();
     }
         LocationIO locio;
     Location l(new_location, postcode);

@@ -20,6 +20,8 @@
 #include "../exceptions/FileExistsException.h"
 #include "../exceptions/FileWriteException.h"
 #include "../exceptions/FileReadException.h"
+#include "../exceptions/InvalidLocationException.h"
+#include "../exceptions/InvalidPostcodeException.h"
 
 
 #include <iostream>

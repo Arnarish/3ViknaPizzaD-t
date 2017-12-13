@@ -105,7 +105,18 @@ void ManagementUI::main_menu() {
 
                 } break;
             case 5: {
-                management_service.add_new_store_location();
+                try {
+                    management_service.add_new_store_location();
+                }
+                catch (InvalidLocationException) {
+                    cout << "Invalid location!" << endl;
+                }
+                catch (InvalidPostcodeException) {
+                    cout << "Invalid postcode!" << endl;
+                }
+                catch (FileWriteException) {
+                    cout << "Couldn't open file!" << endl;
+                }
                 } break;
             case 6:
                 return;
