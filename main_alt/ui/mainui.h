@@ -8,6 +8,11 @@
 #include "ordering.h"
 #include "delivery.h"
 
+#include "../exceptions/UserInputException.h"
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileReadException.h"
+#include "../exceptions/FileWriteException.h"
+
 #if _WIN32
 #include <stdlib.h>
 #endif // _WIN32

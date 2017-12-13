@@ -7,6 +7,9 @@
 #include "../repositories/locationio.h"
 #include "../models/location.h"
 #include "../services/Locationservice.h"
+#include "../exceptions/UserInputException.h"
+#include "../exceptions/FileReadException.h"
+#include "../exceptions/FileWriteException.h"
 #include <limits>
 #include <vector>
 #include <iostream>

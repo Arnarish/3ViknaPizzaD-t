@@ -53,7 +53,30 @@ void DeliveryUI::main_menu() {
 }
 
 void DeliveryUI::ask_place() {
-    //are we even using this? toss it?
-    //cout << "Ask location" << endl;
+    int n = locio.number_of_entries();
+    int select_input = 0;
+    Location* locat = LocServ.get_location_list();
+    string* locations = new string[n];
+    for(int i=0; i<n; i++) {
+        locations[i] = locat[i].get_location();
+    }
+    cout << "please select current workplace from list: " << endl;
+    for(int i=0; i<n; i++) {
+        cout << i+1 << ". " << locations[i] << endl;
+    }
+    while(!(cin >> select_input)) { // only accept integers as input.
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "please input a valid number from the list above." << endl;
+    }
+    if(select_input > n) {
+        // if input is valid, but exceeds the given no. of stores.
+        throw UserInputException();
+    }
+    store_location = locations[select_input-1];
+    cout << store_location << " selected." << endl << endl;
+
+    delete [] locat;
+    delete [] locations;
 
 }

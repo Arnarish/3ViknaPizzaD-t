@@ -28,11 +28,33 @@ void MainUI::main_menu() {
                 ordering.main_menu();
                 break;
             case 3:
-                preperation.ask_place();
+                try{
+                    preperation.ask_place();
+                }
+                catch(UserInputException) {
+                    cout << "Invalid User input." << endl;
+                }
+                catch(FileExistsException) {
+                    cout << "File does not exist." << endl;
+                }
+                catch(FileReadException) {
+                    cout << "Unable to read from file." << endl;
+                }
                 preperation.main_menu();
                 break;
             case 4:
-                delivery.ask_place();
+                try {
+                    delivery.ask_place();
+                }
+                catch(UserInputException) {
+                    cout << "Invalid User input." << endl;
+                }
+                catch(FileExistsException) {
+                    cout << "File does not exist." << endl;
+                }
+                catch(FileReadException) {
+                    cout << "Unable to read from file." << endl;
+                }
                 delivery.main_menu();
                 break;
             case 5:

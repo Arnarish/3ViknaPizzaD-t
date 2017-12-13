@@ -49,7 +49,7 @@ void PreperationUI::ask_place() {
     }
     if(select_input > n) {
         // if input is valid, but exceeds the given no. of stores.
-        //throw UserInputException;
+        throw UserInputException();
     }
     store_location = locations[select_input-1];
     cout << store_location << " selected." << endl << endl;
