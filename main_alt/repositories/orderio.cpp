@@ -31,49 +31,55 @@ vector<Order> OrderIO::read_file() {
     cout << "tried to open" << endl;
     if (fin.is_open()) {
         cout << "we in" << endl;
-        // Clear bad flags and go to the start of the file
-        fin.clear();
-        fin.seekg(0);
-        // Start with the order details, so we can construct the object
-        OrderDetails deets;
-        fin.read((char*)(&deets), sizeof(OrderDetails));
-        Order order(deets);
-        // Next we read the pizzas
-        vector<Pizza> pizzas = read_pizzas();
-        for (unsigned int i = 0; i < pizzas.size(); i++) {
-            order.add_pizza(pizzas[i]);
-        }
-        int product_count;
-        fin.read((char*)(&product_count), sizeof(int));
-        Product p;
-        for (int i = 0; i < product_count; i++) {
-            fin.read((char*)(&p), sizeof(Product));
-            order.add_product(p);
-        }
-        bool priority;
-        bool paid;
+        fin.clear(); // Clear any flags that fin may have set last run
+        fin.seekg(0, fin.end);
+        int end_position = fin.tellg();
+        fin.seekg(0); // Go to the beginning of the file
+        int current_position = fin.tellg();
+        while (current_position != end_position) {
+            // Start with the order details, so we can construct the object
+            OrderDetails deets;
+            fin.read((char*)(&deets), sizeof(OrderDetails));
+            Order order(deets);
+            // Next we read the pizzas
+            vector<Pizza> pizzas = read_pizzas();
+            for (unsigned int i = 0; i < pizzas.size(); i++) {
+                order.add_pizza(pizzas[i]);
+            }
+            int product_count;
+            fin.read((char*)(&product_count), sizeof(int));
+            Product p;
+            for (int i = 0; i < product_count; i++) {
+                fin.read((char*)(&p), sizeof(Product));
+                order.add_product(p);
+            }
+            bool priority;
+            bool paid;
 
-        fin.read((char*)(&priority), sizeof(bool));
-        fin.read((char*)(&paid), sizeof(bool));
-        
-        order.set_paid(paid);
-        order.set_priority(priority);
+            fin.read((char*)(&priority), sizeof(bool));
+            fin.read((char*)(&paid), sizeof(bool));
 
+            order.set_paid(paid);
+            order.set_priority(priority);
+            orders.push_back(order);
+            current_position = fin.tellg();
+        }
         fin.close();
-        cout << order << endl;
     }
     else {
         cout << "file open error" << endl;
     }
     return orders;
-
 }
 
 
 void OrderIO::write_to_file(Order& order) {
     append(order);
     cout << "hey append done" << endl;
-    read_file();
+    vector<Order> orders = read_file();
+    for (unsigned int i = 0; i < orders.size(); i++) {
+        cout << "--- ORDER #" << i << " ---\n" << orders[i] << endl;
+    }
 }
 
 /*
