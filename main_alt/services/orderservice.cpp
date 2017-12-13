@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void OrderService::create_order(string name, string phone, 
+void OrderService::create_order(string name, string phone,
                                 string address, string location, int zipcode) {
     char c;
     int m;
@@ -52,7 +52,7 @@ void OrderService::create_order(string name, string phone,
                         Pizza created = create_pizza();
                         order.add_pizza(created);
                     }
-                    else { 
+                    else {
                         break;
                     }
                     cout << order << endl;
@@ -81,6 +81,35 @@ void OrderService::create_order(string name, string phone,
 
 OrderDetails OrderService::create_details(string name, string phone, string address,
                                   string location, int zipcode) {
+
+        if (name == "" || name.size() > 127) {
+        // Invalid name, throw an exception
+        // throw InvalidNameException();
+        }
+
+        if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { // check if string is empty, or number has invalid length
+           //throw CustomerPhoneException();
+        }
+        bool isNumber = true;
+        for(unsigned int i=0; i < phone.length(); i++) { // check if phone has non numerals
+            if(!isalnum(phone[i])) {
+                isNumber = false;
+                break;
+            }
+            if(isNumber == false) {
+            //thow CustomerPhoneException)(;
+            }
+        }
+        if(address == "" || address.size() > 127) {
+            //throw CustomerAddressException();
+        }
+        if(location == "" || location.size() > 127) {
+            //throw InvalidLocationException();
+        }
+        if(zipcode > 999 || zipcode < 99) {
+            //throw CustomerZipcodeException();
+        }
+        // Try catch for validation
     //TODO: validate EVERYTHING and throw exceptions
     OrderDetails details(name, phone, address, location, zipcode);
     return details;

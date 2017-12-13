@@ -92,7 +92,7 @@ void ManagementService::create_new_menu_item() {
 
     cout << "Pizza price: " << p.get_price() << " kr" << endl;
     cout << "Name of pizza: ";
-    cin >> name;
+    getline(cin, name);
     p.set_name(name);
     menuio.append_to_file(p);
 
@@ -126,7 +126,7 @@ void ManagementService::create_new_product() {
     int price;
     char category;
     cout << "Please enter the name of the new product: ";
-    cin >> name;
+    getline(cin, name);
     cout << "Please enter the price of the new product: ";
     cin >> price;
     cout << "please enter the category for the new product: ";

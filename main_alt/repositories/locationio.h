@@ -2,6 +2,9 @@
 #define LOCATIONIO_H
 
 #include "../models/location.h"
+#include "../exceptions/FileExistsException.h"
+#include "../exceptions/FileReadException.h"
+#include "../exceptions/FileWriteException.h"
 
 #include <string>
 #include <fstream>
