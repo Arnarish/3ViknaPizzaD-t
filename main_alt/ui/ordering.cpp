@@ -33,6 +33,7 @@ void OrderUI::main_menu() {
                 getline(cin, name);
                 cout << "Customer phone number: ";
                 getline(cin, phone);
+                cout << phone << endl;
                 cout << "Order for pick-up? (y/n): ";
                 getline(cin, pick_up);
                 if (pick_up == "y") {
@@ -63,10 +64,11 @@ void OrderUI::main_menu() {
                 else if (pick_up == "n") {
                     // Prompt for customer address
                     cout << "Customer address: ";
-                    cin.ignore();
                     getline(cin, address);
+                    cout << address << endl;
+                    cout << phone << endl;
                     cout << "Customer zip code: ";
-                    while(!(cin >> zipcode)) {
+                    while (!(cin >> zipcode)) {
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         cin.clear();
                         cout << "Invalid input, please try again: ";

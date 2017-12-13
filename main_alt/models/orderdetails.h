@@ -22,7 +22,7 @@ class OrderDetails {
         int get_zipcode();
     private:
         char name[128];
-        char phone[7];
+        char phone[10];
         char address[128];
         char location[128];
         char comments[512]; // Picky customers can write many comments

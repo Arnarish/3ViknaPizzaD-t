@@ -55,7 +55,6 @@ void OrderService::create_order(string name, string phone,
                     else {
                         break;
                     }
-                    cout << order << endl;
                 }
             } break;
             case 2: {
@@ -67,7 +66,8 @@ void OrderService::create_order(string name, string phone,
                 cout << "Any additional comments? (y/n): ";
                 cin >> sel;
                 if (sel == 'y') {
-                    cin >> comments;
+                    cin.ignore();
+                    getline(cin, comments);
                     order.add_comments(comments);
                 }
                 done = true;
@@ -81,13 +81,13 @@ void OrderService::create_order(string name, string phone,
 
 OrderDetails OrderService::create_details(string name, string phone, string address,
                                   string location, int zipcode) {
-
         if (name == "" || name.size() > 127) {
         // Invalid name, throw an exception
         // throw InvalidNameException();
         }
 
-        if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { // check if string is empty, or number has invalid length
+        if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { 
+        // check if string is empty, or number has invalid length
            //throw CustomerPhoneException();
         }
         bool isNumber = true;
