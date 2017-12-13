@@ -53,6 +53,7 @@ void DeliveryUI::main_menu() {
 }
 
 void DeliveryUI::ask_place() {
-    cout << "Ask location" << endl;
+    //are we even using this? toss it?
+    //cout << "Ask location" << endl;
 
 }

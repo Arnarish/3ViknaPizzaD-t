@@ -33,7 +33,7 @@ void PreperationUI::main_menu() {
 void PreperationUI::ask_place() {
     int n = locio.number_of_entries();
     int select_input = 0;
-    location* locat = LocServ.get_location_list();
+    Location* locat = LocServ.get_location_list();
     string* locations = new string[n];
     for(int i=0; i<n; i++) {
         locations[i] = locat[i].get_location();
@@ -47,8 +47,7 @@ void PreperationUI::ask_place() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "please input a valid number from the list above." << endl;
     }
-    if(select_input > n)
-    {
+    if(select_input > n) {
         // if input is valid, but exceeds the given no. of stores.
         //throw UserInputException;
     }

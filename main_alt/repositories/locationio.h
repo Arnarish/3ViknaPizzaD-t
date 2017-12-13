@@ -11,20 +11,20 @@
 
 using namespace std;
 
-class locationio
+class LocationIO
 {
     public:
-        locationio();
+        LocationIO();
         int number_of_entries();
-        void append_to_file(const location& loc);
-        location* read_file();
+        void append_to_file(const Location& loc);
+        Location* read_file();
 
     private:
         string file;
         ofstream fout;
         ifstream fin;
         bool file_exists();
-        location Location;
+        Location location;
 
 };
 

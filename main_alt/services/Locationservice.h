@@ -5,15 +5,15 @@
 #include "../repositories/locationio.h"
 #include <vector>
 
-class Locationservice
+class LocationService
 {
     public:
-        Locationservice();
-        location* get_location_list();
+        LocationService();
+        Location* get_location_list();
         void create_new_location(string location, int postcode);
 
     private:
-        locationio LocIO;
+        LocationIO LocIO;
 
 };
 

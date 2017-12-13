@@ -3,7 +3,7 @@
 using namespace std;
 
 ToppingIO::ToppingIO() {
-    file = "./data/toppings.dat";
+    file = "../data/toppings.dat";
     ifstream fin;
     ofstream fout;
 }

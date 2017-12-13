@@ -23,8 +23,8 @@ class PreperationUI
 
     private:
         string ui_text, store_location;
-        locationio locio;
-        Locationservice LocServ;
+        LocationIO locio;
+        LocationService LocServ;
 };
 
 #endif // PREPERATION_H

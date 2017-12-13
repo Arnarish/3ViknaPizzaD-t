@@ -1,21 +1,21 @@
 #include "location.h"
 
-location::location()
+Location::Location()
 {
-    strcpy(this->Location, "");
+    strcpy(this->location, "");
     this->Postcode = 0;
 }
 
-location::location(string location, int postcode) {
-    strcpy(this->Location, location.c_str());
+Location::Location(string location, int postcode) {
+    strcpy(this->location, location.c_str());
     this->Postcode = postcode;
 }
 
-string location::get_location() {
-    string current_location = Location;
+string Location::get_location() {
+    string current_location = location;
     return current_location;
 }
 
-int location::get_postcode() {
+int Location::get_postcode() {
     return Postcode;
 }
