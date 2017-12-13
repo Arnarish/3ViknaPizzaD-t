@@ -23,9 +23,9 @@ void LocationIO::append_to_file(const Location& loc) {
 Location* LocationIO::read_file() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
-        // throw FileExistsException();
-        cout << "file exist error";
-        return (Location*)0xDEADBEEF;
+        throw FileExistsException();
+        //cout << "file exist error";
+        //return (Location*)0xDEADBEEF;
     }
     fin.open(file.c_str(), ios::binary);
     if (fin.is_open()) {
@@ -38,16 +38,15 @@ Location* LocationIO::read_file() {
 
         return locations;
     }
-    cout << "dunno what happened here";
-    return (Location*)0xDEADBEEF;
-    //throw FileReadException();
+    //cout << "dunno what happened here";
+    //return (Location*)0xDEADBEEF;
+    throw FileReadException();
 }
 
 int LocationIO::number_of_entries() {
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
-        return -1;
-        //throw FileExistsException();
+        throw FileExistsException();
     }
     fin.open(file.c_str(), ios::binary);
     if (fin.is_open()) {

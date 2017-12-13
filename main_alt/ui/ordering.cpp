@@ -63,6 +63,9 @@ void OrderUI::main_menu() {
                     delete [] locations;
                     delete [] locat;
                 }
+                if(pick_up != "y" && pick_up != "n") {
+                    //throw InvalidPickUpException;
+                }
                 else {
                     // Prompt for customer address
                     cout << "Customer address: ";
@@ -76,39 +79,6 @@ void OrderUI::main_menu() {
                     // TODO: Find the nearest store location
                     location = "temp";
                 }
-
-                if (name == "" || name.size() > 127) {
-                // Invalid name, throw an exception
-                // throw InvalidNameException;
-                return;
-                }
-
-                if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { // check if string is empty, or number has invalid length
-                   //throw CustomerPhoneException;
-                }
-                bool isNumber = true;
-                for(unsigned int i=0; i < phone.length(); i++) { // check if phone has non numerals
-                    if(!isalnum(phone[i])) {
-                        isNumber = false;
-                        break;
-                    }
-                }
-                if(isNumber == false) {
-                    //thow CustomerPhoneException;
-                }
-
-                if(pick_up != "y" && pick_up != "n") {
-                    //throw InvalidPickUpException;
-                }
-
-                if(address == "" || address.size() > 127) {
-                    //throw CustomerAddressException;
-                }
-
-                if(zipcode > 999 || zipcode < 99) {
-                    //throw CustomerZipcodeException
-                }
-                // Try catch for validation
                 order_service.create_order(name, phone, address, location, zipcode);
             } break;
             case 2:
