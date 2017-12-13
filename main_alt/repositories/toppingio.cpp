@@ -3,7 +3,7 @@
 using namespace std;
 
 ToppingIO::ToppingIO() {
-    file = "../data/toppings.dat";
+    file = "./data/toppings.dat";
     ifstream fin;
     ofstream fout;
 }
@@ -51,7 +51,6 @@ int ToppingIO::number_of_entries() {
         fin.seekg(0, fin.end);
         int n = fin.tellg() / sizeof(Topping);
         fin.seekg(0, fin.beg);
-
         fin.close();
         return n;
     }
@@ -63,5 +62,3 @@ bool ToppingIO::file_exists() {
     ifstream infile(file);
     return infile.good();
 }
-
-

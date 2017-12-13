@@ -24,68 +24,75 @@ void ManagementUI::main_menu() {
         switch (m) {
             // Lets wrap these switch cases in blocks so I can reuse variable names (I'm lazy)
             case 1: {
-                    string name;
-                    int price;
-                    int size;
-                    // Pizza base is a class (char[128], int, int)
+                string name;
+                int price;
+                int size;
+                // Pizza base is a class (char[128], int, int)
 
-                    cout << "Base name: ";
-                    cin.ignore(); // Ignore a newline character in the stream
-                    getline(cin, name);
-                    cout << "Price: ";
-                    cin >> price;
-                    cout << "Size: ";
-                    cin >> size;
-                    // TODO: Wrap this into a try-catch block and relay info back to the user
-                    try {
-                        management_service.create_new_base(name, price, size);
-                    }
-                    catch (InvalidNameException) {
-                        cout << "Invalid name!" << endl;
-                    }
-                    catch (InvalidPriceException) {
-                        cout << "Invalid price!" << endl;
-                    }
-                    catch (InvalidSizeException) {
-                        cout << "Invalid size!" << endl;
-                    }
-                    catch (FileExistsException) {
-                        cout << "File doesn't exist!" << endl;
-                    }
-                    catch (FileWriteException) {
-                        cout << "Couldn't open file!" << endl;
-                    }
-                    catch (FileReadException) {
-                        cout << "Couldn't read file!" << endl;
-                    }
-                } break;
+                cout << "Base name: ";
+                cin.ignore(); // Ignore a newline character in the stream
+                getline(cin, name);
+                cout << "Price: ";
+                cin >> price;
+                cout << "Size: ";
+                cin >> size;
+                // TODO: Wrap this into a try-catch block and relay info back to the user
+                try {
+                    management_service.create_new_base(name, price, size);
+                }
+                catch (InvalidNameException) {
+                    cout << "Invalid name!" << endl;
+                }
+                catch (InvalidPriceException) {
+                    cout << "Invalid price!" << endl;
+                }
+                catch (InvalidSizeException) {
+                    cout << "Invalid size!" << endl;
+                }
+                catch (FileExistsException) {
+                    cout << "File doesn't exist!" << endl;
+                }
+                catch (FileWriteException) {
+                    cout << "Couldn't open file!" << endl;
+                }
+                catch (FileReadException) {
+                    cout << "Couldn't read file!" << endl;
+                }
+            } break;
             case 2: {
-                    // Topping is a class
-                    string name;
-                    int price;
-                    cout << "Topping name: ";
-                    cin.ignore(); // Ignore a newline character in the stream
-                    getline(cin, name);
-                    cout << "Price: ";
-                    cin >> price;
-                    try {
-                        management_service.create_new_topping(name, price);
-                    }
-                    catch (InvalidNameException) {
-                        cout << "Invalid name!" << endl;
-                    }
-                    catch (InvalidPriceException) {
-                        cout << "Invalid price!" << endl;
-                    }
-                    catch (FileReadException) {
-                        cout << "Couldn't read file!" << endl;
-                    }
-                } break;
-            case 3: {
-                    // The menu is a vector of pizza classes
-                    management_service.create_new_menu_item();
+                // Topping is a class
+                string name;
+                int price;
+                cout << "Topping name: ";
+                cin.ignore(); // Ignore a newline character in the stream
+                getline(cin, name);
+                cout << "Price: ";
+                cin >> price;
+                try {
+                    management_service.create_new_topping(name, price);
+                }
+                catch (InvalidNameException) {
+                    cout << "Invalid name!" << endl;
+                }
+                catch (InvalidPriceException) {
+                    cout << "Invalid price!" << endl;
+                }
+                catch (FileReadException) {
+                    cout << "Couldn't read file!" << endl;
+                }
+                catch (FileExistsException) {
+                    cout << "File doesn't exist!" << endl;
+                }
+                catch (FileWriteException) {
+                    cout << "Could not open file!" << endl;
+                }
+            } break;
 
-                } break;
+            case 3: {
+                // The menu is a vector of pizza classes
+                management_service.create_new_menu_item();
+            } break;
+
             case 4: {
                 try {
                    management_service.create_new_product();
@@ -102,8 +109,8 @@ void ManagementUI::main_menu() {
                 catch (FileWriteException) {
                     cout << "Couldn't open file!" << endl;
                 }
+            } break;
 
-                } break;
             case 5: {
                 try {
                     management_service.add_new_store_location();
@@ -117,13 +124,12 @@ void ManagementUI::main_menu() {
                 catch (FileWriteException) {
                     cout << "Couldn't open file!" << endl;
                 }
-                } break;
+            } break;
             case 6:
                 return;
             default:
                 cout << "Invalid input." << endl;
                 break;
         }
-        cout << endl;
     }
 }
