@@ -68,12 +68,17 @@ void ManagementUI::main_menu() {
                     getline(cin, name);
                     cout << "Price: ";
                     cin >> price;
-                    // TODO: Wrap this into a try-catch block and relay info back to the user
                     try {
                         management_service.create_new_topping(name, price);
                     }
                     catch (InvalidNameException) {
                         cout << "Invalid name!" << endl;
+                    }
+                    catch (InvalidPriceException) {
+                        cout << "Invalid price!" << endl;
+                    }
+                    catch ´(FileReadException) {
+                        cout << "Couldn't read file!" << endl;
                     }
                 } break;
             case 3: {
@@ -93,6 +98,9 @@ void ManagementUI::main_menu() {
                 }
                 catch (InvalidCategoryException) {
                     cout << "Invalid category!" << endl;
+                }
+                catch (FileWriteException) {
+                    cout << "Couldn't open file!" << endl;
                 }
 
                 } break;
