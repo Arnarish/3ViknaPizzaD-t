@@ -21,6 +21,20 @@ void PreperationUI::main_menu() {
         switch (m) {
             case 1:
                 cout << "Process latest order" << endl;
+/*
+                vector<Order> orders = orders.read_file();
+                int order_size = (int)orders.size();
+                OrderDetails orders_details[order_size];
+
+                for (int i=0; i < order_size; i++) {
+                    orders_details[i] = orders[i].get_details();
+                }
+                for (int i=0; i < order_size; i++) {
+                    if (store_location == orders_details[i].get_location()) {
+                        cout << (i + 1) << " " << orders[i] << endl;
+                    }
+                }
+*/
                 break;
             case 2:
                 cout << "Bye!" << endl;
