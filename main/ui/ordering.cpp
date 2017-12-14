@@ -9,14 +9,16 @@ OrderUI::OrderUI() {
 }
 
 void OrderUI::main_menu() {
-    char c;
     int m;
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
-        cin >> c;
-        cout << endl;
-        m = c - 48;
+        while (!(cin >> m)) {
+            // validate input, only accepts integers
+            cout << "Only integers, please!" << endl;
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
         switch (m) {
             // Lets wrap these switch cases in blocks so I can reuse variable names (I'm lazy)
             case 1: {
@@ -35,49 +37,54 @@ void OrderUI::main_menu() {
                 getline(cin, phone);
                 cout << "Order for pick-up? (y/n): ";
                 getline(cin, pick_up);
-                if (pick_up == "y") {
-                    int n = location_service.number_of_entries();
-                    int select_input = 0;
-                    Location* locations = location_service.get_location_list();
-                    cout << endl;
-                    cout << "Please select a pick-up location: " << endl;
-                    for (int i = 0; i < n; i++) {
-                        cout << i + 1 << ". " << locations[i].get_location() << endl;
-                    }
-                    while (!(cin >> select_input)) {
-                        // Only accept integers as input.
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        cout << "Please input a valid number from the list above." << endl;
-                    }
-                    if (select_input > n)
-                    {
-                        // If input is valid, but exceeds the given no. of stores.
-                        //throw UserInputException;
-                        return;
-                    }
-                    location = locations[select_input - 1].get_location();
-                    address = "Pick-up";
-                    zipcode = locations[select_input-1].get_postcode();
+                bool pickup = true;
+                while(pickup){
+                    if (pick_up == "y") {
+                        int n = location_service.number_of_entries();
+                        int select_input = 0;
+                        Location* locations = location_service.get_location_list();
+                        cout << endl;
+                        cout << "Please select a pick-up location: " << endl;
+                        for (int i = 0; i < n; i++) {
+                            cout << i + 1 << ". " << locations[i].get_location() << endl;
+                        }
+                        do {
+                            while (!(cin >> select_input)) {
+                                // Only accept integers as input.
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                cout << "Please input a valid number from the list above." << endl;
+                            }
+                            if(select_input > n || 0 > select_input) { // ban all hyperpositivity and negativity, we're a very flat line company
+                                cout << "incorrect input, please try again." << endl;
+                            }
+                        }while(select_input > n || 0 > select_input); // Loop until it's done right
+                        select_input--;
+                        location = locations[select_input].get_location();
+                        address = "Pick-up";
+                        zipcode = locations[select_input].get_postcode();
 
-                    delete[] locations;
-                }
-                else if (pick_up == "n") {
-                    // Prompt for customer address
-                    cout << "Customer address: ";
-                    getline(cin, address);
-                    cout << "Customer zip code: ";
-                    while(!(cin >> zipcode)) {
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        cin.clear();
-                        cout << "Invalid input, please try again: ";
+                        delete[] locations;
+                        pickup = false;
                     }
-                    //Find the nearest store location
-                    location = location_service.find_nearest_store(zipcode);
-                }
-                else {
-                    //throw InvalidPickUpException();
-                    return;
+                    else if (pick_up == "n") {
+                        // Prompt for customer address
+                        cout << "Customer address: ";
+                        getline(cin, address);
+                        cout << "Customer zip code: ";
+                        while(!(cin >> zipcode)) {
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            cin.clear();
+                            cout << "Invalid input, please try again: ";
+                        }
+                        //Find the nearest store location
+                        location = location_service.find_nearest_store(zipcode);
+                        pickup = false;
+                    }
+                    else {
+                        cout << "Invalid input. please try again(y/n): ";
+                        cin >> pick_up;
+                    }
                 }
                 create_order(name, phone, address, location, zipcode);
             } break;
@@ -92,7 +99,7 @@ void OrderUI::main_menu() {
     }
 }
 
-void OrderUI::create_order(string name, string phone, 
+void OrderUI::create_order(string name, string phone,
                            string address, string location, int zipcode) {
     char c;
     int m;
@@ -117,7 +124,6 @@ void OrderUI::create_order(string name, string phone,
                 // From menu or create your own
                 char sel;
                 vector<Pizza> pizza_menu = order_service.pizza_menu();
-                int menu_size = pizza_menu.size();
                 while (true) {
                     cout << endl << "--------------------" << endl;
                     cout << "1. Menu\n"
@@ -129,21 +135,26 @@ void OrderUI::create_order(string name, string phone,
                     if (sel == '1') {
                         int n;
                         cout << endl << "--------------------" << endl;
-                        for (int i = 0; i < menu_size; i++) {
+                        for (int i = 0; i < (int)pizza_menu.size(); i++) {
                             cout << "Pizza #" << (i + 1) << ": ";
                             cout << pizza_menu[i] << endl;
                             cout << endl;
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
-                        cin >> n;
-                        if (n < 0 || n > menu_size) {
-                            cout << "Invalid selection" << endl;
-                        }
-
-                        else {
-                            order.add_pizza(pizza_menu[n-1]);
-                        }
+                        do {
+                            while (!(cin >> n)) {
+                                // Only accept integers as input.
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                cout << "Please input a valid number from the list above." << endl;
+                            }
+                            if(n > (int)pizza_menu.size() || 0 > n) { // ban all hyperpositivity and negativity, we're a very flat line company
+                                cout << "incorrect input, please try again." << endl;
+                            }
+                        }while(n > (int)pizza_menu.size() || 0 > n); // Loop until it's done right
+                    n--;
+                    order.add_pizza(pizza_menu[n]);
                     }
                     else if (sel == '2') {
                         Pizza created = create_pizza();
@@ -182,15 +193,20 @@ void OrderUI::create_order(string name, string phone,
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
-                        while (!(cin >> drink_selection)) { 
-                            // validate input, only accepts integers
-                            cout << "Only integers, please!" << endl;
-                            cin.clear();
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        }
+                        do {
+                            while (!(cin >> drink_selection)) {
+                                // Only accept integers as input.
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                cout << "Please input a valid number from the list above." << endl;
+                            }
+                            if(drink_selection > (int)drinks.size() || 0 > drink_selection) { // ban all hyperpositivity and negativity, we're a very flat line company
+                                cout << "incorrect input, please try again." << endl;
+                            }
+                        }while(drink_selection > (int)drinks.size() || 0 > drink_selection); // Loop until it's done right
                         for (int i = 0; i < n; i++)
-                        { 
-                            // compares the string selected and 
+                        {
+                            // compares the string selected and
                             //the name of all of the products, adds the corresponding product
                             if(drinks[drink_selection-1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
@@ -212,11 +228,17 @@ void OrderUI::create_order(string name, string phone,
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
-                        while (!(cin >> sides_selection)) {
-                            cout << "Only integers, please!" << endl;
-                            cin.clear();
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        }
+                        do {
+                            while (!(cin >> sides_selection)) {
+                                // Only accept integers as input.
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                cout << "Please input a valid number from the list above." << endl;
+                            }
+                            if(sides_selection > (int)sides.size() || 0 > sides_selection) { // ban all hyperpositivity and negativity, we're a very flat line company
+                                cout << "incorrect input, please try again." << endl;
+                            }
+                        }while(sides_selection > (int)sides.size() || 0 > sides_selection); // Loop until it's done right
                         for (int i = 0; i < n; i++)
                         {
                             if(sides[sides_selection-1] == product_menu[i].get_name()) {
@@ -239,11 +261,17 @@ void OrderUI::create_order(string name, string phone,
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
-                        while (!(cin >> other_selection)) {
-                            cout << "Only integers, please!" << endl;
-                            cin.clear();
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        }
+                        do {
+                            while (!(cin >> other_selection)) {
+                                // Only accept integers as input.
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                cout << "Please input a valid number from the list above." << endl;
+                            }
+                            if(other_selection > (int)other.size() || 0 > other_selection) { // ban all hyperpositivity and negativity, we're a very flat line company
+                                cout << "incorrect input, please try again." << endl;
+                            }
+                        }while(other_selection > (int)other.size() || 0 > other_selection); // Loop until it's done right
                         for (int i = 0; i < n; i++)
                         {
                             if (other[other_selection - 1] == product_menu[i].get_name()) {
@@ -297,12 +325,17 @@ Pizza OrderUI::create_pizza() {
         cout << endl << "--------------------" << endl;
         cout << "Selection: ";
         cin >> s;
-        if (s < 1 || s > (b + 1)) {
-            cout << "Invalid selection!" << endl;
-        }
-        else {
-            break;
-        }
+        do {
+            while (!(cin >> s)) {
+                // Only accept integers as input.
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Please input a valid number from the list above." << endl;
+            }
+            if(s > b+1 || 0 > s) { // ban all hyperpositivity and negativity, we're a very flat line company
+                cout << "incorrect input, please try again." << endl;
+            }
+        }while(s > b+1 || 0 > s); // Loop until it's done right
     }
     Pizza p(bases[s - 1]);
     delete[] bases;

@@ -19,6 +19,7 @@
 #include "../services/orderservice.h"
 #include "../repositories/locationio.h"
 #include "../services/locationservice.h"
+#include "../exceptions/UserInputException.h"
 
 
 using namespace std;

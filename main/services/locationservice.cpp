@@ -25,7 +25,7 @@ int LocationService::number_of_entries() {
     int n = locationio.number_of_entries();
     return n;
 }
-
+// finds nearest storefront based on zipcode
 string LocationService::find_nearest_store(int postcode) {
     int n = locationio.number_of_entries();
     Location* locations = locationio.read_file();
