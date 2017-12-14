@@ -86,7 +86,24 @@ void OrderUI::main_menu() {
                         cin >> pick_up;
                     }
                 }
-                create_order(name, phone, address, location, zipcode);
+                try {
+                    create_order(name, phone, address, location, zipcode);
+                }
+                catch(InvalidNameException) {
+                    cout << "Name is not valid." << endl;
+                }
+                catch(CustomerPhoneException) {
+                    cout << "Phone nr. is not valid." << endl;
+                }
+                catch(CustomerAddressException) {
+                    cout << "Address is not valid." << endl;
+                }
+                catch(InvalidLocationException) {
+                    cout << "Location is not valid." << endl;
+                }
+                catch(CustomerZipcodeException) {
+                    cout << "Zipcode is not valid." << endl;
+                }
             } break;
             case 2: {
                 return;
@@ -104,7 +121,7 @@ void OrderUI::create_order(string name, string phone,
     char c;
     int m;
     bool done = false;
-    OrderDetails details(name, phone, address, location, zipcode);
+    OrderDetails details = order_service.create_details(name, phone, address, location, zipcode);
     Order order(details);
     while (true) {
         // Add pizzas and orders

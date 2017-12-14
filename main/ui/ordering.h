@@ -20,6 +20,11 @@
 #include "../repositories/locationio.h"
 #include "../services/locationservice.h"
 #include "../exceptions/UserInputException.h"
+#include "../exceptions/InvalidNameException.h"
+#include "../exceptions/CustomerPhoneException.h"
+#include "../exceptions/CustomerAddressException.h"
+#include "../exceptions/InvalidLocationException.h"
+#include "../exceptions/CustomerZipcodeException.h"
 
 
 using namespace std;
