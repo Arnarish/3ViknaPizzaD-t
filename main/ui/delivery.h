@@ -8,6 +8,7 @@
 
 #include "../models/location.h"
 #include "../models/order.h"
+#include "../models/orderdetails.h"
 #include "../services/locationservice.h"
 #include "../services/orderservice.h"
 #include "../exceptions/UserInputException.h"

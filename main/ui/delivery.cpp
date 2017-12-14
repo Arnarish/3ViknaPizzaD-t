@@ -13,6 +13,9 @@ void DeliveryUI::main_menu() {
     while (true) {
         string phone;
         vector<Order> all_orders = order_service.all_orders();
+        cout << "Orders size: " << all_orders.size();
+        OrderDetails* orders_details = new OrderDetails[(int)all_orders.size()];
+
         cout << ui_text << endl;
         cout << "Selection: ";
         while (!(cin >> m)) {
@@ -22,6 +25,11 @@ void DeliveryUI::main_menu() {
             cout << "Selection: ";
         }
         cout << endl;
+
+        /*for (unsigned int i=0; i < all_orders.size(); i++) {
+                    orders_details[i] = all_orders[i].get_details();
+                }*/
+
         switch (m) {
             case 1: {
                 //todo: checka hvort númerið sé valid
@@ -41,11 +49,11 @@ void DeliveryUI::main_menu() {
                 cout << "Please input customer phone-number: ";
                 cin.ignore();
                 getline(cin, phone);
-                for(unsigned int i=0; i<all_orders.size(); i++) {
-                    if(all_orders.get_location() == store_location) {
-
+                /*for(unsigned int i=0; i<all_orders.size(); i++) {
+                    if(orders_details[i].get_phone() == phone) {
+                        cout << all_orders[i];
                     }
-                }
+                }*/
                 break;
             }
             case 2:
@@ -65,7 +73,7 @@ void DeliveryUI::main_menu() {
 }
 
 void DeliveryUI::ask_place() {
-    int n = locationio.number_of_entries();
+    int n = location_service.number_of_entries();
     int select_input = 0;
     Location* locations = location_service.get_location_list();
     cout << "Select your workplace from the list" << endl;
