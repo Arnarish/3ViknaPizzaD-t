@@ -42,7 +42,6 @@ class OrderService {
         vector<string> products_drinks();
         vector<string> products_sides();
         vector<string> products_other();
-
     private:
         BaseIO baseio;
         ToppingIO toppingio;

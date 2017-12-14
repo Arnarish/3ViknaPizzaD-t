@@ -11,7 +11,7 @@ main:
 		ui/mainui.cpp \
 		ui/management.cpp \
 		ui/delivery.cpp \
-		ui/preperation.cpp \
+		ui/preparation.cpp \
 		ui/ordering.cpp \
 		repositories/baseio.cpp \
 		repositories/toppingio.cpp \
@@ -22,5 +22,6 @@ main:
 		services/managementservice.cpp \
 		services/orderservice.cpp \
 		services/locationservice.cpp \
+		services/preparationservice.cpp \
 		exceptions/* \
 	-o out

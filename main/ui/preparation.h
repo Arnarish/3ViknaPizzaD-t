@@ -9,11 +9,12 @@
 #include <limits>
 #include <string>
 #include <vector>
-
-#include "../repositories/locationio.h"
-#include "../repositories/orderio.h"
 #include "../models/location.h"
+
+#include "../services/preparationservice.h"
 #include "../services/locationservice.h"
+#include "../services/orderservice.h"
+
 #include "../exceptions/UserInputException.h"
 #include "../exceptions/FileReadException.h"
 #include "../exceptions/FileWriteException.h"
@@ -24,13 +25,16 @@ class PreperationUI {
     public:
         PreperationUI();
         void main_menu();
-        void ask_place();
 
     private:
-        string ui_text, store_location;
-        LocationIO locio;
-        LocationService LocServ;
-        OrderIO orderio;
+        string ui_text;
+        vector<Order> orders;
+        Location store_location;
+        PreparationService preparationservice;
+        LocationService locationservice;
+        OrderService orderservice;
+
+        void ask_place();
 };
 
 #endif // PREPERATION_H
