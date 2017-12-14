@@ -20,29 +20,32 @@ void PreperationUI::main_menu() {
         cout << endl;
         switch (m) {
             case 1: {
-                cout << "Process latest order" << endl;
+                cout << "All orders:" << endl;
 
-                vector<Order> orders = orderio.read_file();
-                int order_size = (int)orders.size();
-                OrderDetails orders_details[order_size];
+                vector<Order> orders = orderio.read_file(); //sækir öll orders
+                //int order_size = (int)orders.size();        //sækir fjölda orders
+                OrderDetails orders_details[orders.size()];    //tómt array af taginu OrderDetails
 /*
-                cout << "cout öll orders" << endl;
+                //cout á öll orders
                 for (int i=0; i < order_size; i++) {
                     cout << orders[i] << endl;
                 }
 */
-                //sækir details úr öllum orders og fyllir array
-                for (int i=0; i < order_size; i++) {
+                //sækir details úr öllum orders og fyllir OrderDetails array
+                for (unsigned int i=0; i < orders.size(); i++) {
                     orders_details[i] = orders[i].get_details();
                 }
-
-                for (int i=0; i < order_size; i++) {
+                //ber saman location í details við location á bakaranum
+                int counter = 1;
+                for (unsigned int i=0; i < orders.size(); i++) {
                     string lalli = orders_details[i].get_location();
                         if (store_location == lalli) {
+                            cout << "Order number " << counter << "#" << endl;
                             cout << orders[i] << endl;
+                            counter++;
                         }
+                    }
                 }
-            }
                 break;
             case 2:
                 return;
