@@ -3,43 +3,60 @@
 using namespace std;
 
 OrderDetails OrderService::create_details(string name, string phone, string address,
-                                  string location, int zipcode) {
-
-        if (name == "" || name.size() > 127) {
+                                          string location, int zipcode) {
+    if (name == "" || name.size() > 127) {
         // Invalid name, throw an exception
-        // throw InvalidNameException();
+        throw InvalidNameException();
+    }
+    if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { 
+        // check if string is empty, or number has invalid length
+        throw CustomerPhoneException();
+    }
+    bool isNumber = true;
+    for(unsigned int i=0; i < phone.length(); i++) { // check if phone has non numerals
+        if(!isalnum(phone[i])) {
+            isNumber = false;
+            break;
         }
-
-        if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { // check if string is empty, or number has invalid length
-           //throw CustomerPhoneException();
+        if(isNumber == false) {
+            throw CustomerPhoneException();
         }
-        bool isNumber = true;
-        for(unsigned int i=0; i < phone.length(); i++) { // check if phone has non numerals
-            if(!isalnum(phone[i])) {
-                isNumber = false;
-                break;
-            }
-            if(isNumber == false) {
-            //thow CustomerPhoneException)(;
-            }
-        }
-        if(address == "" || address.size() > 127) {
-            //throw CustomerAddressException();
-        }
-        if(location == "" || location.size() > 127) {
-            //throw InvalidLocationException();
-        }
-        if(zipcode > 999 || zipcode < 99) {
-            //throw CustomerZipcodeException();
-        }
-        // Try catch for validation
-    //TODO: validate EVERYTHING and throw exceptions
+    }
+    if(address == "" || address.size() > 127) {
+        throw CustomerAddressException();
+    }
+    if(location == "" || location.size() > 127) {
+        throw InvalidLocationException();
+    }
+    if(zipcode > 999 || zipcode < 99) {
+        throw CustomerZipcodeException();
+    }
     OrderDetails details(name, phone, address, location, zipcode);
     return details;
 }
 
-vector<Order> OrderService::all_orders() {
-    vector<Order> all_orders = orderio.read_file();
+vector<Order> OrderService::get_ordered() {
+    // Returns all the orders in the ordered.dat file
+    orderio.set_ordered();
+    return orderio.read_file();
+}
+
+vector<Order> OrderService::get_ready() {
+    // Returns all the orders in the ready.dat file
+    orderio.set_ready();
+    vector<Order> orders = orderio.read_file();
+    // I like to retun this back to the ordered file state
+    // What file the IO class is set to won't be unpredictable then
+    orderio.set_ordered();
+    return orders;
+}
+
+vector<Order> OrderService::get_history() {
+    // Returns all the orders in the history.dat file
+    void set_history();
+    vector<Order> orders = orderio.read_file();
+    orderio.set_ordered();
+    return orders;
 }
 
 Base* OrderService::read_base(){
@@ -57,8 +74,8 @@ int OrderService::topping_entries() {
     return t;
 }
 
-int OrderService::Product_entries() {
-    int p = productio.number_of_entries();
+int OrderService::product_entries() {
+    return productio.number_of_entries();
 }
 
 Topping* OrderService::read_topping() {
@@ -73,7 +90,6 @@ vector<Pizza> OrderService::pizza_menu() {
 
 Product* OrderService::product_menu() {
     Product* menu = productio.read_file();
-
     return menu;
 }
 

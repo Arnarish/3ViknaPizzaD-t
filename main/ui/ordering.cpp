@@ -5,7 +5,8 @@ using namespace std;
 OrderUI::OrderUI() {
     ui_text = " --- Ordering ---\n"
               " 1.  Create a new order\n"
-              " 2.  Exit\n";
+              " 2.  List all ready orders\n"
+              " 3.  Go back\n";
 }
 
 void OrderUI::main_menu() {
@@ -147,7 +148,7 @@ char c;
             } break;
             case 2: { //split into 3 submenus, drinks, sides and others.
                 Product* product_menu = order_service.product_menu();
-                int n = order_service.Product_entries();
+                int n = order_service.product_entries();
                 char sel;
                 while (true) {
                     cout << "1. drinks\n"
@@ -287,7 +288,7 @@ Pizza OrderUI::create_pizza() {
 
 vector<string> OrderUI::products_drinks() { // filters the product menu to drinks only
     Product* menu = order_service.product_menu();
-    int n = order_service.Product_entries();
+    int n = order_service.product_entries();
     vector<string> drinks;
     for(int i=0; i < n; i++) {
         if(menu[i].get_category() == 'd') {
@@ -299,7 +300,7 @@ vector<string> OrderUI::products_drinks() { // filters the product menu to drink
 
 vector<string> OrderUI::products_sides() { // filters the product menu to sides only
     Product* menu = order_service.product_menu();
-    int n = order_service.Product_entries();
+    int n = order_service.product_entries();
     vector<string> sides;
     for(int i=0; i < n; i++) {
         if(menu[i].get_category() == 's') {
@@ -311,7 +312,7 @@ vector<string> OrderUI::products_sides() { // filters the product menu to sides 
 
 vector<string> OrderUI::products_other() { // filters the product menu to others
     Product* menu = order_service.product_menu();
-    int n = order_service.Product_entries();
+    int n = order_service.product_entries();
     vector<string> other;
     for(int i=0; i < n; i++) {
         if(menu[i].get_category() == 'o') {

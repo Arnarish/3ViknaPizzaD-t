@@ -169,7 +169,7 @@ void ManagementUI::main_menu() {
                 cout << "Please enter the name of the new product: ";
                 cin.ignore();
                 getline(cin, name);
-                cout << "1. Drinks\n 2. Sides\n 3. Other\n";
+                cout << "1. Drinks\n2. Sides\n3. Other\n";
                 cout << "Please enter the category for the new product: ";
                 while (!(cin >> category)) {
                     cout << "Only integers, please!" << endl;

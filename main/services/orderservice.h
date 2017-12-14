@@ -12,6 +12,11 @@
 #include "../repositories/menuio.h"
 #include "../repositories/orderio.h"
 #include "../repositories/productio.h"
+#include "../exceptions/InvalidNameException.h"
+#include "../exceptions/CustomerPhoneException.h"
+#include "../exceptions/CustomerAddressException.h"
+#include "../exceptions/InvalidLocationException.h"
+#include "../exceptions/CustomerZipcodeException.h"
 
 using namespace std;
 
@@ -26,10 +31,13 @@ class OrderService {
         Base* read_base();
         int base_entries();
         int topping_entries();
-        int Product_entries();
+        int product_entries();
         Topping* read_topping();
         void write_order(Order& order);
-        vector<Order> all_orders();
+
+        vector<Order> get_ordered();
+        vector<Order> get_ready();
+        vector<Order> get_history();
 
     private:
         BaseIO baseio;

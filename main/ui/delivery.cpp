@@ -12,7 +12,7 @@ void DeliveryUI::main_menu() {
     int m;
     while (true) {
         string phone;
-        vector<Order> all_orders = order_service.all_orders();
+        vector<Order> all_orders = order_service.get_ordered();
         cout << ui_text << endl;
         cout << "Selection: ";
         while (!(cin >> m)) {
@@ -42,7 +42,7 @@ void DeliveryUI::main_menu() {
                 cin.ignore();
                 getline(cin, phone);
                 for(unsigned int i=0; i<all_orders.size(); i++) {
-                    if(all_orders.get_location() == store_location) {
+                    if(all_orders[i].get_location() == store_location) {
 
                     }
                 }
