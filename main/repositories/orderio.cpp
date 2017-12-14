@@ -13,7 +13,7 @@ const string ORDER_HISTORY_FILE = "./data/history.dat";
 
 OrderIO::OrderIO() {
     // It makes the most sense to initialize file with the order file
-    file = ORDERED_FILE; 
+    file = ORDERED_FILE;
     ifstream fin;
     ofstream fout;
 }
@@ -78,7 +78,7 @@ void OrderIO::write_to_file(Order& order) {
 /*
     TODO: finish this
 void insert(Order& order) {
-    
+
 }
 */
 
@@ -130,7 +130,7 @@ void OrderIO::write_pizza(Pizza& pizza) {
     // Next we write the base
     fout.write((char*)(&base), sizeof(Base));
     // Number of toppings written
-    fout.write((char*)(&topping_count), sizeof(int)); 
+    fout.write((char*)(&topping_count), sizeof(int));
     // Write the contents of the toppings vector inside pizza
     fout.write((char*)(&toppings[0]), sizeof(Topping) * topping_count);
 }

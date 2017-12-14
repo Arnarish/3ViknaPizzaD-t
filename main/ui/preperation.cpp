@@ -19,22 +19,30 @@ void PreperationUI::main_menu() {
         }
         cout << endl;
         switch (m) {
-            case 1:
+            case 1: {
                 cout << "Process latest order" << endl;
-/*
-                vector<Order> orders = orders.read_file();
+
+                vector<Order> orders = orderio.read_file();
                 int order_size = (int)orders.size();
                 OrderDetails orders_details[order_size];
-
+/*
+                cout << "cout öll orders" << endl;
+                for (int i=0; i < order_size; i++) {
+                    cout << orders[i] << endl;
+                }
+*/
+                //sækir details úr öllum orders og fyllir array
                 for (int i=0; i < order_size; i++) {
                     orders_details[i] = orders[i].get_details();
                 }
+
                 for (int i=0; i < order_size; i++) {
-                    if (store_location == orders_details[i].get_location()) {
-                        cout << (i + 1) << " " << orders[i] << endl;
-                    }
+                    string lalli = orders_details[i].get_location();
+                        if (store_location == lalli) {
+                            cout << orders[i] << endl;
+                        }
                 }
-*/
+            }
                 break;
             case 2:
                 return;

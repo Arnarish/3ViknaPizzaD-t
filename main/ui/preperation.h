@@ -30,7 +30,7 @@ class PreperationUI {
         string ui_text, store_location;
         LocationIO locio;
         LocationService LocServ;
-        OrderIO orders;
+        OrderIO orderio;
 };
 
 #endif // PREPERATION_H
