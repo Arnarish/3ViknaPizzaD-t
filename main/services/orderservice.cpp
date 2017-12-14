@@ -123,7 +123,7 @@ vector<string> OrderService::products_sides() { // filters the product menu to s
 
 vector<string> OrderService::products_other() { // filters the product menu to others
     Product* menu = product_menu();
-    int n = product_entries();
+    int n =     product_entries();
     vector<string> other;
     for(int i=0; i < n; i++) {
         if(menu[i].get_category() == 'o') {
