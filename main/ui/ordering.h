@@ -18,7 +18,7 @@
 #include "../models/product.h"
 #include "../services/orderservice.h"
 #include "../repositories/locationio.h"
-#include "../services/Locationservice.h"
+#include "../services/locationservice.h"
 
 
 using namespace std;

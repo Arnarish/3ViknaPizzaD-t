@@ -6,6 +6,10 @@
 #endif // _WIN32
 
 
+#include <iostream>
+#include <string>
+#include <vector>
+#include <limits>
 #include "../models/location.h"
 #include "../models/order.h"
 #include "../models/orderdetails.h"
@@ -14,10 +18,6 @@
 #include "../exceptions/UserInputException.h"
 #include "../exceptions/FileReadException.h"
 #include "../exceptions/FileWriteException.h"
-#include <limits>
-#include <vector>
-#include <iostream>
-#include <string>
 
 using namespace std;
 

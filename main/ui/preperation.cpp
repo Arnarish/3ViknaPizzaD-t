@@ -21,8 +21,16 @@ void PreperationUI::main_menu() {
         string complete = "";
         switch (m) {
             case 1: {
+/*
+                cout << "All orders:" << endl;
+
                 vector<Order> orders = orderio.read_file(); //sækir öll orders
-                OrderDetails orders_details[(int)orders.size()]; //tómt array af taginu OrderDetails
+                OrderDetails orders_details[orders.size()];    //tómt array af taginu OrderDetails
+
+                //cout á öll orders
+                for (int i=0; i < order_size; i++) {
+                    cout << orders[i] << endl;
+                }
 
                 //sækir details úr öllum orders og fyllir OrderDetails array
                 for (unsigned int i=0; i < orders.size(); i++) {
@@ -41,11 +49,8 @@ void PreperationUI::main_menu() {
                     else {
                         break;
                     }
+*/
                 }
-            }
-
-
-                break;
             case 2:
                 return;
             default:
@@ -56,6 +61,7 @@ void PreperationUI::main_menu() {
     }
 }
 
+
 void PreperationUI::ask_place() {
     int n = locio.number_of_entries();
     int select_input = 0;
@@ -64,14 +70,14 @@ void PreperationUI::ask_place() {
     for(int i=0; i<n; i++) {
         locations[i] = locat[i].get_location();
     }
-    cout << "please select current workplace from list: " << endl;
+    cout << "Please select current workplace from list: " << endl;
     for(int i=0; i<n; i++) {
         cout << i+1 << ". " << locations[i] << endl;
     }
     while(!(cin >> select_input)) { // only accept integers as input.
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "please input a valid number from the list above." << endl;
+            cout << "Please input a valid number from the list above." << endl;
     }
     if(select_input > n) {
         // if input is valid, but exceeds the given no. of stores.
