@@ -101,14 +101,14 @@ void ManagementUI::main_menu() {
 
                 try {
                     bases = management_service.get_all_bases();
-                } 
+                }
                 catch (FileEmptyException) {
                     cout << "There are no bases registered!" << endl;
                     break;
                 }
                 try {
                     toppings = management_service.get_all_toppings();
-                } 
+                }
                 catch (FileEmptyException) {
                     cout << "There are no toppings registered!" << endl;
                     break;
@@ -169,7 +169,7 @@ void ManagementUI::main_menu() {
                 cout << "Please enter the name of the new product: ";
                 cin.ignore();
                 getline(cin, name);
-                cout << "1. Drinks\n2. Sides\n3. Other\n";
+                cout << "1. Drinks\n 2. Sides\n 3. Other\n";
                 cout << "Please enter the category for the new product: ";
                 while (!(cin >> category)) {
                     cout << "Only integers, please!" << endl;
@@ -177,6 +177,7 @@ void ManagementUI::main_menu() {
                     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     cout << "Please enter the category for the new product: ";
                 }
+                cout << "Selected category: " << category << endl;
                 category--;
                 cout << "Please enter the price of the new product: ";
                 while (!(cin >> price)) {

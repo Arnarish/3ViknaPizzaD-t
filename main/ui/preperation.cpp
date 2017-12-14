@@ -37,8 +37,7 @@ void PreperationUI::main_menu() {
 */
                 break;
             case 2:
-                cout << "Bye!" << endl;
-                exit(0);
+                return;
             default:
                 cout << "Invalid input." << endl;
                 break;

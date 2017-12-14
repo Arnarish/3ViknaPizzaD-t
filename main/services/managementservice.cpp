@@ -100,8 +100,10 @@ void ManagementService::create_new_product(string name, int price, int category)
             break;
         case 1:
             c = 's'; // Sides category
+            break;
         case 2:
             c = 'o'; // Other category
+            break;
     }
     Product p(name, c, price);
     productio.append_to_file(p);

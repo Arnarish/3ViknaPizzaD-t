@@ -21,6 +21,8 @@ main:
 		repositories/orderio.cpp \
 		services/managementservice.cpp \
 		services/orderservice.cpp \
-		services/locationservice.cpp \
-		exceptions/*.cpp \
-	-o out
+		services/Locationservice.cpp \
+		exceptions/FileExistsException.cpp \
+		exceptions/FileReadException.cpp \
+		exceptions/FileWriteException.cpp \
+	-o out.exe
