@@ -39,6 +39,9 @@ class OrderService {
         vector<Order> get_ready();
         vector<Order> get_history();
 
+        vector<string> products_drinks();
+        vector<string> products_sides();
+        vector<string> products_other();
     private:
         BaseIO baseio;
         ToppingIO toppingio;

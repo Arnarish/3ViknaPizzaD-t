@@ -18,6 +18,7 @@ void PreperationUI::main_menu() {
             cout << "Selection: ";
         }
         cout << endl;
+        string complete = "";
         switch (m) {
             case 1: {
 /*
@@ -35,19 +36,21 @@ void PreperationUI::main_menu() {
                 for (unsigned int i=0; i < orders.size(); i++) {
                     orders_details[i] = orders[i].get_details();
                 }
-                //ber saman location í details við location á bakaranum
-                int counter = 1;
-                for (unsigned int i=0; i < orders.size(); i++) {
-                    string lalli = orders_details[i].get_location();
-                        if (store_location == lalli) {
-                            cout << "Order number " << counter << "#" << endl;
-                            cout << orders[i] << endl;
-                            counter++;
+                if (store_location == orders_details[0].get_location()) {
+                            cout << "Order number " << endl;
+                            cout << orders[0] << endl;
                         }
+                cout << "do you wish to mark order complete(y/n)? ";
+                while(cin >> complete) {
+                    if(complete == "y") {
+                        cout << "Marking order complete." << endl;
+                        break;
+                    }
+                    else {
+                        break;
                     }
 */
                 }
-                break;
             case 2:
                 return;
             default:
@@ -57,6 +60,7 @@ void PreperationUI::main_menu() {
         cout << endl;
     }
 }
+
 
 void PreperationUI::ask_place() {
     int n = locio.number_of_entries();

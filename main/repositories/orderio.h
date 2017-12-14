@@ -24,6 +24,7 @@ class OrderIO {
 
         void write_to_file(Order& order);
         void write_pizza(Pizza& pizza);
+        void truncate_file();
         void set_ordered();
         void set_ready();
         void set_history();

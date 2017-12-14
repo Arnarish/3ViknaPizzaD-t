@@ -28,9 +28,6 @@ class OrderUI {
         OrderUI();
         void main_menu();
         void create_order(string name, string phone, string address, string location, int zipcode);
-        vector<string> products_drinks();
-        vector<string> products_sides();
-        vector<string> products_other();
         Pizza create_pizza();
     private:
         string ui_text;

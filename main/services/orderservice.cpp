@@ -8,7 +8,7 @@ OrderDetails OrderService::create_details(string name, string phone, string addr
         // Invalid name, throw an exception
         throw InvalidNameException();
     }
-    if(phone == "" || (phone.length() > 8 || phone.length() < 6)) { 
+    if(phone == "" || (phone.length() > 8 || phone.length() < 6)) {
         // check if string is empty, or number has invalid length
         throw CustomerPhoneException();
     }
@@ -95,4 +95,40 @@ Product* OrderService::product_menu() {
 
 void OrderService::write_order(Order& order) {
     orderio.write_to_file(order);
+}
+
+vector<string> OrderService::products_drinks() { // filters the product menu to drinks only
+    Product* menu = product_menu();
+    int n = product_entries();
+    vector<string> drinks;
+    for(int i=0; i < n; i++) {
+        if(menu[i].get_category() == 'd') {
+            drinks.push_back(menu[i].get_name());
+        }
+    }
+    return drinks;
+}
+
+vector<string> OrderService::products_sides() { // filters the product menu to sides only
+    Product* menu = product_menu();
+    int n = product_entries();
+    vector<string> sides;
+    for(int i=0; i < n; i++) {
+        if(menu[i].get_category() == 's') {
+            sides.push_back(menu[i].get_name());
+        }
+    }
+    return sides;
+}
+
+vector<string> OrderService::products_other() { // filters the product menu to others
+    Product* menu = product_menu();
+    int n = product_entries();
+    vector<string> other;
+    for(int i=0; i < n; i++) {
+        if(menu[i].get_category() == 'o') {
+            other.push_back(menu[i].get_name());
+        }
+    }
+    return other;
 }
