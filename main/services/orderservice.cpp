@@ -38,6 +38,10 @@ OrderDetails OrderService::create_details(string name, string phone, string addr
     return details;
 }
 
+vector<Order> OrderService::all_orders() {
+    vector<Order> all_orders = orderio.read_file();
+}
+
 Base* OrderService::read_base(){
     Base* bases = baseio.read_file();
     return bases;

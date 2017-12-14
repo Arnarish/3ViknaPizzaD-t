@@ -29,6 +29,7 @@ class OrderService {
         int Product_entries();
         Topping* read_topping();
         void write_order(Order& order);
+        vector<Order> all_orders();
 
     private:
         BaseIO baseio;

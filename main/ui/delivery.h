@@ -5,9 +5,11 @@
 #include <stdlib.h>
 #endif // _WIN32
 
-#include "../repositories/locationio.h"
+
 #include "../models/location.h"
+#include "../models/order.h"
 #include "../services/locationservice.h"
+#include "../services/orderservice.h"
 #include "../exceptions/UserInputException.h"
 #include "../exceptions/FileReadException.h"
 #include "../exceptions/FileWriteException.h"
@@ -29,6 +31,8 @@ class DeliveryUI {
         string store_location;
         LocationService location_service;
         LocationIO locationio;
+
+        OrderService order_service;
 
         //Order* all_orders;
         //tímabundið order

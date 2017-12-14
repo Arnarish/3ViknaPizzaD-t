@@ -11,6 +11,8 @@ DeliveryUI::DeliveryUI() {
 void DeliveryUI::main_menu() {
     int m;
     while (true) {
+        string phone;
+        vector<Order> all_orders = order_service.all_orders();
         cout << ui_text << endl;
         cout << "Selection: ";
         while (!(cin >> m)) {
@@ -21,7 +23,7 @@ void DeliveryUI::main_menu() {
         }
         cout << endl;
         switch (m) {
-            case 1:
+            case 1: {
                 //todo: checka hvort númerið sé valid
              //   int number;
              //   int e = number_of_entries;
@@ -30,13 +32,22 @@ void DeliveryUI::main_menu() {
              //   cin >> number;
 
              //   for (int i=0; i < e; i++) {
-                        //brreyta í order repository
+                        //breyta í order repository
              //       if (number == order[i].get_number) {
                //         order[i].set_delivered;
                  //   }
                // }
 
+                cout << "Please input customer phone-number: ";
+                cin.ignore();
+                getline(cin, phone);
+                for(unsigned int i=0; i<all_orders.size(); i++) {
+                    if(all_orders.get_location() == store_location) {
+
+                    }
+                }
                 break;
+            }
             case 2:
                 cout << "" << endl;
                 break;
@@ -61,7 +72,7 @@ void DeliveryUI::ask_place() {
     for (int i = 0; i < n; i++) {
         cout << i + 1 << ". " << locations[i].get_location() << endl;
     }
-    while (!(cin >> select_input)) { 
+    while (!(cin >> select_input)) {
         // Only accept integers as input.
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
