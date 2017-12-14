@@ -28,7 +28,7 @@ class MainUI {
         string ui_text;
         // Other UI classes
         ManagementUI management;
-        PreperationUI preperation;
+        PreparationUI preparation;
         OrderUI ordering;
         DeliveryUI delivery;
 };

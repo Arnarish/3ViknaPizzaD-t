@@ -32,7 +32,7 @@ void MainUI::main_menu() {
                 break;
             case 3:
                 try {
-                    preperation.main_menu();
+                    preparation.main_menu();
                 }
                 catch (UserInputException) {
                     cout << "Invalid input." << endl;

@@ -132,19 +132,22 @@ void ManagementUI::main_menu() {
                 base_select--;
                 for (unsigned int i = 0; i < toppings.size(); i++) {
                     cout << i + 1 << ". " << toppings[i]
-                         << " ( " << toppings[i].get_price() << " kr)\n";
+                         << " (" << toppings[i].get_price() << " kr)\n";
                 }
                 int topping_select = 0;
-                do {
+                while (true) {
                     cout << "Select toppings or enter 0 to stop: ";
                     cin >> topping_select;
                     if (topping_select < 0 || topping_select > (int)toppings.size()) {
                         cout << "Invalid selection!" << endl;
                     }
+                    else if (topping_select == 0) {
+                        break;
+                    }
                     else {
                         selected_toppings.push_back(topping_select - 1);
                     }
-                } while (topping_select != 0);
+                }
                 cout << "Name your pizza: ";
                 string name;
                 cin.ignore();

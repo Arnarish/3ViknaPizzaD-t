@@ -1,15 +1,20 @@
 #include "preparation.h"
 
-PreperationUI::PreperationUI() {
-    ui_text = " --- Preperation ---\n"
+PreparationUI::PreparationUI() {
+    ui_text = " --- Preparation ---\n"
             " 1.  Process earliest order\n"
-            " 2.  Process specific order\n"
-            " 3.  List all ready orders\n"
-            " 4.  Go back\n";
+            " 2.  List all ready orders\n"
+            " 3.  Go back\n";
 }
 
-void PreperationUI::main_menu() {
-    ask_place();
+void PreparationUI::main_menu() {
+    try {
+        ask_place();
+    }
+    catch (InvalidLocationException) {
+        cout << "There are no locations available." << endl;
+        return;
+    }
     int m;
     while (true) {
         cout << ui_text << endl;
@@ -46,14 +51,9 @@ void PreperationUI::main_menu() {
                 }
             } break;
             case 2: {
-                // Process a specific order
-                cout << "Specific" << endl;
+                list_orders();
             } break;
             case 3: {
-                // List all ordered orders
-                cout << "All" << endl;
-            } break;
-            case 4: {
                 return;
             } break;
             default: {
@@ -64,20 +64,23 @@ void PreperationUI::main_menu() {
     }
 }
 
-void PreperationUI::ask_place() {
+void PreparationUI::ask_place() {
     int number_of_locations = locationservice.number_of_entries();
+    if (number_of_locations == 0) {
+        throw InvalidLocationException();
+    }
     int select_input = 0;
     Location* locations = locationservice.get_location_list();
-
     while (true) {
         cout << "Please select your current workplace from list: " << endl;
         for (int i = 0; i < number_of_locations; i++) {
             cout << i + 1 << ". " << locations[i].get_location() << endl;
         }
+        cout << "Selection: ";
         if (!(cin >> select_input)) {
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                throw UserInputException();
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            throw UserInputException();
         }
         if (select_input < 0 || select_input > number_of_locations) {
             throw UserInputException();
@@ -88,4 +91,11 @@ void PreperationUI::ask_place() {
     }
     store_location = locations[select_input - 1];
     delete[] locations;
+}
+
+void PreparationUI::list_orders() {
+    for (unsigned int i = 0; i < orders.size(); i++) {
+        cout << " ~~~ ORDER #" << i + 1 << " ~~~ \n";
+        cout << orders[i];
+    }
 }

@@ -30,13 +30,13 @@ ostream& operator << (ostream& out, const Product& product) {
     if (product.category == 'o') {
         out << "(other)";
     }
-    else if (product.category == 'g') {
+    else if (product.category == 'd') {
         out << "(drink)";
     }
-    else if (product.category == 'm') {
+    else if (product.category == 's') {
         out << "(side)";
     }
-    out << " " << product.price << endl;
+    out << " - " << product.price << " kr" << endl;
     return out;
 }
 
