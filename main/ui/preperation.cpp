@@ -24,7 +24,6 @@ void PreperationUI::main_menu() {
                 cout << "All orders:" << endl;
 
                 vector<Order> orders = orderio.read_file(); //sækir öll orders
-                //int order_size = (int)orders.size();        //sækir fjölda orders
                 OrderDetails orders_details[orders.size()];    //tómt array af taginu OrderDetails
 
                 //cout á öll orders

@@ -10,7 +10,7 @@ OrderDetails::OrderDetails() {
     zipcode = 0;
 }
 
-OrderDetails::OrderDetails(string name, string phone, string address, 
+OrderDetails::OrderDetails(string name, string phone, string address,
                            string location, int zipcode) {
     strcpy(this->name, name.c_str());
     strcpy(this->phone, phone.c_str());
@@ -34,6 +34,10 @@ string OrderDetails::get_address() {
 
 int OrderDetails::get_zipcode() {
     return zipcode;
+}
+
+string OrderDetails::get_phone() {
+    return phone;
 }
 
 ostream& operator << (ostream& out, OrderDetails& d) {

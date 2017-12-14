@@ -14,11 +14,12 @@ using namespace std;
 class OrderDetails {
     public:
         OrderDetails();
-        OrderDetails(string name, string phone, string address, 
+        OrderDetails(string name, string phone, string address,
                      string location, int zipcode);
         void add_comments(string comments);
         string get_location();
         string get_address();
+        string get_phone();
         int get_zipcode();
     private:
         char name[128];
