@@ -1,4 +1,3 @@
-
 #include "ordering.h"
 
 using namespace std;
@@ -6,8 +5,7 @@ using namespace std;
 OrderUI::OrderUI() {
     ui_text = " --- Ordering ---\n"
               " 1.  Create a new order\n"
-              " 2.  List all ready orders\n"
-              " 3.  Go back\n";
+              " 2.  Go back\n";
 }
 
 void OrderUI::main_menu() {
@@ -56,6 +54,7 @@ void OrderUI::main_menu() {
                     {
                         // If input is valid, but exceeds the given no. of stores.
                         //throw UserInputException;
+                        return;
                     }
                     location = locations[select_input - 1].get_location();
                     address = "Pick-up";
@@ -78,13 +77,11 @@ void OrderUI::main_menu() {
                 }
                 else {
                     //throw InvalidPickUpException();
+                    return;
                 }
                 create_order(name, phone, address, location, zipcode);
             } break;
-            case 2:{
-                // TODO: Write all ready pizzas
-            }
-            case 3:{
+            case 2: {
                 return;
             }
             default:
@@ -95,13 +92,13 @@ void OrderUI::main_menu() {
     }
 }
 
-void OrderUI::create_order(string name, string phone, string address, string location, int zipcode) {
-char c;
+void OrderUI::create_order(string name, string phone, 
+                           string address, string location, int zipcode) {
+    char c;
     int m;
     bool done = false;
     OrderDetails details(name, phone, address, location, zipcode);
     Order order(details);
-    //Order order(OrderDetails(name, phone, address, location, zipcode));
     while (true) {
         // Add pizzas and orders
         if (done) {
@@ -164,43 +161,54 @@ char c;
                 char sel;
                 while (true) {
                     cout << endl << "--------------------" << endl;
-                    cout << "1. drinks\n"
-                         << "2. sides\n"
-                         << "3. other\n"
+                    cout << "1. Drinks\n"
+                         << "2. Sides\n"
+                         << "3. Other\n"
                          << "4. Go back" << endl;
                     cout << "--------------------" << endl;
                     cout << "Selection: ";
                     cin >> sel;
-                    if(sel=='1') {
+                    if (sel == '1') {
                         cout << endl << "--------------------" << endl;;
                         int drink_selection;
                         vector<string> drinks = order_service.products_drinks();
+                        if (drinks.size() == 0) {
+                            cout << "There are no drinks available." << endl;
+                            break;
+                        }
                         cout << "Drinks: " << endl;
-                        for(unsigned int i=0; i < drinks.size(); i++) {
-                            cout << i+1 << ". " << drinks[i] << endl;
+                        for(unsigned int i = 0; i < drinks.size(); i++) {
+                            cout << i + 1 << ". " << drinks[i] << endl;
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
-                        while (!(cin >> drink_selection)) { // validate input, only accepts integers
+                        while (!(cin >> drink_selection)) { 
+                            // validate input, only accepts integers
                             cout << "Only integers, please!" << endl;
                             cin.clear();
                             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         }
-                        for(int i=0; i < n; i++)
-                        { // compares the string selected and the name of all of the products, adds the corresponding product
+                        for (int i = 0; i < n; i++)
+                        { 
+                            // compares the string selected and 
+                            //the name of all of the products, adds the corresponding product
                             if(drinks[drink_selection-1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
                                 //cout << product_menu[i].get_name();
                             }
                         }
                     }
-                    else if(sel=='2') {
+                    else if (sel == '2') {
                         cout << endl << "--------------------" << endl;
                         int sides_selection;
                         vector<string> sides = order_service.products_sides();
+                        if (sides.size() == 0) {
+                            cout << "There are no sides available." << endl;
+                            break;
+                        }
                         cout << "Sides: " << endl;
-                        for(unsigned int i=0; i < sides.size(); i++) {
-                            cout << i+1 << ". " << sides[i] << endl;
+                        for (unsigned int i = 0; i < sides.size(); i++) {
+                            cout << i + 1 << ". " << sides[i] << endl;
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
@@ -209,7 +217,7 @@ char c;
                             cin.clear();
                             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         }
-                        for(int i=0; i < n; i++)
+                        for (int i = 0; i < n; i++)
                         {
                             if(sides[sides_selection-1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
@@ -217,13 +225,17 @@ char c;
                             }
                         }
                     }
-                    else if(sel=='3') {
+                    else if (sel == '3') {
                         cout << endl << "--------------------" << endl;;
                         int other_selection;
                         vector<string> other = order_service.products_other();
+                        if (other.size() == 0) {
+                            cout << "There are no other products available." << endl;
+                            break;
+                        }
                         cout << "Other items: " << endl;
-                        for(unsigned int i=0; i < other.size(); i++) {
-                            cout << i+1 << ". " << other[i] << endl;
+                        for(unsigned int i = 0; i < other.size(); i++) {
+                            cout << i + 1 << ". " << other[i] << endl;
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
@@ -232,21 +244,21 @@ char c;
                             cin.clear();
                             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         }
-                        for(int i=0; i < n; i++)
+                        for (int i = 0; i < n; i++)
                         {
-                            if(other[other_selection-1] == product_menu[i].get_name()) {
+                            if (other[other_selection - 1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
                                 //cout << product_menu[i].get_name();
                             }
                         }
                     }
-                    else if(sel=='4') {
+                    else if(sel == '4') {
                         break;
                     }
                     else {
                         cout << "Invalid input." << endl;
                     }
-                delete [] product_menu;
+                delete[] product_menu;
                 }
             } break;
             case 3: {
@@ -255,9 +267,11 @@ char c;
                 cout << "Any additional comments? (y/n): ";
                 cin >> sel;
                 if (sel == 'y') {
-                    cin >> comments;
-                    order.add_comments(comments);
+                    cout << "Comments: ";
+                    cin.ignore();
+                    getline(cin, comments);
                 }
+                order.add_comments(comments);
                 done = true;
                 break;
             }
@@ -276,7 +290,7 @@ Pizza OrderUI::create_pizza() {
         cout << "Available pizza bases: " << endl;
         for (int i = 0; i < b; i++) {
             cout << i + 1 << ": " << bases[i];
-            if(i != b-1) {// endl if not last base
+            if (i != b - 1) {// endl if not last base
                 cout << endl;
             }
         }

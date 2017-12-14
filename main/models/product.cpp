@@ -2,7 +2,7 @@
 
 Product::Product() {
     name[0] = '\0';
-    category = 'x';
+    category = 'o';
     price = 0;
 }
 
@@ -27,17 +27,15 @@ int Product::get_price() {
 
 ostream& operator << (ostream& out, const Product& product) {
     out << product.name << " ";
-    if(product.category == 's') {
-        out << "sauce";
+    if (product.category == 'o') {
+        out << "(other)";
     }
-    else if(product.category == 'g') {
-        out << "soda";
+    else if (product.category == 'g') {
+        out << "(drink)";
     }
-    else if(product.category == 'm') {
-        out << "side";
+    else if (product.category == 'm') {
+        out << "(side)";
     }
-
-
     out << " " << product.price << endl;
     return out;
 }

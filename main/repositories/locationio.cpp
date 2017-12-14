@@ -14,9 +14,6 @@ void LocationIO::append_to_file(const Location& loc) {
         fout.close();
         return;
     }
-    else {
-        cout << "could not open" << endl;
-    }
     throw FileWriteException();
 }
 
