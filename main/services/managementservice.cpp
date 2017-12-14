@@ -6,7 +6,7 @@ void ManagementService::create_new_base(string name, int size, int price) {
     if (name == "" || name.size() > 127) {
         throw InvalidNameException();
     }
-    if (size < 0 || size > 1572) {
+    if (size < 5 || size > 1572) {
         // https://www.eater.com/2012/5/9/6588321/the-worlds-largest-pizza-ever-weighed-26883-lbs
         throw InvalidSizeException();
     }

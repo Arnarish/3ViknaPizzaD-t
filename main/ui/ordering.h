@@ -25,6 +25,7 @@
 #include "../exceptions/CustomerAddressException.h"
 #include "../exceptions/InvalidLocationException.h"
 #include "../exceptions/CustomerZipcodeException.h"
+#include "../exceptions/NoBaseException.h"
 
 
 using namespace std;

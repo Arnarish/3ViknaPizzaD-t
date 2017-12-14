@@ -152,10 +152,16 @@ void OrderUI::create_order(string name, string phone,
                     if (sel == '1') {
                         int n;
                         cout << endl << "--------------------" << endl;
-                        for (int i = 0; i < (int)pizza_menu.size(); i++) {
+                        if(pizza_menu.size() == 0) {
+                            cout << "No pizzas registered to the menu." << endl;
+                            break;
+                        }
+                        else {
+                            for (int i = 0; i < (int)pizza_menu.size(); i++) {
                             cout << "Pizza #" << (i + 1) << ": ";
                             cout << pizza_menu[i] << endl;
                             cout << endl;
+                        }
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
@@ -174,13 +180,17 @@ void OrderUI::create_order(string name, string phone,
                     order.add_pizza(pizza_menu[n]);
                     }
                     else if (sel == '2') {
-                        Pizza created = create_pizza();
-                        order.add_pizza(created);
+                        try{
+                            Pizza created = create_pizza();
+                            order.add_pizza(created);
+                        }
+                        catch(NoBaseException) {
+                            cout << "\n No pizza base available. \n\n";
+                        }
                     }
                     else {
                         break;
                     }
-                    cout << order << endl;
                 }
             } break;
             case 2: { //split into 3 submenus, drinks, sides and others.
@@ -330,6 +340,9 @@ Pizza OrderUI::create_pizza() {
     int s;
     Base* bases = order_service.read_base();
     int b = order_service.base_entries();
+    if(b == 0) {
+        throw NoBaseException();
+    }
     while (true) {
         cout << endl << "--------------------" << endl;
         cout << "Available pizza bases: " << endl;
@@ -341,7 +354,6 @@ Pizza OrderUI::create_pizza() {
         }
         cout << endl << "--------------------" << endl;
         cout << "Selection: ";
-        cin >> s;
         do {
             while (!(cin >> s)) {
                 // Only accept integers as input.
@@ -353,6 +365,7 @@ Pizza OrderUI::create_pizza() {
                 cout << "incorrect input, please try again." << endl;
             }
         }while(s > b+1 || 0 > s); // Loop until it's done right
+        break;
     }
     Pizza p(bases[s - 1]);
     delete[] bases;
@@ -360,6 +373,10 @@ Pizza OrderUI::create_pizza() {
     Topping* toppings = order_service.read_topping();
     int t = order_service.topping_entries();
     while (true) {
+            if(t == 0) {
+                cout << "No toppings available" << endl;
+                break;
+            }
         for (int i = 0; i < t; i++) {
             cout << (i + 1) << ": " << toppings[i] << endl;
         }
