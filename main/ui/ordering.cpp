@@ -1,3 +1,4 @@
+
 #include "ordering.h"
 
 using namespace std;
@@ -40,6 +41,7 @@ void OrderUI::main_menu() {
                     int n = location_service.number_of_entries();
                     int select_input = 0;
                     Location* locations = location_service.get_location_list();
+                    cout << endl;
                     cout << "Please select a pick-up location: " << endl;
                     for (int i = 0; i < n; i++) {
                         cout << i + 1 << ". " << locations[i].get_location() << endl;
@@ -80,6 +82,9 @@ void OrderUI::main_menu() {
                 create_order(name, phone, address, location, zipcode);
             } break;
             case 2:{
+                // TODO: Write all ready pizzas
+            }
+            case 3:{
                 return;
             }
             default:
@@ -102,9 +107,11 @@ char c;
         if (done) {
             break;
         }
+        cout << endl << "--------------------" << endl;
         cout << "1. Add a pizza\n"
              << "2. Add other products\n" //Soda, breadsticks, etc.
              << "3. Finish order" << endl;
+        cout << "--------------------" << endl;
         cout << "Selection: ";
         cin >> c;
         m = c - 48;
@@ -115,17 +122,22 @@ char c;
                 vector<Pizza> pizza_menu = order_service.pizza_menu();
                 int menu_size = pizza_menu.size();
                 while (true) {
+                    cout << endl << "--------------------" << endl;
                     cout << "1. Menu\n"
                          << "2. Create\n"
                          << "3. Go back" << endl;
+                    cout << "--------------------" << endl;
                     cout << "Selection: ";
                     cin >> sel;
                     if (sel == '1') {
                         int n;
+                        cout << endl << "--------------------" << endl;
                         for (int i = 0; i < menu_size; i++) {
                             cout << "Pizza #" << (i + 1) << ": ";
                             cout << pizza_menu[i] << endl;
+                            cout << endl;
                         }
+                        cout << "--------------------" << endl;
                         cout << "Selection: ";
                         cin >> n;
                         if (n < 0 || n > menu_size) {
@@ -151,19 +163,24 @@ char c;
                 int n = order_service.product_entries();
                 char sel;
                 while (true) {
+                    cout << endl << "--------------------" << endl;
                     cout << "1. drinks\n"
                          << "2. sides\n"
                          << "3. other\n"
                          << "4. Go back" << endl;
+                    cout << "--------------------" << endl;
                     cout << "Selection: ";
                     cin >> sel;
-                    if(sel=='1') { //  it's a bit of a messy solution, but it's 0200 and i couldn't figure anything better out
+                    if(sel=='1') {
+                        cout << endl << "--------------------" << endl;;
                         int drink_selection;
-                        vector<string> drinks = products_drinks();
-                        cout << "Selection: " << endl;
+                        vector<string> drinks = order_service.products_drinks();
+                        cout << "Drinks: " << endl;
                         for(unsigned int i=0; i < drinks.size(); i++) {
                             cout << i+1 << ". " << drinks[i] << endl;
                         }
+                        cout << "--------------------" << endl;
+                        cout << "Selection: ";
                         while (!(cin >> drink_selection)) { // validate input, only accepts integers
                             cout << "Only integers, please!" << endl;
                             cin.clear();
@@ -173,17 +190,20 @@ char c;
                         { // compares the string selected and the name of all of the products, adds the corresponding product
                             if(drinks[drink_selection-1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
-                                cout << product_menu[i].get_name();
+                                //cout << product_menu[i].get_name();
                             }
                         }
                     }
                     else if(sel=='2') {
+                        cout << endl << "--------------------" << endl;
                         int sides_selection;
-                        vector<string> sides = products_sides();
-                        cout << "Selection: " << endl;
+                        vector<string> sides = order_service.products_sides();
+                        cout << "Sides: " << endl;
                         for(unsigned int i=0; i < sides.size(); i++) {
                             cout << i+1 << ". " << sides[i] << endl;
                         }
+                        cout << "--------------------" << endl;
+                        cout << "Selection: ";
                         while (!(cin >> sides_selection)) {
                             cout << "Only integers, please!" << endl;
                             cin.clear();
@@ -193,17 +213,20 @@ char c;
                         {
                             if(sides[sides_selection-1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
-                                cout << product_menu[i].get_name();
+                                //cout << product_menu[i].get_name();
                             }
                         }
                     }
                     else if(sel=='3') {
+                        cout << endl << "--------------------" << endl;;
                         int other_selection;
-                        vector<string> other = products_other();
-                        cout << "Selection: " << endl;
+                        vector<string> other = order_service.products_other();
+                        cout << "Other items: " << endl;
                         for(unsigned int i=0; i < other.size(); i++) {
                             cout << i+1 << ". " << other[i] << endl;
                         }
+                        cout << "--------------------" << endl;
+                        cout << "Selection: ";
                         while (!(cin >> other_selection)) {
                             cout << "Only integers, please!" << endl;
                             cin.clear();
@@ -213,7 +236,7 @@ char c;
                         {
                             if(other[other_selection-1] == product_menu[i].get_name()) {
                                 order.add_product(product_menu[i]);
-                                cout << product_menu[i].get_name();
+                                //cout << product_menu[i].get_name();
                             }
                         }
                     }
@@ -249,10 +272,15 @@ Pizza OrderUI::create_pizza() {
     Base* bases = order_service.read_base();
     int b = order_service.base_entries();
     while (true) {
+        cout << endl << "--------------------" << endl;
         cout << "Available pizza bases: " << endl;
         for (int i = 0; i < b; i++) {
             cout << i + 1 << ": " << bases[i];
+            if(i != b-1) {// endl if not last base
+                cout << endl;
+            }
         }
+        cout << endl << "--------------------" << endl;
         cout << "Selection: ";
         cin >> s;
         if (s < 1 || s > (b + 1)) {
@@ -284,40 +312,4 @@ Pizza OrderUI::create_pizza() {
         }
     }
     return p;
-}
-
-vector<string> OrderUI::products_drinks() { // filters the product menu to drinks only
-    Product* menu = order_service.product_menu();
-    int n = order_service.product_entries();
-    vector<string> drinks;
-    for(int i=0; i < n; i++) {
-        if(menu[i].get_category() == 'd') {
-            drinks.push_back(menu[i].get_name());
-        }
-    }
-    return drinks;
-}
-
-vector<string> OrderUI::products_sides() { // filters the product menu to sides only
-    Product* menu = order_service.product_menu();
-    int n = order_service.product_entries();
-    vector<string> sides;
-    for(int i=0; i < n; i++) {
-        if(menu[i].get_category() == 's') {
-            sides.push_back(menu[i].get_name());
-        }
-    }
-    return sides;
-}
-
-vector<string> OrderUI::products_other() { // filters the product menu to others
-    Product* menu = order_service.product_menu();
-    int n = order_service.product_entries();
-    vector<string> other;
-    for(int i=0; i < n; i++) {
-        if(menu[i].get_category() == 'o') {
-            other.push_back(menu[i].get_name());
-        }
-    }
-    return other;
 }
