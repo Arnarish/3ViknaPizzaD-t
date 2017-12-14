@@ -51,6 +51,7 @@ void ManagementUI::main_menu() {
                 catch (InvalidSizeException) {
                     cout << "Invalid size!" << endl;
                 }
+                //TODO: exists og read er ekki notað, mögulega fjarlægja.
                 catch (FileExistsException) {
                     cout << "File doesn't exist!" << endl;
                 }
@@ -80,6 +81,7 @@ void ManagementUI::main_menu() {
                 catch (InvalidPriceException) {
                     cout << "Invalid price!" << endl;
                 }
+                //TODO: exists og read er ekki notað, mögulega fjarlægja.
                 catch (FileReadException) {
                     cout << "Couldn't read file!" << endl;
                 }
@@ -227,6 +229,8 @@ void ManagementUI::main_menu() {
                 catch (InvalidPostcodeException) {
                     cout << "Invalid postcode!" << endl;
                 }
+                //TODO: exists og read er ekki notað, mögulega fjarlægja.
+                //location io með sömu cout setningu og í exception
                 catch (FileWriteException) {
                     cout << "Couldn't open file!" << endl;
                 }
