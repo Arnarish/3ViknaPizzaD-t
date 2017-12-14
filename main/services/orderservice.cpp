@@ -8,27 +8,27 @@ OrderDetails OrderService::create_details(string name, string phone, string addr
         // Invalid name, throw an exception
         throw InvalidNameException();
     }
-    if(phone == "" || (phone.length() > 8 || phone.length() < 6)) {
+    if(phone == "" || phone.length() != 7) {
         // check if string is empty, or number has invalid length
         throw CustomerPhoneException();
     }
-    bool isNumber = true;
-    for(unsigned int i=0; i < phone.length(); i++) { // check if phone has non numerals
-        if(!isalnum(phone[i])) {
-            isNumber = false;
+    bool is_number = true;
+    for (unsigned int i = 0; i < phone.length(); i++) { // check if phone has non numerals
+        if (!isalnum(phone[i])) {
+            is_number = false;
             break;
         }
-        if(isNumber == false) {
+        if (is_number == false) {
             throw CustomerPhoneException();
         }
     }
-    if(address == "" || address.size() > 127) {
+    if (address == "" || address.size() > 127) {
         throw CustomerAddressException();
     }
-    if(location == "" || location.size() > 127) {
+    if (location == "" || location.size() > 127) {
         throw InvalidLocationException();
     }
-    if(zipcode > 999 || zipcode < 99) {
+    if (zipcode > 999 || zipcode < 99) {
         throw CustomerZipcodeException();
     }
     OrderDetails details(name, phone, address, location, zipcode);
@@ -101,8 +101,8 @@ vector<string> OrderService::products_drinks() { // filters the product menu to 
     Product* menu = product_menu();
     int n = product_entries();
     vector<string> drinks;
-    for(int i=0; i < n; i++) {
-        if(menu[i].get_category() == 'd') {
+    for (int i = 0; i < n; i++) {
+        if (menu[i].get_category() == 'd') {
             drinks.push_back(menu[i].get_name());
         }
     }
@@ -113,8 +113,8 @@ vector<string> OrderService::products_sides() { // filters the product menu to s
     Product* menu = product_menu();
     int n = product_entries();
     vector<string> sides;
-    for(int i=0; i < n; i++) {
-        if(menu[i].get_category() == 's') {
+    for (int i = 0; i < n; i++) {
+        if (menu[i].get_category() == 's') {
             sides.push_back(menu[i].get_name());
         }
     }
@@ -125,8 +125,8 @@ vector<string> OrderService::products_other() { // filters the product menu to o
     Product* menu = product_menu();
     int n = product_entries();
     vector<string> other;
-    for(int i=0; i < n; i++) {
-        if(menu[i].get_category() == 'o') {
+    for (int i = 0; i < n; i++) {
+        if (menu[i].get_category() == 'o') {
             other.push_back(menu[i].get_name());
         }
     }

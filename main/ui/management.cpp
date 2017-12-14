@@ -229,16 +229,8 @@ void ManagementUI::main_menu() {
                 catch (InvalidPostcodeException) {
                     cout << "Invalid postcode!" << endl;
                 }
-                //TODO: exists og read er ekki notað, mögulega fjarlægja.
-                //location io með sömu cout setningu og í exception
                 catch (FileWriteException) {
                     cout << "Couldn't open file!" << endl;
-                }
-                catch (FileReadException) {
-                    cout << "Couldn't open file!" << endl;
-                }
-                catch (FileExistsException) {
-                    cout << "File not found!" << endl;
                 }
             } break;
             case 6: {

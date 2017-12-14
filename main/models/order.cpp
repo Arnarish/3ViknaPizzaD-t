@@ -63,10 +63,17 @@ void Order::set_priority(bool p) {
 
 ostream& operator << (ostream& out, Order& o) {
     out << o.details << "\n";
+    cout << "Pizzas: \n";
     for (unsigned int i = 0; i < o.pizzas.size(); i++) {
         cout << o.pizzas[i] << "\n";
     }
+    if (o.products.size() > 0) {
+        cout << "Products: \n";
+        for (unsigned int i = 0; i < o.products.size(); i++) {
+            cout << " - " << o.products[i] << "\n";
+        }
+    }
     out << "\nORDER TOTAL: " << o.get_price() << " kr\n"
-        << "------------------------------------------------------\n";
+        << "------------------------------------------------------";
     return out;
 }

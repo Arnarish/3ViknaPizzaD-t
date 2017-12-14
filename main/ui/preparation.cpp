@@ -46,7 +46,7 @@ void PreperationUI::main_menu() {
                 }
             } break;
             case 2: {
-                // Process a latest order
+                // Process a specific order
                 cout << "Specific" << endl;
             } break;
             case 3: {
