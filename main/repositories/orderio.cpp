@@ -83,7 +83,6 @@ void insert(Order& order) {
 */
 
 void OrderIO::append(Order& order) {
-    file = ORDERED_FILE;
     fout.open(file, ios::binary | ios::app);
     if (fout.is_open()) {
         vector<Pizza> pizzas = order.get_pizzas();
@@ -170,6 +169,17 @@ void OrderIO::set_ready() {
 }
 void OrderIO::set_history() {
     file = ORDER_HISTORY_FILE;;
+}
+
+void OrderIO::truncate_file() {
+    // Be VERY careful with this function
+    if (file == ORDER_HISTORY_FILE) {
+        // Truncating the history file is a TERRIBLE idea
+        // and should NEVER be done
+        return;
+    }
+    fout.open(file, ios::binary | ios::trunc);
+    fout.close();
 }
 
 bool OrderIO::file_exists() {

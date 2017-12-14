@@ -38,7 +38,6 @@ class OrderService {
         vector<Order> get_ordered();
         vector<Order> get_ready();
         vector<Order> get_history();
-
     private:
         BaseIO baseio;
         ToppingIO toppingio;

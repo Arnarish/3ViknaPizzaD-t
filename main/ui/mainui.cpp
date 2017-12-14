@@ -32,10 +32,10 @@ void MainUI::main_menu() {
                 break;
             case 3:
                 try {
-                    preperation.ask_place();
+                    preperation.main_menu();
                 }
                 catch (UserInputException) {
-                    cout << "Invalid User input." << endl;
+                    cout << "Invalid input." << endl;
                 }
                 catch (FileExistsException) {
                     cout << "File does not exist." << endl;
@@ -43,7 +43,6 @@ void MainUI::main_menu() {
                 catch (FileReadException) {
                     cout << "Unable to read from file." << endl;
                 }
-                preperation.main_menu();
                 break;
             case 4:
                 try {
