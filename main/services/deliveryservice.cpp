@@ -11,7 +11,7 @@ Order DeliveryService::get_order_by_phone_number(vector<Order>& orders, string p
         }
     }
     for (unsigned int i = 0; i < orders.size(); i++) {
-        cout << orders[i].get_details().get_phone() << endl;
+        //cout << orders[i].get_details().get_phone() << endl;
         if (orders[i].get_details().get_phone() == phone) {
             if (orders[i].get_details().get_address() == "Pick-up") {
                 return orders[i];
@@ -33,7 +33,7 @@ void DeliveryService::process_order(Order& order) {
     orderio.truncate_file(); // TRUNCATE IT
     // Rewrite everything to the file
     for (unsigned int i = 0; i < orders.size(); i++) {
-        if (orders[i].get_details().get_phone() == orderphone 
+        if (orders[i].get_details().get_phone() == orderphone
             && !found && orders[i].get_location() == orderlocation) {
                 // In the (extremely) unlikely case that there are two (or more) orders
                 // made on the same phone number at the same location at the
@@ -46,7 +46,7 @@ void DeliveryService::process_order(Order& order) {
 
     orderio.set_history(); // Change to the history.dat file
     orderio.write_to_file(order);
-    orderio.set_ordered(); // Always change back to the ordered file 
+    orderio.set_ordered(); // Always change back to the ordered file
 }
 
 void DeliveryService::update_paid(Order& order, vector<Order> all_orders) {

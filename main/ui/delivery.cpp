@@ -80,7 +80,7 @@ void DeliveryUI::main_menu() {
                     cin >> select;
                     if (select == "y") {
                         order.set_paid(true);
-                        cout << "The order is paid for, do you want to delivery it? (y/n): ";
+                        cout << "The order is paid for, do you want to deliver it? (y/n): ";
                         cin >> select;
                         if (select == "n") {
                             deliveryservice.update_paid(order, all_orders);
