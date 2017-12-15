@@ -25,10 +25,38 @@ void MainUI::main_menu() {
         cout << endl;
         switch (m) {
             case 1:
-                management.main_menu();
+                try {
+                    management.main_menu();
+                }
+                catch(FileEmptyException) {
+                    cout << "Critical: file is empty." << endl;
+                }
+                catch(FileExistsException) {
+                    cout << "Critical: file does not exist." << endl;
+                }
+                catch(FileReadException) {
+                    cout << "Critical: unable to read from file." << endl;
+                }
+                catch(FileWriteException) {
+                    cout << "Critical: unable to write to file." << endl;
+                }
                 break;
             case 2:
-                ordering.main_menu();
+                try {
+                    ordering.main_menu();
+                }
+                catch(FileEmptyException) {
+                    cout << "Critical: file is empty." << endl;
+                }
+                catch(FileExistsException) {
+                    cout << "Critical: file does not exist." << endl;
+                }
+                catch(FileReadException) {
+                    cout << "Critical: unable to read from file." << endl;
+                }
+                catch(FileWriteException) {
+                    cout << "Critical: unable to write to file." << endl;
+                }
                 break;
             case 3:
                 try {
@@ -37,25 +65,34 @@ void MainUI::main_menu() {
                 catch (UserInputException) {
                     cout << "Invalid input." << endl;
                 }
-                catch (FileExistsException) {
-                    cout << "File does not exist." << endl;
+                catch(FileEmptyException) {
+                    cout << "Critical: file is empty." << endl;
                 }
-                catch (FileReadException) {
-                    cout << "Unable to read from file." << endl;
+                catch(FileExistsException) {
+                    cout << "Critical: file does not exist." << endl;
+                }
+                catch(FileReadException) {
+                    cout << "Critical: unable to read from file." << endl;
+                }
+                catch(FileWriteException) {
+                    cout << "Critical: unable to write to file." << endl;
                 }
                 break;
             case 4:
                 try {
                     delivery.main_menu();
                 }
-                catch (UserInputException) {
-                    cout << "Invalid User input." << endl;
+                catch(FileEmptyException) {
+                    cout << "Critical: file is empty." << endl;
                 }
-                catch (FileExistsException) {
-                    cout << "File does not exist." << endl;
+                catch(FileExistsException) {
+                    cout << "Critical: file does not exist." << endl;
                 }
-                catch (FileReadException) {
-                    cout << "Unable to read from file." << endl;
+                catch(FileReadException) {
+                    cout << "Critical: unable to read from file." << endl;
+                }
+                catch(FileWriteException) {
+                    cout << "Critical: unable to write to file." << endl;
                 }
                 break;
             case 5:

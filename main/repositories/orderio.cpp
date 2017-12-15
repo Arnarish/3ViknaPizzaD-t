@@ -98,8 +98,7 @@ void OrderIO::append(Order& order) {
         return;
     }
     else {
-        //throw FileOpenException();
-        cout << "huh";
+        throw FileWriteException();
     }
     throw FileWriteException();
 }

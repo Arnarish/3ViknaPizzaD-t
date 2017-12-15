@@ -17,6 +17,7 @@ void ManagementUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         while (!(cin >> m)) {
             cout << "Invalid input!" << endl;
             cin.clear();
@@ -32,12 +33,22 @@ void ManagementUI::main_menu() {
                 // Pizza base is a class (char[128], int, int)
 
                 cout << "Base name: ";
-                cin.ignore(); // Ignore a newline character in the stream
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore a newline character in the stream
                 getline(cin, name);
                 cout << "Price: ";
-                cin >> price;
+                while (!(cin >> price)) {
+                    cout << "Only integers please!" << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Price: ";
+                }
                 cout << "Size: ";
-                cin >> size;
+                while (!(cin >> size)) {
+                    cout << "Only integers please!" << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Size: ";
+                }
                 try {
                     management_service.create_new_base(name, price, size);
                     cout << "Done!" << endl;
@@ -67,10 +78,15 @@ void ManagementUI::main_menu() {
                 string name;
                 int price;
                 cout << "Topping name: ";
-                cin.ignore(); // Ignore a newline character in the stream
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore a newline character in the stream
                 getline(cin, name);
                 cout << "Price: ";
-                cin >> price;
+                while (!(cin >> price)) {
+                    cout << "Only integers please!" << endl;
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Price: ";
+                }
                 try {
                     management_service.create_new_topping(name, price);
                     cout << "Done!" << endl;
@@ -122,10 +138,15 @@ void ManagementUI::main_menu() {
                 cout << "Please select a pizza base: ";
                 int base_select = 0;
                 do {
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     while (!(cin >> base_select)) {
                         cout << "Only integers, please!" << endl;
                         cin.clear();
                         cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        cout << "Please select a pizza base: ";
+                    }
+                    if(base_select < 0 || base_select > (int)bases.size()) {
+                        cout << "Invalid selection!" << endl;
                         cout << "Please select a pizza base: ";
                     }
                 } while (base_select < 0 || base_select > (int)bases.size());
@@ -137,7 +158,13 @@ void ManagementUI::main_menu() {
                 int topping_select = 0;
                 while (true) {
                     cout << "Select toppings or enter 0 to stop: ";
-                    cin >> topping_select;
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    while (!(cin >> topping_select)) {
+                        cout << "Only integers, please!" << endl;
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        cout << "Select toppings or enter 0 to stop: ";
+                    }
                     if (topping_select < 0 || topping_select > (int)toppings.size()) {
                         cout << "Invalid selection!" << endl;
                     }
@@ -150,7 +177,7 @@ void ManagementUI::main_menu() {
                 }
                 cout << "Name your pizza: ";
                 string name;
-                cin.ignore();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 getline(cin, name);
                 try {
                     management_service.create_new_menu_item(name, base_select, selected_toppings);
@@ -172,19 +199,26 @@ void ManagementUI::main_menu() {
                 int price;
                 int category;
                 cout << "Please enter the name of the new product: ";
-                cin.ignore();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 getline(cin, name);
                 cout << "1. Drinks\n2. Sides\n3. Other\n";
                 cout << "Please enter the category for the new product: ";
-                while (!(cin >> category)) {
-                    cout << "Only integers, please!" << endl;
-                    cin.clear();
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    cout << "Please enter the category for the new product: ";
-                }
+                do {
+                    while (!(cin >> category)) {
+                        cout << "Only integers, please!" << endl;
+                        cin.clear();
+                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        cout << "Please enter the category for the new product: ";
+                    }
+                    if (category < 1 || category > 3) {
+                        cout << "Invalid selection!" << endl;
+                        cout << "Please enter the category for the new product: ";
+                    }
+                } while (category < 1 || category > 3);
                 cout << "Selected category: " << category << endl;
                 category--;
                 cout << "Please enter the price of the new product: ";
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 while (!(cin >> price)) {
                     cout << "Only integers, please!" << endl;
                     cin.clear();
@@ -213,7 +247,7 @@ void ManagementUI::main_menu() {
                 string location_name;
                 int postcode;
                 cout << "Please enter the address of the location: ";
-                cin.ignore();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 getline(cin, location_name);
                 cout << "Please enter the zip code: ";
                 while (!(cin >> postcode)) {

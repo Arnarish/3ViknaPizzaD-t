@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void ManagementService::create_new_base(string name, int size, int price) {
+void ManagementService::create_new_base(string name, int price, int size) {
     if (name == "" || name.size() > 127) {
         throw InvalidNameException();
     }
@@ -14,7 +14,7 @@ void ManagementService::create_new_base(string name, int size, int price) {
         // We're running a business here, so I won't put an upper bound on the price
         throw InvalidPriceException();
     }
-    Base b(name, price, size);
+    Base b(name, size, price);
     baseio.append_to_file(b);
 
     return;
