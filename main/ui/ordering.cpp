@@ -327,7 +327,7 @@ void OrderUI::create_order(string name, string phone,
             case 3: {
                 char sel;
                 string comments = "";
-                cout << "Any additional comments? (y/n): ";
+                cout << endl << "Any additional comments? (y/n): ";
                 cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin >> sel;
                 if (sel == 'y') {
@@ -341,8 +341,14 @@ void OrderUI::create_order(string name, string phone,
             }
         }
     }
+    cout << endl;
+    if(order.get_price() != 0) {
     cout << order << endl;
     order_service.write_order(order);
+    }
+    else { // Empty orders don't pay our bills
+        cout << "This order contains no items." << endl; // You get nothing, you lose!
+    }
 }
 
 Pizza OrderUI::create_pizza() {
