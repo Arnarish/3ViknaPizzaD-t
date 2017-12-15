@@ -103,6 +103,7 @@ void DeliveryUI::main_menu() {
             } break;
             case 2: {
                 int s;
+                bool good_for_pickup = false;
                 string select;
                 cout << " 1.  Deliver a pizza\n"
                      << " 2.  Go back\n" << endl;
@@ -117,6 +118,17 @@ void DeliveryUI::main_menu() {
                     break;
                 }
                 Order latest = orders[0];
+                for (unsigned int i = 0; i < orders.size(); i++) {
+                    if (orders[i].get_details().get_address() != "Pick-up") {
+                        good_for_pickup = true;
+                        latest = orders[i];
+                        break;
+                    }
+                }
+                if (!good_for_pickup) {
+                    cout << "No orders ready for delivery for this location" << endl;
+                    break;
+                }
                 cout << latest << endl;
                 cout << "Deliver this order? (y/n): ";
                 cin >> select;

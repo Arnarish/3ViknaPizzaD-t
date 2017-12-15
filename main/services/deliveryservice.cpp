@@ -13,7 +13,12 @@ Order DeliveryService::get_order_by_phone_number(vector<Order>& orders, string p
     for (unsigned int i = 0; i < orders.size(); i++) {
         cout << orders[i].get_details().get_phone() << endl;
         if (orders[i].get_details().get_phone() == phone) {
-            return orders[i];
+            if (orders[i].get_details().get_address() == "Pick-up") {
+                return orders[i];
+            }
+            else {
+                throw UserInputException();
+            }
         }
     }
     throw MissingOrderException();
@@ -26,7 +31,6 @@ void DeliveryService::process_order(Order& order) {
     string orderlocation = order.get_location();
     vector<Order> orders = orderio.read_file();
     orderio.truncate_file(); // TRUNCATE IT
-
     // Rewrite everything to the file
     for (unsigned int i = 0; i < orders.size(); i++) {
         if (orders[i].get_details().get_phone() == orderphone 

@@ -43,8 +43,8 @@ string OrderDetails::get_phone() {
 ostream& operator << (ostream& out, OrderDetails& d) {
     out << "Customer name      : " << d.name << "\n"
         << "Phone number       : " << d.phone << "\n"
-        << "Address:           : " << d.address << "\n"
-        << "Pickup location:   : " << d.location << "\n"
+        << "Address            : " << d.address << "\n"
+        << "Store location     : " << d.location << "\n"
         << "Zip code           : " << d.zipcode << "\n"
         << "Additional comments: " << d.comments;
     return out;

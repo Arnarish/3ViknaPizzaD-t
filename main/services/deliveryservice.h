@@ -6,6 +6,7 @@
 #include "../repositories/orderio.h"
 #include "../exceptions/MissingOrderException.h"
 #include "../exceptions/CustomerPhoneException.h"
+#include "../exceptions/UserInputException.h"
 
 using namespace std;
 

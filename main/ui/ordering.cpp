@@ -70,7 +70,6 @@ void OrderUI::main_menu() {
                     else if (pick_up == "n") {
                         // Prompt for customer address
                         cout << "Customer address: ";
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         getline(cin, address);
                         cout << "Customer zip code: ";
                         while(!(cin >> zipcode)) {
