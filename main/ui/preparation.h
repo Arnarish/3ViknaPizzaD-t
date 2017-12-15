@@ -1,5 +1,5 @@
-#ifndef PREPERATION_H
-#define PREPERATION_H
+#ifndef PREPARATION_H
+#define PREPARATION_H
 
 #if _WIN32
 #include <stdlib.h>
@@ -18,12 +18,13 @@
 #include "../exceptions/UserInputException.h"
 #include "../exceptions/FileReadException.h"
 #include "../exceptions/FileWriteException.h"
+#include "../exceptions/InvalidLocationException.h"
 
 using namespace std;
 
-class PreperationUI {
+class PreparationUI {
     public:
-        PreperationUI();
+        PreparationUI();
         void main_menu();
 
     private:
@@ -35,6 +36,7 @@ class PreperationUI {
         OrderService orderservice;
 
         void ask_place();
+        void list_orders();
 };
 
 #endif // PREPERATION_H
