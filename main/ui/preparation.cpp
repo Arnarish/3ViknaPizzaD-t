@@ -19,7 +19,7 @@ void PreparationUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
-        cin.ignore();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (!(cin >> m)) {
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -39,6 +39,7 @@ void PreparationUI::main_menu() {
                 Order order = orders[0];
                 cout << order << endl;
                 cout << "Mark this product as ready? (y/n): ";
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin >> selection;
                 if (selection == "y") {
                     preparationservice.process_earliest_order(order);
@@ -78,6 +79,7 @@ void PreparationUI::ask_place() {
             cout << i + 1 << ". " << locations[i].get_location() << endl;
         }
         cout << "Selection: ";
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         if (!(cin >> select_input)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
