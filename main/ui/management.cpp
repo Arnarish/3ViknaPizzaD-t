@@ -17,7 +17,6 @@ void ManagementUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         while (!(cin >> m)) {
             cout << "Invalid input!" << endl;
             cin.clear();
