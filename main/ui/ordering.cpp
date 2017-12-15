@@ -209,7 +209,6 @@ void OrderUI::create_order(string name, string phone,
                          << "4. Go back" << endl;
                     cout << "--------------------" << endl;
                     cout << "Selection: ";
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     cin >> sel;
                     if (sel == '1') {
                         cout << endl << "--------------------" << endl;;
@@ -220,7 +219,7 @@ void OrderUI::create_order(string name, string phone,
                             break;
                         }
                         cout << "Drinks: " << endl;
-                        for(unsigned int i = 0; i < drinks.size(); i++) {
+                        for( int i = 0; i < (int)drinks.size(); i++) {
                             cout << i + 1 << ". " << drinks[i] << endl;
                         }
                         cout << "--------------------" << endl;
@@ -256,13 +255,12 @@ void OrderUI::create_order(string name, string phone,
                             break;
                         }
                         cout << "Sides: " << endl;
-                        for (unsigned int i = 0; i < sides.size(); i++) {
+                        for (int i = 0; i < (int)sides.size(); i++) {
                             cout << i + 1 << ". " << sides[i] << endl;
                         }
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
                         do {
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             while (!(cin >> sides_selection)) {
                                 // Only accept integers as input.
                                 cin.clear();
@@ -290,7 +288,7 @@ void OrderUI::create_order(string name, string phone,
                             break;
                         }
                         cout << "Other items: " << endl;
-                        for(unsigned int i = 0; i < other.size(); i++) {
+                        for(int i = 0; i < (int)other.size(); i++) {
                             cout << i + 1 << ". " << other[i] << endl;
                         }
                         cout << "--------------------" << endl;
