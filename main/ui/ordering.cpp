@@ -172,10 +172,10 @@ void OrderUI::create_order(string name, string phone,
                                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                                 cout << "Please input a valid number from the list above." << endl;
                             }
-                            if(n > (int)pizza_menu.size() || 0 > n) { // ban all hyperpositivity and negativity, we're a very flat line company
+                            if(n > (int)pizza_menu.size() || 0 >= n) { // ban all hyperpositivity and negativity, we're a very flat line company
                                 cout << "incorrect input, please try again." << endl;
                             }
-                        }while(n > (int)pizza_menu.size() || 0 > n); // Loop until it's done right
+                        }while(n > (int)pizza_menu.size() || 0 >= n); // Loop until it's done right
                     n--;
                     order.add_pizza(pizza_menu[n]);
                     }
@@ -360,12 +360,13 @@ Pizza OrderUI::create_pizza() {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Please input a valid number from the list above." << endl;
+                cout << "Selection: " << endl;
             }
-            if (s > b + 1 || 0 > s) { 
+            if (s > b || 0 >= s) {
                 // ban all hyperpositivity and negativity, we're a very flat line company
                 cout << "Incorrect input, please try again." << endl;
             }
-        } while (s > b + 1 || 0 > s); // Loop until it's done right
+        } while (s > b || 0 >= s); // Loop until it's done right
         break;
     }
     Pizza p(bases[s - 1]);
@@ -383,11 +384,21 @@ Pizza OrderUI::create_pizza() {
                  << " (" << toppings[i].get_price() << " kr)\n";
         }
         cout << "Add toppings or enter 0 to stop: ";
-        cin >> s;
+        while (!(cin >> s)) {
+            // Only accept integers as input.
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please input a valid number from the list." << endl;
+                for (int i = 0; i < t; i++) {
+                    cout << (i + 1) << ": " << toppings[i]
+                        << " (" << toppings[i].get_price() << " kr)\n";
+                    }
+            cout << "Add toppings or enter 0 to stop: ";
+        }
         if (s == 0) {
             break;
         }
-        else if (s < 0 || s > (t + 1)) {
+        else if (s < 0 || s > t) {
             cout << "Invalid selection" << endl;
         }
         else {
