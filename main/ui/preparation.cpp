@@ -19,6 +19,7 @@ void PreparationUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
+        cin.ignore();
         if (!(cin >> m)) {
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

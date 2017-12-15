@@ -17,6 +17,7 @@ void ManagementUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
+        cin.ignore();
         while (!(cin >> m)) {
             cout << "Invalid input!" << endl;
             cin.clear();

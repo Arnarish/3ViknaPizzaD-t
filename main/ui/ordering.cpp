@@ -13,6 +13,7 @@ void OrderUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
+        cin.ignore();
         while (!(cin >> m)) {
             // validate input, only accepts integers
             cout << "Only integers, please!" << endl;
@@ -361,7 +362,7 @@ Pizza OrderUI::create_pizza() {
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cout << "Please input a valid number from the list above." << endl;
             }
-            if (s > b + 1 || 0 > s) { 
+            if (s > b + 1 || 0 > s) {
                 // ban all hyperpositivity and negativity, we're a very flat line company
                 cout << "Incorrect input, please try again." << endl;
             }
