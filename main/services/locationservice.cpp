@@ -14,7 +14,7 @@ void LocationService::create_new_location(string new_location, int postcode) {
     if (new_location == "" || new_location.size() > 127) {
         throw InvalidLocationException();
     }
-    if (postcode < 0 || postcode > 999) {
+    if (postcode < 100 || postcode > 999) {
         throw InvalidPostcodeException();
     }
     Location l(new_location, postcode);
