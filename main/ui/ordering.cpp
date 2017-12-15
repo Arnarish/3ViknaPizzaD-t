@@ -19,6 +19,7 @@ void OrderUI::main_menu() {
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
+        cout << endl;
         switch (m) {
             // Lets wrap these switch cases in blocks so I can reuse variable names (I'm lazy)
             case 1: {

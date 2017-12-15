@@ -3,7 +3,7 @@
 using namespace std;
 
 MainUI::MainUI() {
-    ui_text = " --- Very Important Pizza Inc. ---\n"
+    ui_text = " ---      ---\n"
               " 1.  Management\n"
               " 2.  Ordering\n"
               " 3.  Preparation\n"
