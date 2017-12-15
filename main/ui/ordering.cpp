@@ -49,7 +49,6 @@ void OrderUI::main_menu() {
                             cout << i + 1 << ". " << locations[i].get_location() << endl;
                         }
                         do {
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             while (!(cin >> select_input)) {
                                 // Only accept integers as input.
                                 cin.clear();

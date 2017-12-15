@@ -23,9 +23,8 @@ vector<Order> OrderIO::read_file() {
     file = ORDERED_FILE;
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
-        // throw FileExistsException();
-        cout << "file exist error";
-        return orders;
+        throw FileExistsException();
+
     }
     fin.open(file, ios::binary);
     if (fin.is_open()) {
@@ -65,7 +64,7 @@ vector<Order> OrderIO::read_file() {
         fin.close();
     }
     else {
-        cout << "file open error" << endl;
+        throw FileReadException();
     }
     return orders;
 }
@@ -74,13 +73,6 @@ vector<Order> OrderIO::read_file() {
 void OrderIO::write_to_file(Order& order) {
     append(order);
 }
-
-/*
-    TODO: finish this
-void insert(Order& order) {
-
-}
-*/
 
 void OrderIO::append(Order& order) {
     fout.open(file, ios::binary | ios::app);
@@ -111,8 +103,7 @@ void OrderIO::append(Order& order) {
         fout.close();
     }
     else {
-        //throw exception
-        cout << "not open??" << endl;
+        throw FileWriteException();
     }
 }
 

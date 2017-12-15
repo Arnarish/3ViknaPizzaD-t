@@ -12,6 +12,7 @@
 #include "../exceptions/FileExistsException.h"
 #include "../exceptions/FileReadException.h"
 #include "../exceptions/FileWriteException.h"
+#include "../exceptions/FileEmptyException.h"
 
 #if _WIN32
 #include <stdlib.h>

@@ -92,6 +92,7 @@ void PreparationUI::ask_place() {
             break;
         }
     }
+    cout << endl;
     store_location = locations[select_input - 1];
     delete[] locations;
 }
