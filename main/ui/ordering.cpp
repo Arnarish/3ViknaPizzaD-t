@@ -13,7 +13,6 @@ void OrderUI::main_menu() {
     while (true) {
         cout << ui_text << endl;
         cout << "Selection: ";
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         while (!(cin >> m)) {
             // validate input, only accepts integers
             cout << "Only integers, please!" << endl;
@@ -70,7 +69,9 @@ void OrderUI::main_menu() {
                     else if (pick_up == "n") {
                         // Prompt for customer address
                         cout << "Customer address: ";
+
                         //cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
                         getline(cin, address);
                         cout << "Customer zip code: ";
                         while(!(cin >> zipcode)) {
@@ -84,7 +85,6 @@ void OrderUI::main_menu() {
                     }
                     else {
                         cout << "Invalid input. please try again(y/n): ";
-                        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                         cin >> pick_up;
                     }
                 }
@@ -150,7 +150,6 @@ void OrderUI::create_order(string name, string phone,
                          << "3. Go back" << endl;
                     cout << "--------------------" << endl;
                     cout << "Selection: ";
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     cin >> sel;
                     if (sel == '1') {
                         int n;
@@ -169,7 +168,6 @@ void OrderUI::create_order(string name, string phone,
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
                         do {
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             while (!(cin >> n)) {
                                 // Only accept integers as input.
                                 cin.clear();
@@ -225,7 +223,6 @@ void OrderUI::create_order(string name, string phone,
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
                         do {
-                            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                             while (!(cin >> drink_selection)) {
                                 // Only accept integers as input.
                                 cin.clear();
@@ -294,7 +291,9 @@ void OrderUI::create_order(string name, string phone,
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
                         do {
+
                             //cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
                             while (!(cin >> other_selection)) {
                                 // Only accept integers as input.
                                 cin.clear();
@@ -326,7 +325,6 @@ void OrderUI::create_order(string name, string phone,
                 char sel;
                 string comments = "";
                 cout << endl << "Any additional comments? (y/n): ";
-                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 cin >> sel;
                 if (sel == 'y') {
                     cout << "Comments: ";
@@ -368,7 +366,6 @@ Pizza OrderUI::create_pizza() {
         cout << endl << "--------------------" << endl;
         cout << "Selection: ";
         do {
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             while (!(cin >> s)) {
                 // Only accept integers as input.
                 cin.clear();
