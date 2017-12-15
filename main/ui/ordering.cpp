@@ -376,9 +376,7 @@ Pizza OrderUI::create_pizza() {
                 cout << "Please input a valid number from the list above." << endl;
                 cout << "Selection: " << endl;
             }
-
             if (s > b || 0 >= s) {
-
                 // ban all hyperpositivity and negativity, we're a very flat line company
                 cout << "Incorrect input, please try again." << endl;
             }
