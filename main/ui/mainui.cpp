@@ -62,9 +62,6 @@ void MainUI::main_menu() {
                 try {
                     preparation.main_menu();
                 }
-                catch (UserInputException) {
-                    cout << "Invalid input." << endl;
-                }
                 catch(FileEmptyException) {
                     cout << "Critical: file is empty." << endl;
                 }

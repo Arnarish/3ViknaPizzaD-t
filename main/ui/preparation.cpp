@@ -15,6 +15,10 @@ void PreparationUI::main_menu() {
         cout << "There are no locations available." << endl;
         return;
     }
+    catch (UserInputException) {
+        cout << "Invalid user input." << endl;
+        return;
+    }
     int m;
     while (true) {
         cout << ui_text << endl;
@@ -82,7 +86,8 @@ void PreparationUI::ask_place() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             throw UserInputException();
         }
-        if (select_input < 0 || select_input > number_of_locations) {
+        cout << endl;
+        if (select_input < 1 || select_input > number_of_locations) {
             throw UserInputException();
         }
         else {

@@ -16,6 +16,10 @@ void DeliveryUI::main_menu() {
         cout << "There are no locations available." << endl;
         return;
     }
+    catch (UserInputException) {
+        cout << "Invalid user input." << endl;
+        return;
+    }
     all_orders = orderservice.get_ready();
     orders = deliveryservice.get_orders_by_location(store_location, all_orders);
     if (orders.size() == 0) {
@@ -101,7 +105,7 @@ void DeliveryUI::main_menu() {
                     }
                 }
             } break;
-            case 2: {
+            case 2: { // pizzas for delivery, fails if there are no ready pizzas
                 int s;
                 bool good_for_pickup = false;
                 string select;
@@ -158,7 +162,7 @@ void DeliveryUI::main_menu() {
     }
 }
 
-void DeliveryUI::get_place() {
+void DeliveryUI::get_place() { // returns the current storefront of the working user
     int number_of_locations = locationservice.number_of_entries();
     if (number_of_locations == 0) {
         throw InvalidLocationException();
@@ -176,7 +180,8 @@ void DeliveryUI::get_place() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             throw UserInputException();
         }
-        if (select_input < 0 || select_input > number_of_locations) {
+        cout << endl;
+        if (select_input < 1 || select_input > number_of_locations) {
             throw UserInputException();
         }
         else {
