@@ -69,9 +69,7 @@ void OrderUI::main_menu() {
                     else if (pick_up == "n") {
                         // Prompt for customer address
                         cout << "Customer address: ";
-
                         //cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
                         getline(cin, address);
                         cout << "Customer zip code: ";
                         while(!(cin >> zipcode)) {
@@ -291,9 +289,7 @@ void OrderUI::create_order(string name, string phone,
                         cout << "--------------------" << endl;
                         cout << "Selection: ";
                         do {
-
                             //cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
                             while (!(cin >> other_selection)) {
                                 // Only accept integers as input.
                                 cin.clear();
