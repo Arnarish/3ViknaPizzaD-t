@@ -20,12 +20,9 @@ OrderIO::OrderIO() {
 
 vector<Order> OrderIO::read_file() {
     vector<Order> orders;
-    file = ORDERED_FILE;
     if (!file_exists()) {
         // If the file doesn't exist, throw an exception
-        // throw FileExistsException();
-        cout << "file exist error";
-        return orders;
+        throw FileExistsException();
     }
     fin.open(file, ios::binary);
     if (fin.is_open()) {
@@ -35,6 +32,9 @@ vector<Order> OrderIO::read_file() {
         fin.seekg(0); // Go to the beginning of the file
         int current_position = fin.tellg();
         while (current_position != end_position) {
+            if (current_position == -1) {
+                throw FileReadException();
+            }
             // Start with the order details, so we can construct the object
             OrderDetails deets;
             fin.read((char*)(&deets), sizeof(OrderDetails));
@@ -51,21 +51,17 @@ vector<Order> OrderIO::read_file() {
                 fin.read((char*)(&p), sizeof(Product));
                 order.add_product(p);
             }
-            bool priority;
             bool paid;
-
-            fin.read((char*)(&priority), sizeof(bool));
             fin.read((char*)(&paid), sizeof(bool));
 
             order.set_paid(paid);
-            order.set_priority(priority);
             orders.push_back(order);
             current_position = fin.tellg();
         }
         fin.close();
     }
     else {
-        cout << "file open error" << endl;
+        throw FileReadException();
     }
     return orders;
 }
@@ -75,20 +71,12 @@ void OrderIO::write_to_file(Order& order) {
     append(order);
 }
 
-/*
-    TODO: finish this
-void insert(Order& order) {
-
-}
-*/
-
 void OrderIO::append(Order& order) {
     fout.open(file, ios::binary | ios::app);
     if (fout.is_open()) {
         vector<Pizza> pizzas = order.get_pizzas();
         vector<Product> products = order.get_products();
         OrderDetails details = order.get_details();
-        bool priority = order.get_priority();
         bool paid = order.get_paid();
 
         int n = (int)pizzas.size();
@@ -105,15 +93,15 @@ void OrderIO::append(Order& order) {
         fout.write((char*)(&m), sizeof(int));
         fout.write((char*)(&products[0]), sizeof(Product) * m);
         // Status written
-        fout.write((char*)(&priority), sizeof(bool));
         fout.write((char*)(&paid), sizeof(bool));
-
         fout.close();
+        return;
     }
     else {
-        //throw exception
-        cout << "not open??" << endl;
+        //throw FileOpenException();
+        cout << "huh";
     }
+    throw FileWriteException();
 }
 
 void OrderIO::write_pizza(Pizza& pizza) {
@@ -152,7 +140,6 @@ vector<Pizza> OrderIO::read_pizzas() {
         Pizza p(s, base);
 
         fin.read((char*)&topping_count, sizeof(int)); // Read how many toppings to expect
-        // TODO: do this in one IO operation
         for (int i = 0; i < topping_count; i++) {
             fin.read((char*)(&t), sizeof(Topping));
             p.add_topping(t);
@@ -168,7 +155,7 @@ void OrderIO::set_ready() {
     file = READY_FILE;
 }
 void OrderIO::set_history() {
-    file = ORDER_HISTORY_FILE;;
+    file = ORDER_HISTORY_FILE;
 }
 
 void OrderIO::truncate_file() {

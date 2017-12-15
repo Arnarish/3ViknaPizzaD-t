@@ -10,9 +10,9 @@ main:
 		models/location.cpp \
 		ui/mainui.cpp \
 		ui/management.cpp \
-		ui/delivery.cpp \
-		ui/preparation.cpp \
 		ui/ordering.cpp \
+		ui/preparation.cpp \
+		ui/delivery.cpp \
 		repositories/baseio.cpp \
 		repositories/toppingio.cpp \
 		repositories/menuio.cpp \
@@ -22,6 +22,7 @@ main:
 		services/managementservice.cpp \
 		services/orderservice.cpp \
 		services/locationservice.cpp \
+		services/deliveryservice.cpp \
 		services/preparationservice.cpp \
 		exceptions/* \
 	-o out

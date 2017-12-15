@@ -2,8 +2,13 @@
 
 using namespace std;
 
+Order::Order() { 
+    paid = false;
+}
+
 Order::Order(OrderDetails& details) {
     this->details = details;
+    paid = false;
 }
 
 int Order::get_price() {
@@ -19,10 +24,6 @@ int Order::get_price() {
 
 string Order::get_location() {
     return details.get_location();
-}
-
-bool Order::get_priority() {
-    return priority;
 }
 
 bool Order::get_paid() {
@@ -55,10 +56,6 @@ OrderDetails Order::get_details() {
 
 void Order::set_paid(bool p) {
     paid = p;
-}
-
-void Order::set_priority(bool p) {
-    priority = p;
 }
 
 ostream& operator << (ostream& out, Order& o) {

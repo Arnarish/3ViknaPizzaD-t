@@ -94,8 +94,9 @@ void PreparationUI::ask_place() {
 }
 
 void PreparationUI::list_orders() {
+    cout << "hey" << endl;
     for (unsigned int i = 0; i < orders.size(); i++) {
         cout << " ~~~ ORDER #" << i + 1 << " ~~~ \n";
-        cout << orders[i];
+        cout << orders[i] << endl;
     }
 }

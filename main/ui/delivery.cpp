@@ -9,95 +9,175 @@ DeliveryUI::DeliveryUI() {
 }
 
 void DeliveryUI::main_menu() {
+    try {
+        get_place();
+    }
+    catch (InvalidLocationException) {
+        cout << "There are no locations available." << endl;
+        return;
+    }
+    all_orders = orderservice.get_ready();
+    orders = deliveryservice.get_orders_by_location(store_location, all_orders);
+    if (orders.size() == 0) {
+        cout << "No orders in delivery!" << endl;
+        return;
+    }
     int m;
+    string phone;
+    Order order;
     while (true) {
-        string phone;
-        vector<Order> all_orders = order_service.get_ordered();
-        cout << "Orders size: " << all_orders.size();
-        //OrderDetails* orders_details = new OrderDetails[(int)all_orders.size()];
-
+        all_orders = orderservice.get_ready();
+        orders = deliveryservice.get_orders_by_location(store_location, all_orders);
         cout << ui_text << endl;
         cout << "Selection: ";
-        while (!(cin >> m)) {
-            cout << "Invalid input!" << endl;
+        if (!(cin >> m)) {
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cout << "Selection: ";
+            throw UserInputException();
         }
         cout << endl;
-
-        /*for (unsigned int i=0; i < all_orders.size(); i++) {
-                    orders_details[i] = all_orders[i].get_details();
-                }*/
-
         switch (m) {
             case 1: {
-                //todo: checka hvort númerið sé valid
-             //   int number;
-             //   int e = number_of_entries;
-             //   all_orders = read_file
-             //   cout << "Enter phone number: ";
-             //   cin >> number;
-
-             //   for (int i=0; i < e; i++) {
-                        //breyta í order repository
-             //       if (number == order[i].get_number) {
-               //         order[i].set_delivered;
-                 //   }
-               // }
-
-                cout << "Please input customer phone-number: ";
+                cout << "Please input customer phone number: ";
                 cin.ignore();
                 getline(cin, phone);
-                /*
-                for(unsigned int i=0; i<all_orders.size(); i++) {
-                    if(all_orders[i].get_location() == store_location) {
-                        
+                try {
+                    order = deliveryservice.get_order_by_phone_number(orders, phone);
+                }
+                catch (CustomerPhoneException) {
+                    cout << "Invalid phone number" << endl;
+                    break;
+                }
+                catch (MissingOrderException) {
+                    cout << "No order found at this location for this phone number" << endl;
+                    break;
+                }
+                catch (UserInputException) {
+                    cout << "This order is not flagged for pick-up" << endl;
+                    break;
+                }
+                string select;
+                cout << order << endl;
+                if (order.get_paid()) {
+                    cout << order << endl;
+                    // If paid, prompt for delivery
+                    cout << "The order is paid for, do you want to delivery it? (y/n): ";
+                    cin >> select;
+                    if (select == "n") {
+                        break;
+                    }
+                    else if (select == "y") {
+                        deliveryservice.process_order(order);
+                        cout << "Done!" << endl;
+                    }
+                    else {
+                        cout << "Invalid input" << endl;
+                        break;
                     }
                 }
-                for(unsigned int i=0; i<all_orders.size(); i++) {
-                    if(orders_details[i].get_phone() == phone) {
-                        cout << all_orders[i];
+                else {
+                    cout << "The order isn't paid for, do you want to mark it as paid? (y/n): ";
+                    cin >> select;
+                    if (select == "y") {
+                        order.set_paid(true);
+                        cout << "The order is paid for, do you want to delivery it? (y/n): ";
+                        cin >> select;
+                        if (select == "n") {
+                            deliveryservice.update_paid(order, all_orders);
+                            break;
+                        }
+                        else if (select == "y") {
+                            deliveryservice.process_order(order);
+                            cout << "Done!" << endl;
+                            return;
+                        }
+                        else {
+                            cout << "Invalid input" << endl;
+                            break;
+                        }
+                    }
+                    else {
+                        break;
                     }
                 }
-                */
             } break;
-            case 2:
-                cout << "" << endl;
-                break;
-            case 3:
-                cout << "" << endl;
-                break;
-            case 4:
+            case 2: {
+                int s;
+                string select;
+                cout << " 1.  Deliver a pizza\n"
+                     << " 2.  Go back\n" << endl;
+                cout << "Selection: ";
+                while (!(cin >> s)) {
+                    cin.clear();
+                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Invalid input" << endl;
+                }
+                if (m < 1 || m > 2) {
+                    cout << "Invalid input" << endl;
+                    break;
+                }
+                Order latest = orders[0];
+                cout << latest << endl;
+                cout << "Deliver this order? (y/n): ";
+                cin >> select;
+                if (select == "y") {
+                    latest.set_paid(true);
+                    deliveryservice.process_order(latest);
+                    cout << "Done!";
+                }
+                else if (select == "n") {
+                    break;
+                }
+                else {
+                    cout << "Invalid input" << endl;
+                }
+            } break;
+            case 3: {
+                list_orders();
+            } break;
+            case 4: {
                 return;
-            default:
+            } break;
+            default: {
                 cout << "Invalid input." << endl;
-                break;
+            } break;
         }
         cout << endl;
     }
 }
 
-void DeliveryUI::ask_place() {
-    int n = location_service.number_of_entries();
+void DeliveryUI::get_place() {
+    int number_of_locations = locationservice.number_of_entries();
+    if (number_of_locations == 0) {
+        throw InvalidLocationException();
+    }
     int select_input = 0;
-    Location* locations = location_service.get_location_list();
-    cout << "Select your workplace from the list" << endl;
-    for (int i = 0; i < n; i++) {
-        cout << i + 1 << ". " << locations[i].get_location() << endl;
+    Location* locations = locationservice.get_location_list();
+    while (true) {
+        cout << "Please select your current workplace from list: " << endl;
+        for (int i = 0; i < number_of_locations; i++) {
+            cout << i + 1 << ". " << locations[i].get_location() << endl;
+        }
+        cout << "Selection: ";
+        if (!(cin >> select_input)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            throw UserInputException();
+        }
+        if (select_input < 0 || select_input > number_of_locations) {
+            throw UserInputException();
+        }
+        else {
+            break;
+        }
     }
-    while (!(cin >> select_input)) {
-        // Only accept integers as input.
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "please input a valid number from the list above." << endl;
-    }
-    if (select_input > n) {
-        // If input is valid, but exceeds the given no. of stores.
-        throw UserInputException();
-    }
-    store_location = locations[select_input - 1].get_location();
-    cout << store_location << " selected." << endl << endl;
-
+    store_location = locations[select_input - 1];
     delete[] locations;
+}
+
+void DeliveryUI::list_orders() {
+    for (unsigned int i = 0; i < orders.size(); i++) {
+        cout << " ~~~ ORDER #" << i + 1 << " ~~~ \n";
+        cout << orders[i] << endl;
+    }
 }

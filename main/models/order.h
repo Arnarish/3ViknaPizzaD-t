@@ -16,6 +16,7 @@ using namespace std;
 
 class Order {
     public:
+        Order();
         Order(OrderDetails&);
         int get_price();
         bool get_priority();
@@ -30,17 +31,12 @@ class Order {
         void add_product(Product& p);
         void add_comments(string comments);
         void set_paid(bool p);
-        void set_priority(bool p);
 
     private:
         vector<Product> products;
         vector<Pizza> pizzas;
         OrderDetails details;
 
-        // If the priority flag is set, it'll insert the order 
-        // at the top of the order file rather than appending
-        bool priority; 
-        
         // If the paid flag is set, the pizza is paid for (duh)
         bool paid;
 
